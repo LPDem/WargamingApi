@@ -1,0 +1,85 @@
+openapi: 3.0.0
+info:
+  title: Resource planning backend
+  version: '1.0'
+servers:
+  - url: 'http://localhost:3000'
+paths:
+  /users/authenticate:
+    post:
+      summary: ''
+      operationId: post-users-authenticate
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  sUserName:
+                    type: string
+                    description: Имя пользователя для обображения в заголовке
+                  sToken:
+                    type: string
+                    description: JWT token
+                  sRefreshToken:
+                    type: string
+                    description: JWT token
+                required:
+                  - sUserName
+                  - sToken
+                  - sRefreshToken
+        '401':
+          description: Unauthorized
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                sLogin:
+                  type: string
+                sPassword:
+                  type: string
+              required:
+                - sLogin
+                - sPassword
+            examples: {}
+  /users/refreshToken:
+    post:
+      summary: ''
+      operationId: post-users-refreshToken
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  sToken:
+                    type: string
+                  sRefreshToken:
+                    type: string
+                required:
+                  - sToken
+                  - sRefreshToken
+        '401':
+          description: Unauthorized
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                sToken:
+                  type: string
+                sRefreshToken:
+                  type: string
+              required:
+                - sToken
+                - sRefreshToken
+components:
+  schemas: {}
