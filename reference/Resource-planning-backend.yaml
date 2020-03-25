@@ -7,31 +7,8 @@ servers:
 paths:
   /users/authenticate:
     post:
-      summary: ''
+      summary: authenticate
       operationId: post-users-authenticate
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  sUserName:
-                    type: string
-                    description: Имя пользователя для обображения в заголовке
-                  sToken:
-                    type: string
-                    description: JWT token
-                  sRefreshToken:
-                    type: string
-                    description: JWT token
-                required:
-                  - sUserName
-                  - sToken
-                  - sRefreshToken
-        '401':
-          description: Unauthorized
       parameters: []
       requestBody:
         content:
@@ -47,9 +24,41 @@ paths:
                 - sLogin
                 - sPassword
             examples: {}
+        description: ''
+      description: Авторизация пользователя по логину и паролю
+      tags:
+        - users
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - properties:
+                      sUserName:
+                        type: string
+                        description: Имя пользователя для заголовка
+                      sToken:
+                        type: string
+                        description: Токен JWT
+                      sRefreshToken:
+                        type: string
+                        description: Токен JWT
+                    required:
+                      - sUserName
+                      - sToken
+                      - sRefreshToken
+                  - properties:
+                      sError:
+                        type: string
+                        description: Текст причины неуспешной авторизации
+                    required:
+                      - sError
+                type: object
   /users/refreshToken:
     post:
-      summary: ''
+      summary: refreshToken
       operationId: post-users-refreshToken
       responses:
         '200':
@@ -81,5 +90,8 @@ paths:
               required:
                 - sToken
                 - sRefreshToken
+      tags:
+        - users
+      description: Обновление токена авторизации
 components:
   schemas: {}
