@@ -7,7 +7,7 @@ servers:
 paths:
   /users/authenticate:
     post:
-      summary: authenticate
+      summary: users/authenticate
       operationId: post-users-authenticate
       parameters: []
       requestBody:
@@ -58,7 +58,7 @@ paths:
                 type: object
   /users/refreshToken:
     post:
-      summary: refreshToken
+      summary: users/refreshToken
       operationId: post-users-refreshToken
       responses:
         '200':
@@ -93,5 +93,86 @@ paths:
       tags:
         - users
       description: Обновление токена авторизации
+  /getMenu:
+    get:
+      summary: getMenu
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  aProducts:
+                    type: array
+                    description: список продуктов
+                    items:
+                      type: object
+                      description: Данные одного продукта
+                      properties:
+                        iId:
+                          type: number
+                          description: Id продукта
+                        sName:
+                          type: string
+                          description: Название продукта
+                        aDepartments:
+                          type: array
+                          description: Список подразделений продукта
+                          items:
+                            type: object
+                            description: Данные одного подразделения
+                            properties:
+                              iId:
+                                type: number
+                                description: Id подразделения
+                              sName:
+                                type: string
+                                description: Название подразделения
+                            required:
+                              - iId
+                              - sName
+                      required:
+                        - iId
+                        - sName
+                        - aDepartments
+                required:
+                  - aProducts
+      operationId: get-getMenu
+      description: Получение содержимого меню для левой панели
+  /import/roles:
+    post:
+      summary: import/roles
+      operationId: post-import-roles
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  bSuccess:
+                    type: boolean
+                    description: Признак успешной загрузки
+                  sError:
+                    type: string
+                    description: 'Описание ошибок загрузки, если они есть'
+                required:
+                  - bSuccess
+      description: Загрузка мастер-данных ролей и доступа
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                sFileContent:
+                  type: string
+                  description: 'Содержимое файла, с префиксом data:text/plain;base64,'
+              required:
+                - sFileContent
 components:
   schemas: {}
