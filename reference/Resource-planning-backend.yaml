@@ -8,7 +8,7 @@ paths:
   /users/authenticate:
     post:
       summary: authenticate
-      operationId: post-users-authenticate
+      operationId: users-authenticate
       parameters: []
       requestBody:
         content:
@@ -59,7 +59,7 @@ paths:
   /users/refreshToken:
     post:
       summary: refreshToken
-      operationId: post-users-refreshToken
+      operationId: users-refreshToken
       responses:
         '200':
           description: OK
@@ -141,13 +141,13 @@ paths:
                         - aDepartments
                 required:
                   - aProducts
-      operationId: get-getMenu
+      operationId: common-getMenu
       description: Получение содержимого меню для левой панели
     parameters: []
   /masterData/importRoles:
     post:
       summary: importRoles
-      operationId: post-import-roles
+      operationId: masterData-importRoles
       responses:
         '200':
           description: OK
@@ -181,12 +181,12 @@ paths:
                     $ref: '#/components/schemas/DataGridDto'
                 required:
                   - oData
-      operationId: get-masterData-getRoles
-      description: Получение импортированных ролей
+      operationId: masterData-getRoles
+      description: Получение мастер-данных ролей и доступа
   /masterData/importPositions:
     post:
       summary: importPositions
-      operationId: post-import-positions
+      operationId: masterData-importPositions
       responses:
         '200':
           description: OK
@@ -220,12 +220,12 @@ paths:
                     $ref: '#/components/schemas/DataGridDto'
                 required:
                   - oData
-      operationId: get-masterData-getPositions
-      description: Получение импортированных позиций
+      operationId: masterData-getPositions
+      description: Получение мастер-данных позиций
   /masterData/importOrgStructure:
     post:
       summary: importOrgStructure
-      operationId: post-import-org-structure
+      operationId: masterData-importOrgStructure
       responses:
         '200':
           description: OK
@@ -234,66 +234,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ImportMasterDataResultDto'
       description: Загрузка мастер-данных оргструктуры
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ImportMasterDataRequestDto'
-      tags:
-        - masterData
-    parameters: []
-  /masterData/importJobs:
-    post:
-      summary: importJobs
-      operationId: post-import-jobs
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ImportMasterDataResultDto'
-      description: Загрузка мастер-данных каталога должностей
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ImportMasterDataRequestDto'
-      tags:
-        - masterData
-    parameters: []  
-  /masterData/importFaq:
-    post:
-      summary: importFaq
-      operationId: post-import-faq
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ImportMasterDataResultDto'
-      description: Загрузка мастер-данных FAQ
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ImportMasterDataRequestDto'
-      tags:
-        - masterData
-    parameters: []    
-  /masterData/importCurrencies:
-    post:
-      summary: importCurrencies
-      operationId: post-import-currencies
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ImportMasterDataResultDto'
-      description: Загрузка мастер-данных валют
       requestBody:
         content:
           application/json:
@@ -319,8 +259,28 @@ paths:
                     $ref: '#/components/schemas/DataGridDto'
                 required:
                   - oData
-      operationId: get-masterData-getRoles
-      description: Получение импортированной оргструктуры
+      operationId: masterData-getOrgStructure
+      description: Получение мастер-данных оргструктуры
+  /masterData/importJobs:
+    post:
+      summary: importJobs
+      operationId: masterData-importJobs
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImportMasterDataResultDto'
+      description: Загрузка мастер-данных каталога должностей
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImportMasterDataRequestDto'
+      tags:
+        - masterData
+    parameters: []
   /masterData/getJobs:
     get:
       summary: getJobs
@@ -338,8 +298,28 @@ paths:
                     $ref: '#/components/schemas/DataGridDto'
                 required:
                   - oData
-      operationId: get-masterData-getRoles
-      description: Получение импортированного каталога должностей    
+      operationId: masterData-getJobs
+      description: Получение мастер-данных каталога должностей
+  /masterData/importFaq:
+    post:
+      summary: importFaq
+      operationId: masterData-importFaq
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImportMasterDataResultDto'
+      description: Загрузка мастер-данных FAQ
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImportMasterDataRequestDto'
+      tags:
+        - masterData
+    parameters: []
   /masterData/getFaq:
     get:
       summary: getFaq
@@ -357,8 +337,28 @@ paths:
                     $ref: '#/components/schemas/DataGridDto'
                 required:
                   - oData
-      operationId: get-masterData-getRoles
-      description: Получение импортированного FAQ
+      operationId: masterData-getFaq
+      description: Получение мастер-данных FAQ
+  /masterData/importCurrencies:
+    post:
+      summary: importCurrencies
+      operationId: masterData-importCurrencies
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImportMasterDataResultDto'
+      description: Загрузка мастер-данных справочника валют
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImportMasterDataRequestDto'
+      tags:
+        - masterData
+    parameters: []
   /masterData/getCurrencies:
     get:
       summary: getCurrencies
@@ -376,8 +376,125 @@ paths:
                     $ref: '#/components/schemas/DataGridDto'
                 required:
                   - oData
-      operationId: get-masterData-getCurrencies
-      description: Получение импортированных валют
+      operationId: masterData-getCurrencies
+      description: Получение мастер-данных справочника валют
+  /masterData/importFrequencies:
+    post:
+      summary: importFrequencies
+      operationId: masterData-importFrequencies
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImportMasterDataResultDto'
+      description: Загрузка мастер-данных частоты выплат
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImportMasterDataRequestDto'
+      tags:
+        - masterData
+    parameters: []
+  /masterData/importExchangeRates:
+    post:
+      summary: importExchangeRates
+      operationId: masterData-importExchangeRates
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImportMasterDataResultDto'
+      description: Загрузка мастер-данных курсов обмена валют
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImportMasterDataRequestDto'
+      tags:
+        - masterData
+    parameters: []
+  /masterData/importUsers:
+    post:
+      summary: importUsers
+      operationId: masterData-importUsers
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImportMasterDataResultDto'
+      description: Загрузка мастер-данных пользователей
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImportMasterDataRequestDto'
+      tags:
+        - masterData
+    parameters: []
+  /masterData/getFrequencies:
+    get:
+      summary: getFrequencies
+      tags:
+        - masterData
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  oData:
+                    $ref: '#/components/schemas/DataGridDto'
+                required:
+                  - oData
+      operationId: masterData-getFrequencies
+      description: Получение мастер-данных частоты выплат
+  /masterData/getExchangeRates:
+    get:
+      summary: getExchangeRates
+      tags:
+        - masterData
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  oData:
+                    $ref: '#/components/schemas/DataGridDto'
+                required:
+                  - oData
+      operationId: masterData-getExchangeRates
+      description: Получение мастер-данных курсов обмена валют
+  /masterData/getUsers:
+    get:
+      summary: getUsers
+      tags:
+        - masterData
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  oData:
+                    $ref: '#/components/schemas/DataGridDto'
+                required:
+                  - oData
+      operationId: masterData-getUsers
+      description: Получение мастер-данных пользователей
 components:
   schemas:
     DataGridDto:
