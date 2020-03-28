@@ -164,26 +164,6 @@ paths:
       tags:
         - masterData
     parameters: []
-  /masterData/importPositions:
-    post:
-      summary: importPositions
-      operationId: post-import-positions
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ImportMasterDataResultDto'
-      description: Загрузка мастер-данных позиций
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ImportMasterDataRequestDto'
-      tags:
-        - masterData
-    parameters: []  
   /masterData/getRoles:
     get:
       summary: getRoles
@@ -203,6 +183,26 @@ paths:
                   - oData
       operationId: get-masterData-getRoles
       description: Получение импортированных ролей
+  /masterData/importPositions:
+    post:
+      summary: importPositions
+      operationId: post-import-positions
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImportMasterDataResultDto'
+      description: Загрузка мастер-данных позиций
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImportMasterDataRequestDto'
+      tags:
+        - masterData
+    parameters: []
   /masterData/getPositions:
     get:
       summary: getPositions
@@ -220,8 +220,164 @@ paths:
                     $ref: '#/components/schemas/DataGridDto'
                 required:
                   - oData
+      operationId: get-masterData-getPositions
+      description: Получение импортированных позиций
+  /masterData/importOrgStructure:
+    post:
+      summary: importOrgStructure
+      operationId: post-import-org-structure
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImportMasterDataResultDto'
+      description: Загрузка мастер-данных оргструктуры
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImportMasterDataRequestDto'
+      tags:
+        - masterData
+    parameters: []
+  /masterData/importJobs:
+    post:
+      summary: importJobs
+      operationId: post-import-jobs
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImportMasterDataResultDto'
+      description: Загрузка мастер-данных каталога должностей
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImportMasterDataRequestDto'
+      tags:
+        - masterData
+    parameters: []  
+  /masterData/importFaq:
+    post:
+      summary: importFaq
+      operationId: post-import-faq
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImportMasterDataResultDto'
+      description: Загрузка мастер-данных FAQ
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImportMasterDataRequestDto'
+      tags:
+        - masterData
+    parameters: []    
+  /masterData/importCurrencies:
+    post:
+      summary: importCurrencies
+      operationId: post-import-currencies
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImportMasterDataResultDto'
+      description: Загрузка мастер-данных валют
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImportMasterDataRequestDto'
+      tags:
+        - masterData
+    parameters: []
+  /masterData/getOrgStructure:
+    get:
+      summary: getOrgStructure
+      tags:
+        - masterData
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  oData:
+                    $ref: '#/components/schemas/DataGridDto'
+                required:
+                  - oData
       operationId: get-masterData-getRoles
-      description: Получение импортированных позиций    
+      description: Получение импортированной оргструктуры
+  /masterData/getJobs:
+    get:
+      summary: getJobs
+      tags:
+        - masterData
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  oData:
+                    $ref: '#/components/schemas/DataGridDto'
+                required:
+                  - oData
+      operationId: get-masterData-getRoles
+      description: Получение импортированного каталога должностей    
+  /masterData/getFaq:
+    get:
+      summary: getFaq
+      tags:
+        - masterData
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  oData:
+                    $ref: '#/components/schemas/DataGridDto'
+                required:
+                  - oData
+      operationId: get-masterData-getRoles
+      description: Получение импортированного FAQ
+  /masterData/getCurrencies:
+    get:
+      summary: getCurrencies
+      tags:
+        - masterData
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  oData:
+                    $ref: '#/components/schemas/DataGridDto'
+                required:
+                  - oData
+      operationId: get-masterData-getCurrencies
+      description: Получение импортированных валют
 components:
   schemas:
     DataGridDto:
