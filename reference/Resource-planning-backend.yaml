@@ -498,6 +498,16 @@ paths:
                   - oData
       operationId: masterData-getUsers
       description: Получение мастер-данных пользователей
+  /masterData/clearData:
+    post:
+      summary: clearData
+      operationId: post-masterData-clearData
+      responses:
+        '200':
+          description: OK
+      description: Очистка всех мастер-данных
+      tags:
+        - masterData
 components:
   schemas:
     DataGridDto:
