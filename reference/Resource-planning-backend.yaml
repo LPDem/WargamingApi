@@ -154,10 +154,6 @@ paths:
       responses:
         '200':
           description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ImportMasterDataResultDto'
       description: Загрузка мастер-данных ролей и доступа
       requestBody:
         content:
@@ -193,10 +189,6 @@ paths:
       responses:
         '200':
           description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ImportMasterDataResultDto'
       description: Загрузка мастер-данных позиций
       requestBody:
         content:
@@ -232,10 +224,6 @@ paths:
       responses:
         '200':
           description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ImportMasterDataResultDto'
       description: Загрузка мастер-данных оргструктуры
       requestBody:
         content:
@@ -271,10 +259,6 @@ paths:
       responses:
         '200':
           description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ImportMasterDataResultDto'
       description: Загрузка мастер-данных каталога должностей
       requestBody:
         content:
@@ -310,10 +294,6 @@ paths:
       responses:
         '200':
           description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ImportMasterDataResultDto'
       description: Загрузка мастер-данных FAQ
       requestBody:
         content:
@@ -349,10 +329,6 @@ paths:
       responses:
         '200':
           description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ImportMasterDataResultDto'
       description: Загрузка мастер-данных справочника валют
       requestBody:
         content:
@@ -388,10 +364,6 @@ paths:
       responses:
         '200':
           description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ImportMasterDataResultDto'
       description: Загрузка мастер-данных частоты выплат
       requestBody:
         content:
@@ -408,10 +380,6 @@ paths:
       responses:
         '200':
           description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ImportMasterDataResultDto'
       description: Загрузка мастер-данных курсов обмена валют
       requestBody:
         content:
@@ -428,10 +396,6 @@ paths:
       responses:
         '200':
           description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ImportMasterDataResultDto'
       description: Загрузка мастер-данных пользователей
       requestBody:
         content:
@@ -559,19 +523,6 @@ components:
       required:
         - sFileContent
       description: Мастер-данные для импорта
-    ImportMasterDataResultDto:
-      title: ImportMasterDataResultDto
-      type: object
-      properties:
-        bSuccess:
-          type: boolean
-          description: Признак успешной загрузки
-        sError:
-          type: string
-          description: 'Описание ошибок загрузки, если они есть'
-      required:
-        - bSuccess
-      description: Результат импорта мастер-данных
     PermissionsDto:
       title: PermissionsDto
       type: object
