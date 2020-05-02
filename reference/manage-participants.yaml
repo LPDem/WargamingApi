@@ -148,12 +148,12 @@ paths:
         required: true
         description: reporting function id
   /saveReportingFunction:
-    get:
+    post:
       summary: saveReportingFunction
       tags:
         - manageParticipants
       responses: {}
-      operationId: get-manageParticipants-saveReportingFunction
+      operationId: post-manageParticipants-saveReportingFunction
       description: Сохранение reporting function и запуск или обновление RP
       requestBody:
         content:
