@@ -1,0 +1,61 @@
+openapi: 3.0.0
+info:
+  title: Common
+  version: '1.0'
+  description: Общие методы
+servers:
+  - url: 'http://localhost:3000/common'
+paths: 
+  /getMenu:
+    get:
+      summary: getMenu
+      tags:
+        - common
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  aProducts:
+                    type: array
+                    description: список продуктов
+                    items:
+                      type: object
+                      description: Данные одного продукта
+                      properties:
+                        iId:
+                          type: number
+                          description: Id продукта
+                        sName:
+                          type: string
+                          description: Название продукта
+                        aDepartments:
+                          type: array
+                          description: Список подразделений продукта
+                          items:
+                            type: object
+                            description: Данные одного подразделения
+                            properties:
+                              iId:
+                                type: number
+                                description: Id подразделения
+                              sName:
+                                type: string
+                                description: Название подразделения
+                            required:
+                              - iId
+                              - sName
+                      required:
+                        - iId
+                        - sName
+                        - aDepartments
+                required:
+                  - aProducts
+      operationId: common-getMenu
+      description: Получение содержимого меню для левой панели
+    parameters: []
+components:
+  schemas: {}

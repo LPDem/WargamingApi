@@ -1,0 +1,114 @@
+openapi: 3.0.0
+info:
+  title: participant-groups
+  version: '1.0'
+  description: Группы участников планирования
+servers:
+  - url: 'http://localhost:3000/participantGroup'
+paths:
+  /setAccess:
+    post:
+      summary: setAccess
+      operationId: post-participantGroup-setAccess
+      responses:
+        '200':
+          description: OK
+      description: Установка доступа для группы
+      tags:
+        - manageParticipants
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                iParticipantGroupId:
+                  type: number
+                bHasAccess:
+                  type: boolean
+              required:
+                - iParticipantGroupId
+                - bHasAccess
+    parameters: []
+  /setPermissions:
+    post:
+      summary: setPermissions
+      operationId: post-participantGroup-setPermissions
+      responses:
+        '200':
+          description: OK
+      description: Установка прав для группы
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                iParticipantGroupId:
+                  type: number
+                sPermissions:
+                  type: string
+                  enum:
+                    - canView
+                    - canEdit
+              required:
+                - iParticipantGroupId
+                - sPermissions
+      tags:
+        - manageParticipants
+    parameters: []
+  /setDueDate:
+    post:
+      summary: setDueDate
+      operationId: post-participantGroup-setDueDate
+      responses:
+        '200':
+          description: OK
+      description: Установка срока действия для группы
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                iParticipantGroupId:
+                  type: number
+                sDueDate:
+                  type: string
+                  description: YYYY-MM-DD
+              required:
+                - iParticipantGroupId
+                - sDueDate
+        description: ''
+      tags:
+        - manageParticipants
+    parameters: []
+  /setNotification:
+    post:
+      summary: setNotification
+      operationId: post-participantGroup-setNotification
+      responses:
+        '200':
+          description: OK
+      description: Установка уведомления для группы
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                iParticipantGroupId:
+                  type: number
+                sNotification:
+                  type: string
+                  enum:
+                    - dontNotify
+                    - sendEmail
+              required:
+                - iParticipantGroupId
+                - sNotification
+      tags:
+        - manageParticipants
+    parameters: []
+components:
+  schemas: {}

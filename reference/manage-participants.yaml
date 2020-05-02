@@ -1,0 +1,172 @@
+openapi: 3.0.0
+info:
+  title: manage-participants
+  version: '1.0'
+  description: Распределение участников процесса планирования
+servers:
+  - url: 'http://localhost:3000/manageParticipants'
+paths:
+  /getReportingFunctions:
+    get:
+      summary: getReportingFunctions
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  aItems:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        iId:
+                          type: number
+                          description: id reporting function
+                        sName:
+                          type: string
+                          description: Название reporting function
+                      required:
+                        - iId
+                        - sName
+                required:
+                  - aItems
+      operationId: get-manageParticipants-getReportingFunctions
+      description: Получение reporting functions для раздела manage participants (список закладок)
+      tags:
+        - manageParticipants
+    parameters: []
+  '/getReportingFunction/{id}':
+    get:
+      summary: getReportingFunction
+      tags:
+        - manageParticipants
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                description: Данные reporting function
+                properties:
+                  iId:
+                    type: number
+                    description: reporting function id
+                  sName:
+                    type: string
+                    description: Название reporting function
+                  bSaved:
+                    type: boolean
+                    description: Сохранялась хотя бы раз
+                  aGroups:
+                    type: array
+                    description: Данные ролей (групп)
+                    items:
+                      type: object
+                      description: Данные роли (группы)
+                      properties:
+                        iParticipantGroupId:
+                          type: number
+                          description: id группы
+                        sName:
+                          type: string
+                          description: Название роли
+                        bHasAccess:
+                          type: boolean
+                          description: Есть доступ?
+                        aParticipants:
+                          type: array
+                          description: Участники (сотрудники)
+                          items:
+                            type: object
+                            description: Данные участника (сотрудника)
+                            properties:
+                              iParticipantId:
+                                type: number
+                                description: id сотрудника
+                              sName:
+                                type: string
+                                description: ФИО сотрудника
+                              bHasAccess:
+                                type: boolean
+                                description: Есть доступ?
+                              sPermissions:
+                                type: string
+                                description: Права
+                                enum:
+                                  - canView
+                                  - canEdit
+                              bPermissionsChanged:
+                                type: boolean
+                                description: Права менялись?
+                              sDueDate:
+                                type: string
+                                description: 'Срок действия, YYYY-MM-DD'
+                              bDueDateChanged:
+                                type: boolean
+                                description: Срок действия менялся?
+                              sNotification:
+                                type: string
+                                description: Уведомления
+                                enum:
+                                  - dontNotify
+                                  - sendEmail
+                              bNotificationChanged:
+                                type: boolean
+                                description: Уведомления менялись?
+                            required:
+                              - iParticipantId
+                              - sName
+                              - bHasAccess
+                              - sPermissions
+                              - bPermissionsChanged
+                              - sDueDate
+                              - bDueDateChanged
+                              - sNotification
+                              - bNotificationChanged
+                      required:
+                        - iParticipantGroupId
+                        - sName
+                        - bHasAccess
+                        - aParticipants
+                required:
+                  - iId
+                  - sName
+                  - bSaved
+                  - aGroups
+              examples: {}
+      operationId: get-manageParticipants-getReportingFunction
+      description: Получение данных reporting function по id
+    parameters:
+      - schema:
+          type: number
+        name: id
+        in: path
+        required: true
+        description: reporting function id
+  /saveReportingFunction:
+    get:
+      summary: saveReportingFunction
+      tags:
+        - manageParticipants
+      responses: {}
+      operationId: get-manageParticipants-saveReportingFunction
+      description: Сохранение reporting function и запуск или обновление RP
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                iId:
+                  type: number
+                  description: reporting function id
+              required:
+                - iId
+        description: ''
+    parameters: []
+components:
+  schemas: {}

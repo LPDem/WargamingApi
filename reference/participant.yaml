@@ -1,0 +1,115 @@
+openapi: 3.0.0
+info:
+  title: participant
+  version: '1.0'
+  description: Участники планирования
+servers:
+  - url: 'http://localhost:3000/participant'
+paths:
+  /setAccess:
+    post:
+      summary: setAccess
+      operationId: post-participant-setAccess
+      responses:
+        '200':
+          description: OK
+      description: Установка доступа для сотрудника
+      tags:
+        - manageParticipants
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                iParticipantGroupId:
+                  type: number
+                bHasAccess:
+                  type: boolean
+              required:
+                - iParticipantGroupId
+                - bHasAccess
+        description: ''
+    parameters: []
+  /setPermissions:
+    post:
+      summary: setPermissions
+      operationId: post-participant-setPermissions
+      responses:
+        '200':
+          description: OK
+      description: Установка прав для сотрудника
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                iParticipantId:
+                  type: number
+                sPermissions:
+                  type: string
+                  enum:
+                    - canView
+                    - canEdit
+              required:
+                - iParticipantId
+                - sPermissions
+      tags:
+        - manageParticipants
+    parameters: []
+  /setDueDate:
+    post:
+      summary: setDueDate
+      operationId: post-participant-setDueDate
+      responses:
+        '200':
+          description: OK
+      description: Установка срока действия для сотрудника
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                iParticipantId:
+                  type: number
+                sDueDate:
+                  type: string
+                  description: YYYY-MM-DD
+              required:
+                - iParticipantId
+                - sDueDate
+        description: ''
+      tags:
+        - manageParticipants
+    parameters: []
+  /setNotification:
+    post:
+      summary: setNotification
+      operationId: post-participant-setNotification
+      responses:
+        '200':
+          description: OK
+      description: Установка уведомления для сотрудника
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                iParticipantId:
+                  type: number
+                sNotification:
+                  type: string
+                  enum:
+                    - dontNotify
+                    - sendEmail
+              required:
+                - iParticipantId
+                - sNotification
+      tags:
+        - manageParticipants
+    parameters: []
+components:
+  schemas: {}

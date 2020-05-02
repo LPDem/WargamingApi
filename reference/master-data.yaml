@@ -1,0 +1,394 @@
+openapi: 3.0.0
+info:
+  title: master-data
+  version: '1.0'
+  description: Мастер-данные
+servers:
+  - url: 'http://localhost:3000/masterData'
+paths:
+  /importRoles:
+    post:
+      summary: importRoles
+      operationId: masterData-importRoles
+      responses:
+        '200':
+          description: OK
+      description: Загрузка мастер-данных ролей и доступа
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImportMasterDataRequestDto'
+      tags:
+        - masterData
+    parameters: []
+  /getRoles:
+    get:
+      summary: getRoles
+      tags:
+        - masterData
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  oData:
+                    $ref: '#/components/schemas/DataGridDto'
+                required:
+                  - oData
+      operationId: masterData-getRoles
+      description: Получение мастер-данных ролей и доступа
+    parameters: []
+  /importPositions:
+    post:
+      summary: importPositions
+      operationId: masterData-importPositions
+      responses:
+        '200':
+          description: OK
+      description: Загрузка мастер-данных позиций
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImportMasterDataRequestDto'
+      tags:
+        - masterData
+    parameters: []
+  /getPositions:
+    get:
+      summary: getPositions
+      tags:
+        - masterData
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  oData:
+                    $ref: '#/components/schemas/DataGridDto'
+                required:
+                  - oData
+      operationId: masterData-getPositions
+      description: Получение мастер-данных позиций
+    parameters: []
+  /importOrgStructure:
+    post:
+      summary: importOrgStructure
+      operationId: masterData-importOrgStructure
+      responses:
+        '200':
+          description: OK
+      description: Загрузка мастер-данных оргструктуры
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImportMasterDataRequestDto'
+      tags:
+        - masterData
+    parameters: []
+  /getOrgStructure:
+    get:
+      summary: getOrgStructure
+      tags:
+        - masterData
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  oData:
+                    $ref: '#/components/schemas/DataGridDto'
+                required:
+                  - oData
+      operationId: masterData-getOrgStructure
+      description: Получение мастер-данных оргструктуры
+    parameters: []
+  /importJobs:
+    post:
+      summary: importJobs
+      operationId: masterData-importJobs
+      responses:
+        '200':
+          description: OK
+      description: Загрузка мастер-данных каталога должностей
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImportMasterDataRequestDto'
+      tags:
+        - masterData
+    parameters: []
+  /getJobs:
+    get:
+      summary: getJobs
+      tags:
+        - masterData
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  oData:
+                    $ref: '#/components/schemas/DataGridDto'
+                required:
+                  - oData
+      operationId: masterData-getJobs
+      description: Получение мастер-данных каталога должностей
+    parameters: []
+  /importFaq:
+    post:
+      summary: importFaq
+      operationId: masterData-importFaq
+      responses:
+        '200':
+          description: OK
+      description: Загрузка мастер-данных FAQ
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImportMasterDataRequestDto'
+      tags:
+        - masterData
+    parameters: []
+  /getFaq:
+    get:
+      summary: getFaq
+      tags:
+        - masterData
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  oData:
+                    $ref: '#/components/schemas/DataGridDto'
+                required:
+                  - oData
+      operationId: masterData-getFaq
+      description: Получение мастер-данных FAQ
+    parameters: []
+  /importCurrencies:
+    post:
+      summary: importCurrencies
+      operationId: masterData-importCurrencies
+      responses:
+        '200':
+          description: OK
+      description: Загрузка мастер-данных справочника валют
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImportMasterDataRequestDto'
+      tags:
+        - masterData
+    parameters: []
+  /getCurrencies:
+    get:
+      summary: getCurrencies
+      tags:
+        - masterData
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  oData:
+                    $ref: '#/components/schemas/DataGridDto'
+                required:
+                  - oData
+      operationId: masterData-getCurrencies
+      description: Получение мастер-данных справочника валют
+    parameters: []
+  /importFrequencies:
+    post:
+      summary: importFrequencies
+      operationId: masterData-importFrequencies
+      responses:
+        '200':
+          description: OK
+      description: Загрузка мастер-данных частоты выплат
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImportMasterDataRequestDto'
+      tags:
+        - masterData
+    parameters: []
+  /importExchangeRates:
+    post:
+      summary: importExchangeRates
+      operationId: masterData-importExchangeRates
+      responses:
+        '200':
+          description: OK
+      description: Загрузка мастер-данных курсов обмена валют
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImportMasterDataRequestDto'
+      tags:
+        - masterData
+    parameters: []
+  /importUsers:
+    post:
+      summary: importUsers
+      operationId: masterData-importUsers
+      responses:
+        '200':
+          description: OK
+      description: Загрузка мастер-данных пользователей
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImportMasterDataRequestDto'
+      tags:
+        - masterData
+    parameters: []
+  /getFrequencies:
+    get:
+      summary: getFrequencies
+      tags:
+        - masterData
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  oData:
+                    $ref: '#/components/schemas/DataGridDto'
+                required:
+                  - oData
+      operationId: masterData-getFrequencies
+      description: Получение мастер-данных частоты выплат
+    parameters: []
+  /getExchangeRates:
+    get:
+      summary: getExchangeRates
+      tags:
+        - masterData
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  oData:
+                    $ref: '#/components/schemas/DataGridDto'
+                required:
+                  - oData
+      operationId: masterData-getExchangeRates
+      description: Получение мастер-данных курсов обмена валют
+    parameters: []
+  /getUsers:
+    get:
+      summary: getUsers
+      tags:
+        - masterData
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  oData:
+                    $ref: '#/components/schemas/DataGridDto'
+                required:
+                  - oData
+      operationId: masterData-getUsers
+      description: Получение мастер-данных пользователей
+    parameters: []
+  /clearData:
+    post:
+      summary: clearData
+      operationId: post-masterData-clearData
+      responses:
+        '200':
+          description: OK
+      description: Очистка всех мастер-данных
+      tags:
+        - masterData
+    parameters: []
+components:
+  schemas:
+    DataGridDto:
+      title: DataGridDto
+      type: object
+      description: Таблица с данными
+      properties:
+        aHeader:
+          type: array
+          description: Заголовок таблицы
+          items:
+            type: object
+            description: Данные колонки
+            properties:
+              sValue:
+                type: string
+                description: Название колонки
+            required:
+              - sValue
+        aRows:
+          type: array
+          description: Строки таблицы
+          items:
+            type: object
+            description: Данные строки
+            properties:
+              aCells:
+                type: array
+                description: Ячейки строки
+                items:
+                  type: object
+                  description: Данные ячейки строки
+                  properties:
+                    sValue:
+                      type: string
+                      description: Значение ячейки
+            required:
+              - aCells
+      required:
+        - aHeader
+        - aRows
+    ImportMasterDataRequestDto:
+      title: ImportMasterDataRequestDto
+      type: object
+      properties:
+        sFileContent:
+          type: string
+          description: 'Содержимое файла, с префиксом data:text/plain;base64,'
+      required:
+        - sFileContent
+      description: Мастер-данные для импорта
