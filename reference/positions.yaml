@@ -52,23 +52,7 @@ paths:
                 aItems:
                   type: array
                   items:
-                    type: object
-                    properties:
-                      iId:
-                        type: number
-                      sName:
-                        type: string
-                      sCode:
-                        type: string
-                      sType:
-                        type: string
-                      oOffice:
-                        type: object
-                      oDepartment:
-                        type: object
-                      aManagers:
-                        type: array
-                        items: {}
+                    $ref: ../models/Position.yaml
           application/xml:
             schema:
               type: object

@@ -1,0 +1,15 @@
+title: Position
+type: object
+properties:
+  iId:
+    type: number
+  sCode:
+    type: string
+  sName:
+    type: string
+  sType:
+    type: string
+  oDepartment:
+    $ref: ./Department.yaml
+  managers:
+    $ref: ./Participant.yaml
