@@ -1,0 +1,101 @@
+openapi: 3.0.0
+info:
+  title: positions
+  version: '1.0'
+  description: Позиции
+servers:
+  - url: 'http://localhost:3000'
+paths:
+  /positions:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses: {}
+      operationId: get-positions
+      description: Получение позици
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: sOffice
+        - schema:
+            type: string
+          in: query
+          name: sDepartment
+        - schema:
+            type: array
+          in: query
+          name: aManagers
+        - schema:
+            type: string
+          in: query
+          name: sPositionType
+          description: 'enum: Active, LongLeave, Vacancy'
+        - schema:
+            type: string
+          in: query
+          name: sText
+          description: ''
+        - schema:
+            type: array
+          in: query
+          name: aSort
+          description: |-
+            массив полей по которым нужно сортировать
+            например: [-sName, +oDepartment ...]
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                aItems:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      iId:
+                        type: number
+                      sName:
+                        type: string
+                      sCode:
+                        type: string
+                      sType:
+                        type: string
+                      oOffice:
+                        type: object
+                      oDepartment:
+                        type: object
+                      aManagers:
+                        type: array
+                        items: {}
+          application/xml:
+            schema:
+              type: object
+              properties:
+                aItems:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      iId:
+                        type: number
+                      sName:
+                        type: string
+                      sType:
+                        type: string
+                      oOffice:
+                        type: object
+                      oDepartment:
+                        type: object
+                      managers:
+                        type: array
+                        items:
+                          type: object
+                '':
+                  type: string
+        description: |-
+          [
+          ]
+components:
+  schemas: {}
