@@ -8,7 +8,7 @@ servers:
 paths:
   /positions:
     get:
-      summary: Your GET endpoint
+      summary: GET Postions
       tags: []
       responses: {}
       operationId: get-positions
@@ -21,16 +21,20 @@ paths:
         - schema:
             type: string
           in: query
-          name: sDepartment
+          name: aDepartmentCode
         - schema:
             type: array
           in: query
-          name: aManagers
+          name: aParticipantsIds
         - schema:
             type: string
+            enum:
+              - Active Employees
+              - Long Leaves
+              - Vacancies
           in: query
-          name: sPositionType
-          description: 'enum: Active, LongLeave, Vacancy'
+          name: sType
+          description: Типы позиции
         - schema:
             type: string
           in: query
@@ -81,5 +85,40 @@ paths:
         description: |-
           [
           ]
+  '/positions/{iId}':
+    parameters:
+      - schema:
+          type: number
+        name: iId
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses: {}
+      operationId: get-positions-id
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../models/Position.yaml
+      description: Получения одной позоции
+  /positions/:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses: {}
+      operationId: get-positions
+    post:
+      summary: ''
+      operationId: post-positions
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../models/position-adding.yaml
 components:
   schemas: {}

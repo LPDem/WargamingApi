@@ -9,3 +9,5 @@ properties:
     type: string
   oProduct:
     $ref: ./Product.yaml
+x-examples: {}
+description: ''

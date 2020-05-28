@@ -1,0 +1,15 @@
+title: Currency-rate
+type: object
+properties:
+  iId:
+    type: number
+  currency:
+    type: string
+  iUSDToPlan:
+    type: number
+  iPlanToUSD:
+    type: number
+required:
+  - iId
+  - currency
+  - iUSDToPlan
