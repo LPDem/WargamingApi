@@ -1,0 +1,6 @@
+title: Job
+type: object
+properties:
+  iId:
+    type: number
+description: ''

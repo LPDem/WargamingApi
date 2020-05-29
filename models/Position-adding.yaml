@@ -1,0 +1,20 @@
+title: Position-adding
+type: object
+properties:
+  sName:
+    type: string
+  sType:
+    type: string
+  employeeClass:
+    type: string
+  bRecruitmentNeeded:
+    type: boolean
+  sStartDate:
+    type: string
+  vacancyType:
+    type: string
+  participantsIds:
+    type: array
+    items:
+      type: number
+description: ''

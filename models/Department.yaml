@@ -1,0 +1,13 @@
+title: Department
+type: object
+properties:
+  id:
+    type: string
+  sCode:
+    type: string
+  sName:
+    type: string
+  oProduct:
+    $ref: ./Product.yaml
+x-examples: {}
+description: ''

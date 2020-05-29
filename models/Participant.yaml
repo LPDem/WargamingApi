@@ -1,0 +1,14 @@
+title: Participant
+type: object
+description: ''
+properties:
+  iId:
+    type: number
+  sName:
+    type: string
+  bSave:
+    type: boolean
+required:
+  - iId
+  - sName
+  - bSave

@@ -1,0 +1,10 @@
+title: Payment frequency
+type: object
+properties:
+  iId:
+    type: number
+  sName:
+    type: string
+required:
+  - iId
+  - sName

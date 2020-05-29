@@ -1,0 +1,10 @@
+title: Salary
+type: object
+properties:
+  iValue:
+    type: number
+  oCurrency:
+    $ref: ./Currency-rate.yaml
+  oPaymentFrequency:
+    $ref: ./Payment-frequency.yaml
+description: ''
