@@ -3,13 +3,18 @@ type: object
 properties:
   iId:
     type: number
+    description: Уникальный идентификатор
   currency:
     type: string
+    description: Валюта
   iUSDToPlan:
     type: number
+    description: Стоимость с USD
   iPlanToUSD:
     type: number
+    description: Стоимость на USD
 required:
   - iId
   - currency
   - iUSDToPlan
+  - iPlanToUSD

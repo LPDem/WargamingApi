@@ -1,0 +1,39 @@
+title: Org-structure
+type: object
+description: ''
+properties:
+  iId:
+    type: number
+    description: Уникальный идентификатор
+  sProduct:
+    type: string
+  sOffice:
+    type: string
+    description: Офис
+  legalEntity:
+    type: string
+    description: Юридическое лицо
+  sCostCenterCode:
+    type: string
+    description: Центр затрат
+  sDepartmentCode:
+    type: string
+  sDepartment:
+    type: string
+    description: Департамент
+  sParentDepartmentCode:
+    type: string
+  oUser:
+    $ref: ./User.yaml
+  sFullPath:
+    type: string
+required:
+  - iId
+  - sProduct
+  - sOffice
+  - legalEntity
+  - sCostCenterCode
+  - sDepartmentCode
+  - sDepartment
+  - sParentDepartmentCode
+  - sFullPath

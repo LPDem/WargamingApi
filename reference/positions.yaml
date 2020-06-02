@@ -6,47 +6,60 @@ info:
 servers:
   - url: 'http://localhost:3000'
 paths:
-  /positions:
+  /api/positions:
     get:
-      summary: GET Postions
+      summary: Получение списка должностей
       tags: []
       responses: {}
       operationId: get-positions
-      description: Получение позици
+      description: Возвращает список должностей по переданным параметрам
       parameters:
         - schema:
-            type: string
+            type: number
           in: query
-          name: sOffice
-        - schema:
-            type: string
-          in: query
-          name: aDepartmentCode
+          name: iReportingFunctionId
+          description: ''
+          required: true
         - schema:
             type: array
           in: query
-          name: aParticipantsIds
+          name: aOfficeIds
+        - schema:
+            type: array
+          in: query
+          name: aDepartmentIds
+        - schema:
+            type: array
+          in: query
+          name: aManagerIds
         - schema:
             type: string
             enum:
-              - Active Employees
-              - Long Leaves
-              - Vacancies
+              - Active Employee
+              - Vacancy
           in: query
-          name: sType
-          description: Типы позиции
+          name: sCurrentStatus
+          description: Статус должности
         - schema:
             type: string
           in: query
           name: sText
-          description: ''
+          description: 'Пользовательский ввод. Искоть совпадение по полям sCode, sName, sAssignee'
+        - schema:
+            type: number
+          in: query
+          name: iCurrencyId
+          description: id валюты на которую нужно конвертировать ЗП сотрудников
+        - schema:
+            type: number
+          in: query
+          name: iPaymentFrequencyId
+          description: id Частоты Оплаты
         - schema:
             type: array
           in: query
           name: aSort
-          description: |-
-            массив полей по которым нужно сортировать
-            например: [-sName, +oDepartment ...]
+          description: "поля по котрым нужно сортировать.\nВсе возможные значения:\n[ sName, \n  sCareerLevel, \n  sStartDateASC,\n  sStartDateDESC,\n  sCurrentStatus,\n  office,\n  sFullOrgPath,\n  sEmployeeClass,\n  sAssignee,\n  salaryASC,\n  salaryDESC\n]"
       requestBody:
         content:
           application/json:
@@ -85,7 +98,8 @@ paths:
         description: |-
           [
           ]
-  '/positions/{iId}':
+    parameters: []
+  '/api/positions/{iId}':
     parameters:
       - schema:
           type: number
@@ -103,22 +117,5 @@ paths:
             schema:
               $ref: ../models/Position.yaml
       description: Получения одной позоции
-  /positions/:
-    get:
-      summary: Your GET endpoint
-      tags: []
-      responses: {}
-      operationId: get-positions
-    post:
-      summary: ''
-      operationId: post-positions
-      responses:
-        '200':
-          description: OK
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: ../models/position-adding.yaml
 components:
   schemas: {}
