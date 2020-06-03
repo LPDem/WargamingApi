@@ -99,6 +99,31 @@ paths:
           [
           ]
     parameters: []
+    post:
+      summary: ''
+      operationId: post-api-positions
+      responses:
+        '200':
+          description: OK
+      description: Добавление
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/vacancy-adding'
+        description: ''
+    put:
+      summary: ''
+      operationId: put-api-positions
+      responses:
+        '200':
+          description: OK
+      description: Изменение
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/vacancy-adding'
   '/api/positions/{iId}':
     parameters:
       - schema:
@@ -118,4 +143,89 @@ paths:
               $ref: ../models/Position.yaml
       description: Получения одной позоции
 components:
-  schemas: {}
+  schemas:
+    vacancy-adding:
+      title: vacancy-adding
+      type: object
+      properties:
+        sName:
+          type: string
+        sStartDate:
+          type: string
+        sVacancyType:
+          type: string
+          enum:
+            - New
+            - Replacement
+            - Internal Transfer
+            - Long Leave Cover
+            - Overlap Cover
+        sEmployeeClass:
+          type: string
+          enum:
+            - Employee
+            - Contractor
+            - Paid Intern
+            - Unpaid Intern
+        oSalary:
+          $ref: '#/components/schemas/salary-adding'
+        aSalaryChanges:
+          type: array
+          items:
+            $ref: '#/components/schemas/salary-change-adding'
+        bRecruitmentNeeded:
+          type: boolean
+        iJobId:
+          type: number
+        iOrgStructureId:
+          type: number
+      required:
+        - sName
+        - sStartDate
+        - sVacancyType
+        - sEmployeeClass
+        - oSalary
+        - aSalaryChanges
+        - iJobId
+        - iOrgStructureId
+    salary-adding:
+      title: salary-adding
+      type: object
+      properties:
+        iValue:
+          type: number
+        iCurrencyId:
+          type: number
+        iPaymentFrequencyId:
+          type: number
+      required:
+        - iValue
+        - iCurrencyId
+        - iPaymentFrequencyId
+    salary-change-adding:
+      title: salary-change-adding
+      type: object
+      properties:
+        oSalary:
+          $ref: '#/components/schemas/salary-adding'
+        oChangeReason:
+          type: string
+          enum:
+            - End of Probation Period Promotion
+            - Local market adjustment
+            - Key contributors retention
+            - Additional Responsibilities
+            - Relocation
+            - Internal Equity / Lateral Transfer
+            - Contractual change
+            - Salary decrease
+            - Legislated increase
+            - Other
+        sEffectiveDate:
+          type: string
+        sComment:
+          type: string
+      required:
+        - oSalary
+        - oChangeReason
+        - sEffectiveDate
