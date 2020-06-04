@@ -110,20 +110,8 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/vacancy-adding'
+              $ref: ../models/Vacancy-adding.yaml
         description: ''
-    put:
-      summary: ''
-      operationId: put-api-positions
-      responses:
-        '200':
-          description: OK
-      description: Изменение
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/vacancy-adding'
   '/api/positions/{iId}':
     parameters:
       - schema:
@@ -142,90 +130,87 @@ paths:
             schema:
               $ref: ../models/Position.yaml
       description: Получения одной позоции
+    put:
+      summary: ''
+      operationId: put-api-positions-iId
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../models/Position.yaml
+      description: Изменение должности
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../models/Vacancy-adding.yaml
+  /api/positions/inactive:
+    post:
+      summary: ''
+      operationId: post-api-positions-inactive
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../models/Position.yaml
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../models/Inactive.yaml
+  /api/positions/long-leave:
+    post:
+      summary: ''
+      operationId: post-api-positions-long-leave
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../models/Position.yaml
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../models/Long-leave.yaml
+  /api/positions/future-replacement:
+    post:
+      summary: ''
+      operationId: post-api-positions-future-replacement
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../models/Position.yaml
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../models/Future-replacement.yaml
+        description: ''
+  /api/positions/comment:
+    post:
+      summary: ''
+      operationId: post-api-positions-comment
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../models/Position.yaml
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: string
+        description: ''
 components:
-  schemas:
-    vacancy-adding:
-      title: vacancy-adding
-      type: object
-      properties:
-        sName:
-          type: string
-        sStartDate:
-          type: string
-        sVacancyType:
-          type: string
-          enum:
-            - New
-            - Replacement
-            - Internal Transfer
-            - Long Leave Cover
-            - Overlap Cover
-        sEmployeeClass:
-          type: string
-          enum:
-            - Employee
-            - Contractor
-            - Paid Intern
-            - Unpaid Intern
-        oSalary:
-          $ref: '#/components/schemas/salary-adding'
-        aSalaryChanges:
-          type: array
-          items:
-            $ref: '#/components/schemas/salary-change-adding'
-        bRecruitmentNeeded:
-          type: boolean
-        iJobId:
-          type: number
-        iOrgStructureId:
-          type: number
-      required:
-        - sName
-        - sStartDate
-        - sVacancyType
-        - sEmployeeClass
-        - oSalary
-        - aSalaryChanges
-        - iJobId
-        - iOrgStructureId
-    salary-adding:
-      title: salary-adding
-      type: object
-      properties:
-        iValue:
-          type: number
-        iCurrencyId:
-          type: number
-        iPaymentFrequencyId:
-          type: number
-      required:
-        - iValue
-        - iCurrencyId
-        - iPaymentFrequencyId
-    salary-change-adding:
-      title: salary-change-adding
-      type: object
-      properties:
-        oSalary:
-          $ref: '#/components/schemas/salary-adding'
-        oChangeReason:
-          type: string
-          enum:
-            - End of Probation Period Promotion
-            - Local market adjustment
-            - Key contributors retention
-            - Additional Responsibilities
-            - Relocation
-            - Internal Equity / Lateral Transfer
-            - Contractual change
-            - Salary decrease
-            - Legislated increase
-            - Other
-        sEffectiveDate:
-          type: string
-        sComment:
-          type: string
-      required:
-        - oSalary
-        - oChangeReason
-        - sEffectiveDate
+  schemas: {}

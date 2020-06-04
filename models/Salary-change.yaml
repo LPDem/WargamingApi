@@ -1,0 +1,26 @@
+title: Salary-change
+type: object
+properties:
+  oChangeReason:
+    type: string
+    enum:
+      - End of Probation Period Promotion
+      - Local market adjustment
+      - Key contributors retention
+      - Additional Responsibilities
+      - Relocation
+      - Internal Equity / Lateral Transfer
+      - Contractual change
+      - Salary decrease
+      - Legislated increase
+      - Other
+  sEffectiveDate:
+    type: string
+  sComment:
+    type: string
+  oSalary:
+    $ref: ./Salary.yaml
+required:
+  - oChangeReason
+  - sEffectiveDate
+  - oSalary

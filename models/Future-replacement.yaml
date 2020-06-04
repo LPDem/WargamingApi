@@ -1,0 +1,12 @@
+title: Future-replacement
+type: object
+properties:
+  sEffectiveDate:
+    type: string
+  sComment:
+    type: string
+  bRecruitmentNeeded:
+    type: string
+required:
+  - sEffectiveDate
+  - bRecruitmentNeeded

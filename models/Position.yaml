@@ -4,6 +4,8 @@ description: ''
 properties:
   iId:
     type: number
+  iReportingFunctionId:
+    type: number
   sCode:
     type: string
     description: Код позиции
@@ -44,7 +46,7 @@ properties:
     type: boolean
     description: Требуется набор
   sSalary:
-    type: string
+    $ref: ./Salary.yaml
   aSalaryChanges:
     type: array
     items:
@@ -80,10 +82,15 @@ properties:
     type: string
   oOrgStructure:
     $ref: ./Org-structure.yaml
-  iReportingFunctionId:
-    type: number
+  oInactive:
+    $ref: ./Inactive.yaml
+  oLongLeave:
+    $ref: ./Long-leave.yaml
+  oFutureReplacement:
+    $ref: ./Future-replacement.yaml
 required:
   - iId
+  - iReportingFunctionId
   - sCode
   - sName
   - sCurrentStatus
@@ -95,4 +102,3 @@ required:
   - sSalary
   - aSalaryChanges
   - sStartDate
-  - iReportingFunctionId

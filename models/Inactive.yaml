@@ -1,0 +1,10 @@
+title: Inactive
+type: object
+description: 'Сделать должность '
+properties:
+  sEffectiveDate:
+    type: string
+  sComment:
+    type: string
+required:
+  - sEffectiveDate
