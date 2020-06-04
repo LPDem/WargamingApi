@@ -4,21 +4,33 @@ description: ''
 properties:
   iId:
     type: number
+  iReportingFunctionId:
+    type: number
   sCode:
     type: string
+    description: Код позиции
   sName:
     type: string
-  sType:
+    description: Наименование позиции
+  sCurrentStatus:
     type: string
-  oDepartment:
-    $ref: ./Department.yaml
-  participants:
-    $ref: ./Participant.yaml
-  comment:
+    enum:
+      - Active Employee
+      - Vacancy
+    description: Статус
+  sVacancyType:
     type: string
-  job:
-    $ref: ./Job.yaml
-  employeeClass:
+    enum:
+      - New
+      - Replacement
+      - Internal Transfer
+      - Long Leave Cover
+      - Overlap Cover
+    description: Тип ваканции
+  sAssignee:
+    type: string
+    description: Сотрудник
+  sEmployeeClass:
     type: string
     description: ''
     enum:
@@ -26,18 +38,22 @@ properties:
       - Contractor
       - PaidIntern
       - UnpaidIntern
+  sComment:
+    type: string
+  oJob:
+    $ref: ./Job.yaml
   bRecruitmentNeeded:
     type: boolean
     description: Требуется набор
-  oSalary:
+  sSalary:
     $ref: ./Salary.yaml
   aSalaryChanges:
     type: array
     items:
       type: object
       properties:
-        oSalary:
-          $ref: ./Salary.yaml
+        sSalary:
+          type: string
         startDate:
           type: string
         oChangeReason:
@@ -57,43 +73,32 @@ properties:
           type: string
         sComment:
           type: string
-        '':
-          type: string
       required:
-        - oSalary
+        - sSalary
         - startDate
         - oChangeReason
         - sEffectiveDate
   sStartDate:
     type: string
-  vacancyType:
-    type: string
-    enum:
-      - New
-      - Replacement
-      - Internal Transfer
-      - Long Leave Cover
-      - Overlap Cover
-  oInactivate:
-    type: object
-    properties:
-      sEffectiveDate:
-        type: string
-      comment:
-        type: string
-    required:
-      - sEffectiveDate
+  oOrgStructure:
+    $ref: ./Org-structure.yaml
+  oInactive:
+    $ref: ./Inactive.yaml
+  oLongLeave:
+    $ref: ./Long-leave.yaml
+  oFutureReplacement:
+    $ref: ./Future-replacement.yaml
 required:
   - iId
+  - iReportingFunctionId
   - sCode
   - sName
-  - sType
-  - oDepartment
-  - participants
-  - job
-  - employeeClass
+  - sCurrentStatus
+  - sVacancyType
+  - sAssignee
+  - sEmployeeClass
+  - oJob
   - bRecruitmentNeeded
-  - oSalary
+  - sSalary
   - aSalaryChanges
   - sStartDate
-  - vacancyType

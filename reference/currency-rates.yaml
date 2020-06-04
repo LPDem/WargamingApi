@@ -1,0 +1,28 @@
+openapi: 3.0.0
+info:
+  title: currency-rate
+  version: '1.0'
+servers:
+  - url: 'http://localhost:3000'
+paths:
+  /api/currency-rates:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  aItems:
+                    type: array
+                    items:
+                      $ref: ../models/Currency-rate.yaml
+                required:
+                  - aItems
+      operationId: get-api-currency-rates
+components:
+  schemas: {}

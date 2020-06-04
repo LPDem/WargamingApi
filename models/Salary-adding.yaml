@@ -1,0 +1,13 @@
+title: Salary-adding
+type: object
+properties:
+  iValue:
+    type: number
+  iCurrencyId:
+    type: number
+  iPaymentFrequencyId:
+    type: number
+required:
+  - iValue
+  - iCurrencyId
+  - iPaymentFrequencyId

@@ -1,0 +1,16 @@
+title: User
+type: object
+description: Пользователь
+properties:
+  iId:
+    type: number
+  sLogin:
+    type: string
+  sUserName:
+    type: string
+  oPermissions:
+    $ref: ./Permissions.yaml
+required:
+  - iId
+  - sLogin
+  - sUserName

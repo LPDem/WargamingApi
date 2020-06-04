@@ -1,0 +1,49 @@
+title: Permissions
+type: object
+properties:
+  bFullDataAccess:
+    type: boolean
+    description: 'Полный доступ к данным, до загрузки ролей'
+  bAdministration:
+    type: boolean
+    description: 'Доступ к админ интерфейсу (загрузка, выгрузка, редактирование базы данных)'
+  bPlanningParticipantsDistribution:
+    type: boolean
+    description: Распределение участников процесса планирования
+  bViewData:
+    type: boolean
+    description: Просмотр данных
+  bEditData:
+    type: boolean
+    description: Редактирование данных
+  bCreatingCustomFilters:
+    type: boolean
+    description: Создание кастомных фильтров (в рамках полномочий)
+  bAnalytics:
+    type: boolean
+    description: Доступ в аналитику по изменения (в рамках полномочий)
+  bNotifications:
+    type: boolean
+    description: Доступ к уведомлениям по изменениям (в рамках полномочий)
+  bPlanApproveAndSubmit:
+    type: boolean
+    description: 'Approve & Submit плана'
+  bViewPlanStatus:
+    type: boolean
+    description: Просмотр статуса изменения ресурсного плана
+  bPlanApprove:
+    type: boolean
+    description: Approve плана
+required:
+  - bFullDataAccess
+  - bAdministration
+  - bPlanningParticipantsDistribution
+  - bViewData
+  - bEditData
+  - bCreatingCustomFilters
+  - bAnalytics
+  - bNotifications
+  - bPlanApproveAndSubmit
+  - bViewPlanStatus
+  - bPlanApprove
+description: Права пользователей

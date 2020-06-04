@@ -1,5 +1,6 @@
 title: Salary
 type: object
+description: Заработная плата
 properties:
   iValue:
     type: number
@@ -7,4 +8,7 @@ properties:
     $ref: ./Currency-rate.yaml
   oPaymentFrequency:
     $ref: ./Payment-frequency.yaml
-description: ''
+required:
+  - iValue
+  - oCurrency
+  - oPaymentFrequency

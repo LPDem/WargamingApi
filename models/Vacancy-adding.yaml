@@ -1,0 +1,44 @@
+title: Vacancy-adding
+type: object
+description: ''
+properties:
+  sName:
+    type: string
+  sStartDate:
+    type: string
+  sVacancyType:
+    type: string
+    enum:
+      - New
+      - Replacement
+      - Internal Transfer
+      - Long Leave Cover
+      - Overlap Cover
+  sEmployeeClass:
+    type: string
+    enum:
+      - Employee
+      - Contractor
+      - Paid Intern
+      - Unpaid Intern
+  bRecruitmentNeeded:
+    type: boolean
+  iJobId:
+    type: number
+  iOrgStructureId:
+    type: number
+  oSalary:
+    $ref: ./Salary-adding.yaml
+  aSalaryChanges:
+    type: array
+    items:
+      $ref: ./Salary-change-adding.yaml
+required:
+  - sName
+  - sStartDate
+  - sVacancyType
+  - sEmployeeClass
+  - iJobId
+  - iOrgStructureId
+  - oSalary
+  - aSalaryChanges
