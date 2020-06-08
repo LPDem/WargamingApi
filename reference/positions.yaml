@@ -212,5 +212,22 @@ paths:
             schema:
               type: string
         description: ''
+  /api/positions/salary-change:
+    post:
+      summary: ''
+      operationId: post-api-positions-salary-change
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../models/Position.yaml
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../models/Salary-change-adding.yaml
+        description: ''
 components:
   schemas: {}
