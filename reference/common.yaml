@@ -5,7 +5,7 @@ info:
   description: Общие методы
 servers:
   - url: 'http://localhost:3000/common'
-paths: 
+paths:
   /getMenu:
     get:
       summary: getMenu
@@ -52,8 +52,21 @@ paths:
                         - iId
                         - sName
                         - aDepartments
+                  bShowMasterDataMenu:
+                    type: boolean
+                  bShowManageParticipantsMenu:
+                    type: boolean
+                  sFirstPage:
+                    type: string
+                    enum:
+                      - dashBoard
+                      - masterData
+                      - positions
                 required:
                   - aProducts
+                  - bShowMasterDataMenu
+                  - bShowManageParticipantsMenu
+                  - sFirstPage
       operationId: common-getMenu
       description: Получение содержимого меню для левой панели
     parameters: []
