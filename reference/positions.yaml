@@ -146,7 +146,7 @@ paths:
           application/json:
             schema:
               $ref: ../models/Vacancy-adding.yaml
-  /api/positions/inactive:
+  '/api/positions/{iId}/inactive':
     post:
       summary: ''
       operationId: post-api-positions-inactive
@@ -162,7 +162,13 @@ paths:
           application/json:
             schema:
               $ref: ../models/Inactive.yaml
-  /api/positions/long-leave:
+    parameters:
+      - schema:
+          type: number
+        name: iId
+        in: path
+        required: true
+  '/api/positions/{iId}/long-leave':
     post:
       summary: ''
       operationId: post-api-positions-long-leave
@@ -178,7 +184,13 @@ paths:
           application/json:
             schema:
               $ref: ../models/Long-leave.yaml
-  /api/positions/future-replacement:
+    parameters:
+      - schema:
+          type: number
+        name: iId
+        in: path
+        required: true
+  '/api/positions/{iId}/future-replacement':
     post:
       summary: ''
       operationId: post-api-positions-future-replacement
@@ -195,7 +207,13 @@ paths:
             schema:
               $ref: ../models/Future-replacement.yaml
         description: ''
-  /api/positions/comment:
+    parameters:
+      - schema:
+          type: number
+        name: iId
+        in: path
+        required: true
+  '/api/positions/{iId}/comment':
     post:
       summary: ''
       operationId: post-api-positions-comment
@@ -212,7 +230,13 @@ paths:
             schema:
               type: string
         description: ''
-  /api/positions/salary-change:
+    parameters:
+      - schema:
+          type: number
+        name: iId
+        in: path
+        required: true
+  '/api/positions/{iId}/salary-change':
     post:
       summary: ''
       operationId: post-api-positions-salary-change
@@ -229,5 +253,11 @@ paths:
             schema:
               $ref: ../models/Salary-change-adding.yaml
         description: ''
+    parameters:
+      - schema:
+          type: number
+        name: iId
+        in: path
+        required: true
 components:
   schemas: {}
