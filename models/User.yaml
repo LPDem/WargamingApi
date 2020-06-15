@@ -1,16 +1,14 @@
 title: User
-type: object
 description: Пользователь
+type: object
 properties:
-  iId:
-    type: number
-  sLogin:
-    type: string
   sUserName:
     type: string
   oPermissions:
     $ref: ./Permissions.yaml
+  notification:
+    $ref: ./User-notification-settings.yaml
 required:
-  - iId
-  - sLogin
   - sUserName
+  - oPermissions
+  - notification
