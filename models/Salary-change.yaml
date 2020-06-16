@@ -1,7 +1,7 @@
 title: Salary-change
 type: object
 properties:
-  oChangeReason:
+  sChangeReason:
     type: string
     enum:
       - End of Probation Period Promotion
@@ -16,11 +16,12 @@ properties:
       - Other
   sEffectiveDate:
     type: string
+    description: Год-месяц
   sComment:
     type: string
   oSalary:
     $ref: ./Salary.yaml
 required:
-  - oChangeReason
+  - sChangeReason
   - sEffectiveDate
   - oSalary

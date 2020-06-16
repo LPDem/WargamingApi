@@ -53,6 +53,9 @@ properties:
     $ref: ./Salary.yaml
   sStartDate:
     type: string
+    format: date
+    example: 2020-01
+    description: Год-Месяц
   oOrgStructure:
     $ref: ./Org-structure.yaml
   aComments:
@@ -62,34 +65,7 @@ properties:
   aSalaryChanges:
     type: array
     items:
-      type: object
-      properties:
-        sSalary:
-          type: string
-        startDate:
-          type: string
-        sChangeReason:
-          type: string
-          enum:
-            - End of Probation Period Promotion
-            - Local market adjustment
-            - Key contributors retention
-            - Additional Responsibilities
-            - Relocation
-            - Internal Equity / Lateral Transfer
-            - Contractual change
-            - Salary decrease
-            - Legislated increase
-            - Other
-        sEffectiveDate:
-          type: string
-        sComment:
-          type: string
-      required:
-        - sSalary
-        - startDate
-        - sChangeReason
-        - sEffectiveDate
+      $ref: ./Salary-change.yaml
   oInactive:
     $ref: ./Inactive.yaml
   oLongLeave:
@@ -111,5 +87,5 @@ required:
   - bRecruitmentNeeded
   - oSalary
   - sStartDate
-  - aSalaryChanges
   - oOrgStructure
+  - aSalaryChanges
