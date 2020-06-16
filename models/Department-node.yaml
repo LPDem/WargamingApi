@@ -1,0 +1,13 @@
+title: Department-node
+type: object
+properties:
+  iId:
+    type: number
+  sName:
+    type: string
+  aSubDepartments:
+    $ref: ./Department-node.yaml
+required:
+  - iId
+  - sName
+  - aSubDepartments

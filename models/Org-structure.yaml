@@ -2,38 +2,25 @@ title: Org-structure
 type: object
 description: ''
 properties:
-  iId:
+  iCostCenterId:
     type: number
-    description: Уникальный идентификатор
-  sProduct:
+  sCostCenterName:
     type: string
-  sOffice:
+  iOfficeId:
+    type: number
+  sOfficeName:
     type: string
-    description: Офис
-  legalEntity:
+  iDepartmentId:
+    type: number
+  sDepartmentName:
     type: string
-    description: Юридическое лицо
-  sCostCenterCode:
-    type: string
-    description: Центр затрат
-  sDepartmentCode:
-    type: string
-  sDepartment:
-    type: string
-    description: Департамент
-  sParentDepartmentCode:
-    type: string
-  oUser:
-    $ref: ./User.yaml
   sFullPath:
     type: string
 required:
-  - iId
-  - sProduct
-  - sOffice
-  - legalEntity
-  - sCostCenterCode
-  - sDepartmentCode
-  - sDepartment
-  - sParentDepartmentCode
   - sFullPath
+  - iCostCenterId
+  - sCostCenterName
+  - iOfficeId
+  - sOfficeName
+  - iDepartmentId
+  - sDepartmentName

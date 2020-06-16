@@ -21,24 +21,27 @@ properties:
       - Contractor
       - Paid Intern
       - Unpaid Intern
-  bRecruitmentNeeded:
-    type: boolean
-  iJobId:
-    type: number
-  iOrgStructureId:
-    type: number
   oSalary:
     $ref: ./Salary-adding.yaml
   aSalaryChanges:
     type: array
     items:
       $ref: ./Salary-change-adding.yaml
+  bRecruitmentNeeded:
+    type: boolean
+  iJobId:
+    type: number
+  iCareerLevelId:
+    type: number
+  oOrgStructure:
+    $ref: ./Org-structure-adding.yaml
 required:
   - sName
   - sStartDate
   - sVacancyType
   - sEmployeeClass
-  - iJobId
-  - iOrgStructureId
   - oSalary
   - aSalaryChanges
+  - iJobId
+  - oOrgStructure
+  - iCareerLevelId

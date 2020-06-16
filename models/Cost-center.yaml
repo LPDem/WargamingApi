@@ -1,0 +1,11 @@
+title: Cost-center
+type: object
+description: Центр затрат
+properties:
+  iId:
+    type: number
+  sName:
+    type: string
+required:
+  - iId
+  - sName

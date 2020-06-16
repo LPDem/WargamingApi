@@ -1,0 +1,14 @@
+title: Department
+type: object
+description: ''
+properties:
+  iId:
+    type: number
+  sName:
+    type: string
+  sFullPath:
+    type: string
+required:
+  - iId
+  - sName
+  - sFullPath

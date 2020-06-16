@@ -1,17 +1,20 @@
-title: Job
+title: Position-comment
 type: object
 description: ''
 properties:
   iId:
     type: number
-  sJobFamilyGroup:
+  sText:
     type: string
-  sJobFamily:
+  sDate:
     type: string
-  sJobSubFamily:
+  sUserName:
     type: string
+  bUnread:
+    type: boolean
 required:
   - iId
-  - sJobFamilyGroup
-  - sJobFamily
-  - sJobSubFamily
+  - sText
+  - sDate
+  - sUserName
+  - bUnread

@@ -1,0 +1,11 @@
+title: Office
+type: object
+properties:
+  iId:
+    type: number
+  sName:
+    type: number
+required:
+  - iId
+  - sName
+description: ''
