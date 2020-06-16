@@ -20,24 +20,10 @@ paths:
                 type: object
                 properties:
                   aItems:
-                    $ref: '#/components/schemas/department-tree-node'
+                    type: array
+                    items:
+                      $ref: ../models/Department-node.yaml
+                required:
+                  - aItems
 components:
-  schemas:
-    department-tree-node:
-      title: department-tree-node
-      type: object
-      properties:
-        iId:
-          type: number
-        sCode:
-          type: string
-        sName:
-          type: string
-        aSubDepartment:
-          type: array
-          items:
-            $ref: '#/components/schemas/department-tree-node'
-      required:
-        - iId
-        - sCode
-        - sName
+  schemas: {}
