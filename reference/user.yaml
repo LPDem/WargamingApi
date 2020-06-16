@@ -87,6 +87,22 @@ paths:
               $ref: ../models/User-notification-settings.yaml
         description: ''
       description: ''
+  /update-salary-preferences:
+    post:
+      summary: ''
+      operationId: post-update-salary-preferences
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../models/User-salary-preferences.yaml
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../models/User-salary-preferences-adding.v1.yaml
 components:
   schemas:
     PermissionsDto:

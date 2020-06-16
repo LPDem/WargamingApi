@@ -8,7 +8,10 @@ properties:
     $ref: ./Permissions.yaml
   notification:
     $ref: ./User-notification-settings.yaml
+  salaryPreferences:
+    $ref: ./User-salary-preferences.yaml
 required:
   - sUserName
   - oPermissions
   - notification
+  - salaryPreferences
