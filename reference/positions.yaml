@@ -281,5 +281,29 @@ paths:
             schema:
               type: string
       description: Изменение поле sStartDate в позиции
+  '/api/position/{iId}/return-from-long-leave':
+    parameters:
+      - schema:
+          type: number
+        name: iId
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../models/Position.yaml
+      operationId: get-api-position-iId-return-from-long-leave
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../models/Return-from-long-leave.yaml
+      description: ''
 components:
   schemas: {}
