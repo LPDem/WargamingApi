@@ -19,7 +19,6 @@ paths:
           in: query
           name: iReportingFunctionId
           description: ''
-          required: true
         - schema:
             type: array
           in: query
