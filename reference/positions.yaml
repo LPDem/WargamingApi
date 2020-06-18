@@ -288,9 +288,9 @@ paths:
         name: iId
         in: path
         required: true
-    get:
-      summary: Your GET endpoint
-      tags: []
+    post:
+      summary: ''
+      operationId: post-api-position-iId-return-from-long-leave
       responses:
         '200':
           description: OK
@@ -298,12 +298,10 @@ paths:
             application/json:
               schema:
                 $ref: ../models/Position.yaml
-      operationId: get-api-position-iId-return-from-long-leave
       requestBody:
         content:
           application/json:
             schema:
               $ref: ../models/Return-from-long-leave.yaml
-      description: ''
 components:
   schemas: {}
