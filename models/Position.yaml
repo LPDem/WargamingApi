@@ -49,8 +49,8 @@ properties:
   bRecruitmentNeeded:
     type: boolean
     description: Требуется набор
-  oSalary:
-    $ref: ./Salary.yaml
+  fSalaryBudgeted:
+    type: number
   sStartDate:
     type: string
     format: date
@@ -85,7 +85,7 @@ required:
   - oJob
   - oCareerLevel
   - bRecruitmentNeeded
-  - oSalary
+  - fSalaryBudgeted
   - sStartDate
   - oOrgStructure
   - aSalaryChanges
