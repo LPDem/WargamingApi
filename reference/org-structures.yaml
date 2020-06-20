@@ -71,5 +71,24 @@ paths:
                 items:
                   $ref: ../models/Department-node.yaml
       operationId: get-api-org-structures-department-tree
+      description: Получение корневых элемениов дерево. Если есть aIds то возвращать ветки включающих этих элементов
+      parameters:
+        - schema:
+            type: array
+          in: query
+          name: aIds
+  '/api/org-structures/department/tree/{iId}':
+    parameters:
+      - schema:
+          type: string
+        name: iId
+        in: path
+        required: true
+    get:
+      summary: Получение дочерних элементов
+      tags: []
+      responses: {}
+      operationId: get-api-org-structures-department-tree-iId
+      description: ''
 components:
   schemas: {}
