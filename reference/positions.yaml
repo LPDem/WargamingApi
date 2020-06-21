@@ -45,16 +45,6 @@ paths:
           name: sText
           description: 'Пользовательский ввод. Искоть совпадение по полям sCode, sName, sAssignee'
         - schema:
-            type: number
-          in: query
-          name: iCurrencyId
-          description: id валюты на которую нужно конвертировать ЗП сотрудников
-        - schema:
-            type: number
-          in: query
-          name: iPaymentFrequencyId
-          description: id Частоты Оплаты
-        - schema:
             type: array
           in: query
           name: aSort
