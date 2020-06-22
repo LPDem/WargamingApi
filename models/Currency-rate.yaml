@@ -10,14 +10,10 @@ properties:
   sCurrencySymbol:
     type: string
     description: Символ валюты
-  iPlanToUSD:
-    type: number
-    description: ''
-  iUSDToPlan:
+  fCoefficient:
     type: number
 required:
   - iId
   - sCurrency
   - sCurrencySymbol
-  - iPlanToUSD
-  - iUSDToPlan
+  - fCoefficient

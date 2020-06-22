@@ -1,0 +1,12 @@
+title: Catalog
+type: object
+properties:
+  sValue:
+    type: string
+  bSelected:
+    type: string
+  sText:
+    type: string
+required:
+  - sValue
+  - sText

@@ -27,8 +27,8 @@ properties:
       - Long Leave Cover
       - Overlap Cover
     description: Тип ваканции
-  iEmployeeId:
-    type: number
+  sEmployeeId:
+    type: string
   sAssignee:
     type: string
     description: Сотрудник
@@ -44,8 +44,6 @@ properties:
     type: string
   oJob:
     $ref: ./Job.yaml
-  oCareerLevel:
-    $ref: ./Career-level.yaml
   bRecruitmentNeeded:
     type: boolean
     description: Требуется набор
@@ -79,11 +77,10 @@ required:
   - sName
   - sCurrentStatus
   - sVacancyType
-  - iEmployeeId
+  - sEmployeeId
   - sAssignee
   - sEmployeeClass
   - oJob
-  - oCareerLevel
   - bRecruitmentNeeded
   - fSalaryBudgeted
   - sStartDate

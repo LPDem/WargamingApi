@@ -314,5 +314,158 @@ paths:
           application/json:
             schema:
               $ref: ../models/Return-from-long-leave.yaml
+  /api/positions/add:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  aVacancyTypes:
+                    type: array
+                    items:
+                      $ref: ../models/Catalog.yaml
+                  aEmployeeClasses:
+                    type: array
+                    items:
+                      $ref: ../models/Catalog.yaml
+                  aJobFamilies:
+                    type: array
+                    items:
+                      $ref: ../models/Catalog.yaml
+                  aCareers:
+                    type: array
+                    items:
+                      $ref: ../models/Catalog.yaml
+                  aChangeReasons:
+                    type: array
+                    items:
+                      $ref: ../models/Catalog.yaml
+                  aOffices:
+                    type: array
+                    items:
+                      $ref: ../models/Catalog.yaml
+        '':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+      operationId: get-api-positions-add
+      parameters:
+        - schema:
+            type: number
+          in: query
+          name: reportingFunctionId
+          required: true
+  /api/positions/update:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  aVacancyTypes:
+                    type: array
+                    items:
+                      $ref: ../models/Catalog.yaml
+                  aEmployeeClasses:
+                    type: array
+                    items:
+                      $ref: ../models/Catalog.yaml
+                  aJobFamilies:
+                    type: array
+                    items:
+                      $ref: ../models/Catalog.yaml
+                  aCareers:
+                    type: array
+                    items:
+                      $ref: ../models/Catalog.yaml
+                  aChangeReasons:
+                    type: array
+                    items:
+                      $ref: ../models/Catalog.yaml
+                  aOffices:
+                    type: array
+                    items:
+                      $ref: ../models/Catalog.yaml
+      operationId: get-api-positions-update
+      parameters:
+        - schema:
+            type: number
+          in: query
+          name: reportingFunctionId
+          required: true
+        - schema:
+            type: number
+          in: query
+          name: positionId
+          required: true
+  /api/positions/cost-center:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: ../models/Catalog.yaml
+      operationId: get-api-positions-cost-center
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: office
+          required: true
+        - schema:
+            type: string
+          in: query
+          name: positionId
+          description: передается если на изменение
+  /api/positions/department:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: ../models/Catalog.yaml
+      operationId: get-api-positions-department
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: office
+          required: true
+        - schema:
+            type: string
+          in: query
+          name: costCenter
+          required: true
+        - schema:
+            type: string
+          in: query
+          name: positionId
+          description: передается если на изменение
+      description: ''
 components:
   schemas: {}

@@ -19,9 +19,9 @@ properties:
     description: Год-месяц
   sComment:
     type: string
-  oSalary:
-    $ref: ./Salary.yaml
+  'fNewSalary ':
+    type: number
 required:
   - sChangeReason
   - sEffectiveDate
-  - oSalary
+  - 'fNewSalary '

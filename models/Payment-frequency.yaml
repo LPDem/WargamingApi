@@ -6,6 +6,8 @@ properties:
     type: number
   sName:
     type: string
+  fCoefficient:
+    type: number
 required:
   - iId
   - sName

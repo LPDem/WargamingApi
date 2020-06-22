@@ -1,13 +1,13 @@
 title: Org-structure-adding
 type: object
 properties:
-  iCostCenterId:
-    type: number
-  iOfficeId:
-    type: number
-  iDepartmentId:
-    type: number
+  sCostCenterId:
+    type: string
+  sOfficeId:
+    type: string
+  sDepartmentId:
+    type: string
 required:
-  - iCostCenterId
-  - iOfficeId
-  - iDepartmentId
+  - sCostCenterId
+  - sOfficeId
+  - sDepartmentId

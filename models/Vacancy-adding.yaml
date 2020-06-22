@@ -29,10 +29,10 @@ properties:
       $ref: ./Salary-change-adding.yaml
   bRecruitmentNeeded:
     type: boolean
-  iJobId:
-    type: number
-  iCareerLevelId:
-    type: number
+  sJobId:
+    type: string
+  sCareerLevelId:
+    type: string
   oOrgStructure:
     $ref: ./Org-structure-adding.yaml
 required:
@@ -42,6 +42,6 @@ required:
   - sEmployeeClass
   - oSalary
   - aSalaryChanges
-  - iJobId
+  - sJobId
+  - sCareerLevelId
   - oOrgStructure
-  - iCareerLevelId
