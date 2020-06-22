@@ -1,0 +1,10 @@
+title: Participant
+type: object
+properties:
+  sId:
+    type: string
+  sName:
+    type: string
+required:
+  - sId
+  - sName

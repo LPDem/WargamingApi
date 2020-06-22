@@ -47,7 +47,7 @@ paths:
         - schema:
             type: array
           in: query
-          name: aSort
+          name: sSort
           description: "поля по котрым нужно сортировать.\nВсе возможные значения:\n[ sName, \n  sCareerLevel, \n  sStartDateASC,\n  sStartDateDESC,\n  sCurrentStatus,\n  office,\n  sFullOrgPath,\n  sEmployeeClass,\n  sAssignee,\n  salaryASC,\n  salaryDESC\n]"
       requestBody:
         content:
@@ -55,10 +55,26 @@ paths:
             schema:
               type: object
               properties:
-                aItems:
+                aPositions:
                   type: array
                   items:
                     $ref: ../models/Position.yaml
+                aManagers:
+                  type: array
+                  items:
+                    $ref: ../models/Manager.yaml
+                aOffices:
+                  type: array
+                  items:
+                    $ref: ../models/Office.yaml
+                aDepartments:
+                  type: array
+                  items:
+                    $ref: ../models/Department-node.yaml
+                aParticipants:
+                  type: array
+                  items:
+                    $ref: ../models/Participant-short.yaml
           application/xml:
             schema:
               type: object
