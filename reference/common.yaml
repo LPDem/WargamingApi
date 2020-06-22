@@ -70,30 +70,5 @@ paths:
       operationId: common-getMenu
       description: Получение содержимого меню для левой панели
     parameters: []
-  /getDashboard:
-    get:
-      summary: Your GET endpoint
-      tags: []
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  sViewName:
-                    type: string
-                    enum:
-                      - startManageParticipants
-                      - startPlanningPositions
-                      - dashboard
-                      - noAccess
-                  sMessageHtml:
-                    type: string
-                required:
-                  - sViewName
-                  - sMessageHtml
-      operationId: get-getDashboard
 components:
   schemas: {}
