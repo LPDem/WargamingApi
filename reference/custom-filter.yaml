@@ -1,0 +1,118 @@
+openapi: 3.0.0
+info:
+  title: custom-filter
+  version: '1.0'
+  description: ''
+servers:
+  - url: 'http://localhost:3000'
+paths:
+  /api/custom-filters:
+    parameters: []
+    post:
+      summary: ''
+      operationId: post-api-custom-filters
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../models/Custom-filter.yaml
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                sTitle:
+                  type: string
+                oFilter:
+                  $ref: ../models/Position-filter.yaml
+              required:
+                - sTitle
+                - oFilter
+        description: ''
+  '/api/custom-filters/{iId}/update-filter':
+    parameters:
+      - schema:
+          type: number
+        name: iId
+        in: path
+        required: true
+    post:
+      summary: ''
+      operationId: post-api-custom-filters-iId-update-filter
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../models/Custom-filter.yaml
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                oFilter:
+                  $ref: ../models/Position-filter.yaml
+              required:
+                - oFilter
+  '/api/custom-filters/{iId}/update-title':
+    parameters:
+      - schema:
+          type: string
+        name: iId
+        in: path
+        required: true
+    post:
+      summary: ''
+      operationId: post-api-custom-filters-iId-update-title
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../models/Custom-filter.yaml
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                sTitle:
+                  type: string
+              required:
+                - sTitle
+  '/api/custom-filters/{iId}':
+    parameters:
+      - schema:
+          type: number
+        name: iId
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../models/Custom-filter.yaml
+      operationId: get-api-custom-filters-iId
+    delete:
+      summary: ''
+      operationId: delete-api-custom-filters-iId
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../models/Custom-filter.yaml
+components:
+  schemas: {}

@@ -1,0 +1,38 @@
+title: Position-filter
+type: object
+properties:
+  iReportingFunctionId:
+    type: number
+  aOfficeIds:
+    type: array
+    items:
+      type: number
+  aDepartmentIds:
+    type: array
+    items:
+      type: number
+  aManagerIds:
+    type: array
+    items:
+      type: string
+  sCurrentStatus:
+    type: string
+    enum:
+      - Active Employee
+      - Vacancy
+      - Long Leave
+  sText:
+    type: string
+  sSort:
+    type: string
+    enum:
+      - name
+      - careerLevel
+      - startDateASC
+      - startDateDESC
+      - currentStatus
+      - office
+      - employeeClass
+      - assignee
+      - salaryASC
+      - salaryDESC

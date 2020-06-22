@@ -62,11 +62,14 @@ paths:
                       - dashBoard
                       - masterData
                       - positions
+                  aCustomFilters:
+                    type: string
                 required:
                   - aFunctions
                   - bShowMasterDataMenu
                   - bShowManageParticipantsMenu
                   - sFirstPage
+                  - aCustomFilters
       operationId: common-getMenu
       description: Получение содержимого меню для левой панели
     parameters: []
