@@ -5,7 +5,7 @@ info:
 servers:
   - url: 'http://localhost:3000'
 paths:
-  /getDashboard:
+  /dashboard:
     get:
       summary: Your GET endpoint
       tags: []
@@ -30,5 +30,6 @@ paths:
                   - sViewName
                   - sMessageHtml
       operationId: get-getDashboard
+    parameters: []
 components:
   schemas: {}
