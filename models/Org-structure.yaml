@@ -2,25 +2,25 @@ title: Org-structure
 type: object
 description: ''
 properties:
-  iCostCenterId:
-    type: number
-  sCostCenterName:
+  sOffice:
     type: string
-  iOfficeId:
-    type: number
+  sDepartment:
+    type: string
+  sCostCenterCode:
+    type: string
   sOfficeName:
     type: string
-  iDepartmentId:
-    type: number
-  sDepartmentName:
+  sDepartmentCode:
+    type: string
+  sParentDepartmentCode:
     type: string
   sFullPath:
     type: string
 required:
-  - sFullPath
-  - iCostCenterId
-  - sCostCenterName
-  - iOfficeId
+  - sOffice
+  - sDepartment
+  - sCostCenterCode
   - sOfficeName
-  - iDepartmentId
-  - sDepartmentName
+  - sDepartmentCode
+  - sParentDepartmentCode
+  - sFullPath
