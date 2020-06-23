@@ -49,6 +49,10 @@ paths:
           in: query
           name: sSort
           description: "поля по котрым нужно сортировать.\nВсе возможные значения:\n[ sName, \n  sCareerLevel, \n  sStartDateASC,\n  sStartDateDESC,\n  sCurrentStatus,\n  office,\n  sFullOrgPath,\n  sEmployeeClass,\n  sAssignee,\n  salaryASC,\n  salaryDESC\n]"
+        - schema:
+            type: number
+          in: query
+          name: iDepartmentId
       requestBody:
         content:
           application/json:
