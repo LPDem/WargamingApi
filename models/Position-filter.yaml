@@ -26,14 +26,15 @@ properties:
   sSort:
     type: string
     enum:
-      - name
-      - careerLevel
-      - startDateASC
-      - startDateDESC
-      - currentStatus
+      - sName
+      - sCareerLevel
+      - sStartDateASC
+      - sStartDateDESC
+      - sCurrentStatus
       - office
-      - employeeClass
-      - assignee
+      - sFullOrgPath
+      - sEmployeeClass
+      - sAssignee
       - salaryASC
       - salaryDESC
   iDepartmentId:
