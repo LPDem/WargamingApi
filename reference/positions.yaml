@@ -294,7 +294,12 @@ paths:
         content:
           application/json:
             schema:
-              type: string
+              type: object
+              properties:
+                sStartDate:
+                  type: string
+              required:
+                - sStartDate
       description: Изменение поле sStartDate в позиции
   '/api/position/{iId}/return-from-long-leave':
     parameters:
