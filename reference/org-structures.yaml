@@ -5,58 +5,6 @@ info:
 servers:
   - url: 'http://localhost:3000'
 paths:
-  '/api/org-structures/offices/{iId}/cost-center':
-    parameters:
-      - schema:
-          type: number
-        name: iId
-        in: path
-        required: true
-    get:
-      summary: Your GET endpoint
-      tags: []
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  aItems:
-                    type: array
-                    items:
-                      $ref: ../models/Cost-center.yaml
-                required:
-                  - aItems
-      operationId: get-api-org-structures-offices-iId-cost-center
-      description: Получение списка cost-centers по id офиса
-  '/api/org-structures/cost-centers/{iId}/department':
-    parameters:
-      - schema:
-          type: string
-        name: iId
-        in: path
-        required: true
-    get:
-      summary: Your GET endpoint
-      tags: []
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  aItems:
-                    type: array
-                    items:
-                      $ref: ../models/Department.yaml
-                required:
-                  - aItems
-      operationId: get-api-org-structures-cost-centers-iId-department
-      description: Получение списка департаментов по id cost-center
   /api/org-structures/department/tree:
     get:
       summary: Your GET endpoint
