@@ -475,5 +475,30 @@ paths:
           name: positionId
           description: передается если на изменение
       description: ''
+  /api/positions/change-reasons:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  aItems:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        sValue:
+                          type: string
+                        sText:
+                          type: string
+                      required:
+                        - sValue
+                        - sText
+      operationId: get-api-positions-change-reasons
 components:
   schemas: {}
