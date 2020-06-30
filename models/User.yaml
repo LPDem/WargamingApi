@@ -6,12 +6,12 @@ properties:
     type: string
   oPermissions:
     $ref: ./Permissions.yaml
-  notification:
+  oNotification:
     $ref: ./User-notification-settings.yaml
-  salaryPreferences:
+  oSalaryPreferences:
     $ref: ./User-salary-preferences.yaml
 required:
   - sUserName
   - oPermissions
-  - notification
-  - salaryPreferences
+  - oNotification
+  - oSalaryPreferences

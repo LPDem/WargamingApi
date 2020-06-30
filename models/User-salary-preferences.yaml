@@ -1,10 +1,11 @@
 title: User-salary-preferences
 type: object
+description: Настройки пользователя по ЗП
 properties:
-  currency:
+  oCurrency:
     $ref: ./Currency-rate.yaml
-  paymentFrequency:
+  oPaymentFrequency:
     $ref: ./Payment-frequency.yaml
 required:
-  - paymentFrequency
-description: Настройки пользователя по ЗП
+  - oCurrency
+  - oPaymentFrequency

@@ -2,10 +2,10 @@ title: User-salary-preferences-adding
 type: object
 description: Добавление(изменение) настройки пользователя по ЗП
 properties:
-  currencyId:
+  iCurrencyId:
     type: number
-  paymentFrequencyId:
+  iPaymentFrequencyId:
     type: number
 required:
-  - currencyId
-  - paymentFrequencyId
+  - iCurrencyId
+  - iPaymentFrequencyId
