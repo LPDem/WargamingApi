@@ -1,0 +1,54 @@
+title: Position-short
+type: object
+properties:
+  iId:
+    type: number
+  iReportingFunctionId:
+    type: number
+  sCode:
+    type: string
+  sName:
+    type: string
+  sCurrentStatus:
+    type: string
+    enum:
+      - Active Employee
+      - Vacancy
+      - Long Leave
+    description: Статус
+  sVacancyType:
+    type: string
+    enum:
+      - New
+      - Replacement
+      - Internal Transfer
+      - Long Leave Cover
+      - Overlap Cover
+    description: Тип ваканции
+  sEmployeeId:
+    type: string
+  sAssignee:
+    type: string
+    description: Сотрудник
+  sEmployeeClass:
+    type: string
+    description: ''
+    enum:
+      - Employee
+      - Contractor
+      - PaidIntern
+      - UnpaidIntern
+  oJob:
+    $ref: ./Job-short.yaml
+  fSalaryBudgeted:
+    type: number
+  sStartDate:
+    type: string
+  oOrgStructure:
+    $ref: ./Org-structure-short.yaml
+  aSalaryChanges:
+    type: array
+    items:
+      $ref: ./Salary-change-short.yaml
+  oInactive:
+    $ref: ./Inactive-short.yaml

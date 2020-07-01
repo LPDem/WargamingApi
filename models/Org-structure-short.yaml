@@ -1,0 +1,10 @@
+title: Org-structure-short
+type: object
+properties:
+  sOffice:
+    type: string
+  sDepartment:
+    type: string
+required:
+  - sOffice
+  - sDepartment

@@ -62,7 +62,7 @@ paths:
                 aPositions:
                   type: array
                   items:
-                    $ref: ../models/Position.yaml
+                    $ref: ../models/Position-short.yaml
                 aManagers:
                   type: array
                   items:
@@ -500,5 +500,45 @@ paths:
                         - sValue
                         - sText
       operationId: get-api-positions-change-reasons
+  '/api/positions/{iId}/salary-change/{iSalaryChangeId}':
+    parameters:
+      - schema:
+          type: number
+        name: iId
+        in: path
+        required: true
+      - schema:
+          type: number
+        name: iSalaryChangeId
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../models/Salary-change.yaml
+      operationId: get-api-positions-iId-salary-change-iSalaryChangeId
+      description: ''
+    put:
+      summary: ''
+      operationId: put-api-positions-iId-salary-change-iSalaryChangeId
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../models/Position.yaml
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../models/Salary-change-adding.yaml
+        description: ''
 components:
   schemas: {}

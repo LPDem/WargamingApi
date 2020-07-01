@@ -17,6 +17,7 @@ properties:
     enum:
       - Active Employee
       - Vacancy
+      - Long Leave
     description: Статус
   sVacancyType:
     type: string

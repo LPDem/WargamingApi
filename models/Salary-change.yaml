@@ -21,7 +21,10 @@ properties:
     type: string
   'fNewSalary ':
     type: number
+  iId:
+    type: number
 required:
   - sChangeReason
   - sEffectiveDate
   - 'fNewSalary '
+  - iId
