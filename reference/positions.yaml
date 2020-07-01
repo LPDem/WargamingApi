@@ -540,5 +540,58 @@ paths:
             schema:
               $ref: ../models/Salary-change-adding.yaml
         description: ''
+  /api/positions/job-family:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: ../models/Catalog.yaml
+      operationId: get-api-positions-job-family
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: sJobFamilyGroup
+          required: true
+        - schema:
+            type: string
+          in: query
+          name: iPositionId
+  /api/positions/job-sub-family:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: ../models/Catalog.yaml
+      operationId: get-api-positions-job-sub-family
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: sJobFamilyGroup
+          required: true
+        - schema:
+            type: string
+          in: query
+          name: sJobFamily
+          required: true
+        - schema:
+            type: string
+          in: query
+          name: iPositionId
 components:
   schemas: {}

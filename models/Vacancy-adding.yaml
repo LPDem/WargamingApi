@@ -29,8 +29,8 @@ properties:
       $ref: ./Salary-change-adding.yaml
   bRecruitmentNeeded:
     type: boolean
-  sJobId:
-    type: string
+  oJob:
+    $ref: ./Job-adding.yaml
   sCareerLevelId:
     type: string
   oOrgStructure:
@@ -42,6 +42,6 @@ required:
   - sEmployeeClass
   - oSalary
   - aSalaryChanges
-  - sJobId
+  - oJob
   - sCareerLevelId
   - oOrgStructure
