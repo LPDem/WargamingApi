@@ -18,59 +18,39 @@
 ```
 
 ## Типы сообщении
-1. **SavaVisiblePositions**
-  Для сохранения какие позиции видет пользователь. Если приходит новое старые    перезаписывается. **payload** ```number[]```
-
-
-2. **PositionEditingStart** -- 
-  Кто-то начал редактировать позициию.
+1. **SaveVisiblePositions**
+  Для сохранения какие позиции видет пользователь. Если приходит новое старые    перезаписывается. Отправляется от клиента к серверу
   
-    payload       
-  `{iPositionId: sUsername}`
+    payload: ```number[]```
+
+2. **IStartedEditing** Пользователь который отправил сообщение начал редактировать позицию. Передает id позиции. Отправляется от клиента к серверу.
+
+    payload: ```number```
+
+3. **PositionEditingStart**  Кто-то начал редактировать позициию. Отправляется от сервера к клиенту
   
-    example
-  `{1:"Dmitry Kirol"}`
-
-
-3. **PositionEditingEnd** закончил редактироват
-    payload     
-  `{iPositionId: Position}`
-
-4. **NewPositionAdded**
-  Добавлено новая позиция
-    payload     
-    `Position`
-
-5. **PositionCommentNotification**
-  Уведомление о новом коментарии
     payload:
 
     `{
-        iId: number;
-        iPositionId: number;
-        sPositionName: string;
-        sUserName: string;
-        bUnread: boolean;
-        sDate: string;
+      iPositionId: number,
+      sUserName: string
     }`
 
-6. **PositionCommentNotificationMarkRead**
-  payload:
-  `iId: number;`
+4. **IFinishedEditing** Пользователь который отправил сообщение закончил редактировать позицию. Поле `changed` означает была ли позиция изменена или нет. Отправляется от клиента к серверу
 
-7. **PlanUpdatedNotification**
+    payload: 
+
+    `{
+      iPositionId: number,
+      changed: boolean
+    }`
+
+5. **PositionEditingEnd** Кто-то закончил редактироват
+   позицию. Поле `position` необязательная, передается только если позиция изменена. Отправляется от сервера к клиенту
 
     payload:
-    
+
     `{
-      iId: number;
-      sPlanName: string;
-      sUserName: string;
-      bUnread: boolean;
-      sDate: string;
+      iPositionId: number,
+      position: Position
     }`
-
-8. **PlanUpdatedNotificationMarkRead**
-  payload:
-  `iId: number;`
-
