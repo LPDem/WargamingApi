@@ -46,4 +46,5 @@
     payload:`number`
 
 6. **PositionChanged** Позиция была изменена. Отправляется от сервера к клиенту
+
     payload: `Position`
