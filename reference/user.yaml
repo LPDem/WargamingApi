@@ -103,6 +103,26 @@ paths:
           application/json:
             schema:
               $ref: ../models/User-salary-preferences-adding.v1.yaml
+  '/avatar/{userId}':
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+      operationId: get-avatar
+      description: Должен возвращат аватар пользовавтеля
+    parameters:
+      - schema:
+          type: number
+        name: userId
+        in: path
+        required: true
 components:
   schemas:
     PermissionsDto:

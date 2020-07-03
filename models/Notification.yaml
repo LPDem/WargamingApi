@@ -1,0 +1,29 @@
+title: Notification
+type: object
+description: ''
+properties:
+  iId:
+    type: number
+  iPositionId:
+    type: number
+  sPositionName:
+    type: string
+  sPositionCode:
+    type: string
+  sUserId:
+    type: string
+  sUserName:
+    type: string
+  sActionText:
+    type: string
+  sDate:
+    type: string
+  bUnread:
+    type: boolean
+required:
+  - iId
+  - iPositionId
+  - sPositionName
+  - sPositionCode
+  - sUserId
+  - sUserName
