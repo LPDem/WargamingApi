@@ -27,5 +27,19 @@ paths:
               items:
                 type: number
         description: передается массив positionId
+  /api/notifications:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: ../models/Notification.yaml
+      operationId: get-api-notifications
 components:
   schemas: {}

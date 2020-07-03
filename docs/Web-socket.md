@@ -48,3 +48,9 @@
 6. **PositionChanged** Позиция была изменена. Отправляется от сервера к клиенту
 
     payload: `Position`
+
+****
+
+7. **NewNotifications** Отправляется от сервера к клиенту. 
+    payload: `boolean`
+
