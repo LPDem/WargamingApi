@@ -38,8 +38,6 @@ properties:
       - Contractor
       - PaidIntern
       - UnpaidIntern
-  oJob:
-    $ref: ./Job-short.yaml
   fSalaryBudgeted:
     type: number
   sStartDate:
@@ -52,3 +50,20 @@ properties:
       $ref: ./Salary-change-short.yaml
   oInactive:
     $ref: ./Inactive-short.yaml
+  sCareerLevel:
+    type: string
+required:
+  - iId
+  - iReportingFunctionId
+  - sCode
+  - sName
+  - sCurrentStatus
+  - sVacancyType
+  - sEmployeeId
+  - sAssignee
+  - sEmployeeClass
+  - fSalaryBudgeted
+  - sStartDate
+  - aSalaryChanges
+  - oInactive
+  - sCareerLevel
