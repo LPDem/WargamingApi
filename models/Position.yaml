@@ -57,10 +57,8 @@ properties:
     description: Год-Месяц
   oOrgStructure:
     $ref: ./Org-structure.yaml
-  aComments:
-    type: array
-    items:
-      $ref: ./Position-comment.yaml
+  oComment:
+    $ref: ./Position-comment.yaml
   aSalaryChanges:
     type: array
     items:

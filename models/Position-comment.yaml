@@ -2,19 +2,13 @@ title: Position-comment
 type: object
 description: ''
 properties:
-  iId:
-    type: number
   sText:
     type: string
   sDate:
     type: string
   sUserName:
     type: string
-  bUnread:
-    type: boolean
 required:
-  - iId
   - sText
   - sDate
   - sUserName
-  - bUnread
