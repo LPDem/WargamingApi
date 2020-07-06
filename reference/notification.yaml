@@ -5,7 +5,7 @@ info:
 servers:
   - url: 'http://localhost:3000'
 paths:
-  /api/activity-feed:
+  /api/notifications/activity-feed:
     post:
       summary: ''
       operationId: post-api-activity-feed
@@ -27,6 +27,7 @@ paths:
               items:
                 type: number
         description: передается массив positionId
+    parameters: []
   /api/notifications:
     get:
       summary: Your GET endpoint
