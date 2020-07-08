@@ -343,7 +343,7 @@ paths:
                     type: array
                     items:
                       $ref: ../models/Catalog.yaml
-                  aJobFamilies:
+                  aJobFamilyGroups:
                     type: array
                     items:
                       $ref: ../models/Catalog.yaml
@@ -391,7 +391,7 @@ paths:
                     type: array
                     items:
                       $ref: ../models/Catalog.yaml
-                  aJobFamilies:
+                  aJobFamilyGroups:
                     type: array
                     items:
                       $ref: ../models/Catalog.yaml
