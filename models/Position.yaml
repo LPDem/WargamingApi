@@ -41,8 +41,6 @@ properties:
       - Contractor
       - PaidIntern
       - UnpaidIntern
-  sComment:
-    type: string
   oJob:
     $ref: ./Job.yaml
   bRecruitmentNeeded:
