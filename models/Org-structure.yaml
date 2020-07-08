@@ -8,8 +8,6 @@ properties:
     type: string
   sCostCenterCode:
     type: string
-  sOfficeName:
-    type: string
   sDepartmentCode:
     type: string
   sParentDepartmentCode:
@@ -20,7 +18,6 @@ required:
   - sOffice
   - sDepartment
   - sCostCenterCode
-  - sOfficeName
   - sDepartmentCode
   - sParentDepartmentCode
   - sFullPath
