@@ -1,0 +1,457 @@
+openapi: 3.0.0
+info:
+  title: summary
+  version: '1.0'
+servers:
+  - url: 'http://localhost:3000'
+paths:
+  /api/summary/short-statistics:
+    post:
+      summary: ''
+      operationId: post-api-summary-short-statistics
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  oFte:
+                    $ref: '#/components/schemas/short-statistic'
+                  oVacancies:
+                    $ref: '#/components/schemas/short-statistic'
+                  oCost:
+                    $ref: '#/components/schemas/short-statistic'
+                required:
+                  - oFte
+                  - oVacancies
+                  - oCost
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/short-statistic-filter'
+  /api/summary/headcount:
+    post:
+      summary: ''
+      operationId: post-api-summary-headcount
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  aChartData:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/monthly-overview'
+                  aPeriods:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/period'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/summary-filter'
+  /api/summary/headcount-dynamic:
+    post:
+      summary: ''
+      operationId: post-api-summary-headcount-dynamic
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  aChartData:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/monthly-change-dynamic'
+                  aPeriods:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/period'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/summary-filter'
+  /api/summary/payroll:
+    post:
+      summary: ''
+      operationId: post-api-summary-payroll
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  aChartData:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/monthly-overview'
+                  aPeriods:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/period'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/payroll-filter'
+  /api/summary/payroll-dynamic:
+    post:
+      summary: ''
+      operationId: post-api-summary-payroll-dynamic
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  aChartData:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/monthly-change-dynamic'
+                  aPeriods:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/period'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/payroll-filter'
+        description: ''
+  /api/summary/vacancies-analysis:
+    post:
+      summary: ''
+      operationId: post-api-summary-vacancies-analysis
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  aChartData:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        sName:
+                          type: string
+                        aAnalysisByType:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              sTypeName:
+                                type: string
+                              iCount:
+                                type: number
+                  aPeriods:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/period'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/summary-filter'
+  /api/summary/vacancies-total:
+    parameters: []
+    post:
+      summary: ''
+      operationId: post-api-summary-vacancies-total
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  aChartData:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/section'
+                  aPeriods:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/period'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/summary-filter'
+  /api/summary/career-level-categories:
+    post:
+      summary: ''
+      operationId: post-career-level-categories
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  aChartData:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/section'
+                  '':
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/period'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/summary-filter'
+        description: ''
+    parameters: []
+  /api/summary/career-levels:
+    post:
+      summary: ''
+      operationId: post-career-levels
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  aCareerLevelTypes:
+                    type:
+                      - string
+                      - array
+                    items:
+                      $ref: '#/components/schemas/period'
+                  aChartData:
+                    $ref: '#/components/schemas/section'
+                  aPeriods:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/period'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                sCareerLevelTypes:
+                  type: string
+                aPositionIds:
+                  type: array
+                  items:
+                    type: number
+                sPeriod:
+                  type: string
+              required:
+                - aPositionIds
+    parameters: []
+  /api/summary/headcount-by-location:
+    post:
+      summary: ''
+      operationId: post-headcount-by-location
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  aOffices:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/office-coordinates'
+                  aPeriods:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/period'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/summary-filter'
+    parameters: []
+  /api/summary/payroll-by-location:
+    post:
+      summary: ''
+      operationId: post-payroll-by-location
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  aOffices:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/office-coordinates'
+                  aPeriods:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/period'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/payroll-filter'
+        description: ''
+    parameters: []
+components:
+  schemas:
+    summary-filter:
+      title: Summary-filter
+      type: object
+      properties:
+        aPositionIds:
+          type: array
+          items:
+            type: number
+        sPeriod:
+          type: string
+      required:
+        - aPositionIds
+    short-statistic-filter:
+      title: short-statistic-filter
+      type: object
+      properties:
+        aPositionIds:
+          type: array
+          items:
+            type: number
+        iCurrencyId:
+          type: number
+      required:
+        - aPositionIds
+        - iCurrencyId
+    short-statistic:
+      title: short-statistic
+      type: object
+      properties:
+        sName:
+          type: string
+        sValue:
+          type: string
+        sChange:
+          type: string
+        bNegative:
+          type: string
+          description: 'если изменения отрицательные true, нужно для определения каким цветом нужно заливать'
+      required:
+        - sName
+        - sValue
+        - sChange
+        - bNegative
+    monthly-overview:
+      title: monthly-overview
+      type: object
+      properties:
+        sName:
+          type: string
+        sDesc:
+          type: string
+        iInitial:
+          type: number
+        iRevised:
+          type:
+            - string
+            - number
+      required:
+        - sName
+        - sDesc
+        - iInitial
+        - iRevised
+      description: Данные за один месяц
+    period:
+      title: period
+      type: object
+      properties:
+        sValue:
+          type: string
+        sText:
+          type: string
+        bSelected:
+          type: string
+      required:
+        - sValue
+        - sText
+    monthly-change-dynamic:
+      title: monthly-change-dynamic
+      type: object
+      properties:
+        sName:
+          type: string
+        sDesc:
+          type: string
+        iValue:
+          type: number
+        iChange:
+          type: number
+      required:
+        - sName
+        - sDesc
+        - iValue
+        - iChange
+    section:
+      title: section
+      type: object
+      properties:
+        sName:
+          type: string
+        iValue:
+          type: string
+      required:
+        - sName
+        - iValue
+    office-coordinates:
+      title: office-coordinates
+      type: object
+      properties:
+        sOfficeName:
+          type: string
+        fLat:
+          type: number
+        fLng:
+          type: number
+        iValue:
+          type: number
+      required:
+        - sOfficeName
+        - fLat
+        - fLng
+        - iValue
+    payroll-filter:
+      title: payroll-filter
+      type: object
+      properties:
+        aPositionIds:
+          type: array
+          items:
+            type: number
+        iCurrencyId:
+          type: number
+        sPeriod:
+          type: string
+      required:
+        - aPositionIds
+        - iCurrencyId
