@@ -540,6 +540,16 @@ paths:
             schema:
               $ref: ../models/Salary-change-adding.yaml
         description: ''
+    delete:
+      summary: ''
+      operationId: delete-api-positions-iId-salary-change-iSalaryChangeId
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../models/Position-short.yaml
   /api/positions/job-family:
     get:
       summary: Your GET endpoint
