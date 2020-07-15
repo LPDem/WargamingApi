@@ -48,11 +48,8 @@ properties:
     description: Требуется набор
   fSalaryBudgeted:
     type: number
-  sStartDate:
-    type: string
-    format: date
-    example: 2020-01
-    description: Год-Месяц
+  oStartDate:
+    $ref: ./Start-date.yaml
   oOrgStructure:
     $ref: ./Org-structure.yaml
   oComment:
@@ -82,6 +79,6 @@ required:
   - oJob
   - bRecruitmentNeeded
   - fSalaryBudgeted
-  - sStartDate
+  - oStartDate
   - oOrgStructure
   - aSalaryChanges

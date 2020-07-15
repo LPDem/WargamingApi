@@ -294,12 +294,7 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                sStartDate:
-                  type: string
-              required:
-                - sStartDate
+              $ref: ../models/Start-date.yaml
       description: Изменение поле sStartDate в позиции
   '/api/position/{iId}/return-from-long-leave':
     parameters:
