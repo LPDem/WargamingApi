@@ -66,6 +66,8 @@ properties:
     $ref: ./Future-replacement.yaml
   oReturnLongLeave:
     $ref: ./Return-from-long-leave.yaml
+  bUpdated:
+    type: string
 required:
   - iId
   - iReportingFunctionId

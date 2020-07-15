@@ -54,6 +54,8 @@ properties:
     type: string
   sFutureReplacementDate:
     type: string
+  bUpdated:
+    type: boolean
 required:
   - iId
   - iReportingFunctionId
@@ -70,3 +72,4 @@ required:
   - oInactive
   - sCareerLevel
   - sFutureReplacementDate
+  - bUpdated
