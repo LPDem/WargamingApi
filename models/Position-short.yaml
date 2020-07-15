@@ -52,6 +52,8 @@ properties:
     $ref: ./Inactive-short.yaml
   sCareerLevel:
     type: string
+  sFutureReplacementDate:
+    type: string
 required:
   - iId
   - iReportingFunctionId
@@ -67,3 +69,4 @@ required:
   - aSalaryChanges
   - oInactive
   - sCareerLevel
+  - sFutureReplacementDate
