@@ -236,9 +236,7 @@ paths:
                 type: object
                 properties:
                   aCareerLevelTypes:
-                    type:
-                      - string
-                      - array
+                    type: array
                     items:
                       $ref: '#/components/schemas/period'
                   aChartData:
@@ -355,7 +353,7 @@ components:
         sChange:
           type: string
         bNegative:
-          type: string
+          type: boolean
           description: 'если изменения отрицательные true, нужно для определения каким цветом нужно заливать'
       required:
         - sName
@@ -391,7 +389,7 @@ components:
         sText:
           type: string
         bSelected:
-          type: string
+          type: boolean
       required:
         - sValue
         - sText
