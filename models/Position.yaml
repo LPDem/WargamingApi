@@ -68,6 +68,14 @@ properties:
     $ref: ./Return-from-long-leave.yaml
   bUpdated:
     type: string
+  sProgressStatus:
+    type: string
+    enum:
+      - onEdit
+      - onReview
+      - approved
+  bShowActions:
+    type: boolean
 required:
   - iId
   - iReportingFunctionId
@@ -84,3 +92,5 @@ required:
   - oStartDate
   - oOrgStructure
   - aSalaryChanges
+  - sProgressStatus
+  - bShowActions

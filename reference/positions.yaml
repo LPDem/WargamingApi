@@ -598,5 +598,68 @@ paths:
             type: string
           in: query
           name: iPositionId
+  '/api/positions/{iId}/actions':
+    parameters:
+      - schema:
+          type: number
+        name: iId
+        in: path
+        required: true
+    get:
+      summary: ''
+      operationId: get-api-positions-iId-actions
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: ../models/Position-action.yaml
+  /api/positions/approve-and-submit:
+    post:
+      summary: ''
+      operationId: post-api-positions-approve-and-submit
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: number
+        description: передается iId позиции
+  /api/positions/export-to-excel:
+    post:
+      summary: ''
+      operationId: post-api-positions-export-to-excel
+      responses:
+        '200':
+          description: OK
+      description: Возвращать excel file. Здесь нету возможности описывать файл
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: number
+  /api/positions/return-to-edit:
+    post:
+      summary: ''
+      operationId: post-api-positions-return-to-edit
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: number
+      responses:
+        '200':
+          description: OK
 components:
   schemas: {}

@@ -56,6 +56,14 @@ properties:
     type: string
   bUpdated:
     type: boolean
+  sProgressStatus:
+    type: string
+    enum:
+      - onEdit
+      - onReview
+      - approved
+  bShowActions:
+    type: boolean
 required:
   - iId
   - iReportingFunctionId
@@ -73,3 +81,5 @@ required:
   - sCareerLevel
   - sFutureReplacementDate
   - bUpdated
+  - sProgressStatus
+  - bShowActions

@@ -1,0 +1,20 @@
+title: Position-action
+type: object
+properties:
+  sTitle:
+    type: string
+  sCode:
+    type: string
+    enum:
+      - EditVacancy
+      - ChangeStartDate
+      - FutureReplacement
+      - AddLongLeave
+      - ReturnDateFromLongLeave
+      - AddSalaryChange
+      - CopyToVacancy
+      - Inactivate
+      - ReturnToEdit
+required:
+  - sTitle
+  - sCode
