@@ -363,6 +363,7 @@ components:
     monthly-overview:
       title: monthly-overview
       type: object
+      description: Данные за один месяц
       properties:
         sName:
           type: string
@@ -371,15 +372,12 @@ components:
         iInitial:
           type: number
         iRevised:
-          type:
-            - string
-            - number
+          type: number
       required:
         - sName
         - sDesc
         - iInitial
         - iRevised
-      description: Данные за один месяц
     period:
       title: period
       type: object
@@ -417,7 +415,7 @@ components:
         sName:
           type: string
         iValue:
-          type: string
+          type: number
       required:
         - sName
         - iValue
