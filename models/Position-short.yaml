@@ -64,6 +64,8 @@ properties:
       - approved
   bShowActions:
     type: boolean
+  iChangeCount:
+    type: number
 required:
   - iId
   - iReportingFunctionId
@@ -83,3 +85,4 @@ required:
   - bUpdated
   - sProgressStatus
   - bShowActions
+  - iChangeCount
