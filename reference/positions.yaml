@@ -155,7 +155,7 @@ paths:
           application/json:
             schema:
               $ref: ../models/Vacancy-adding.yaml
-  '/api/positions/{iId}/inactive':
+  /api/positions/inactive:
     post:
       summary: ''
       operationId: post-api-positions-inactive
@@ -170,13 +170,18 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ../models/Inactive.yaml
-    parameters:
-      - schema:
-          type: number
-        name: iId
-        in: path
-        required: true
+              type: object
+              properties:
+                aPositionsIds:
+                  type: array
+                  items:
+                    type: number
+                oInactive:
+                  $ref: ../models/Inactive.yaml
+              required:
+                - aPositionsIds
+                - oInactive
+    parameters: []
   '/api/positions/{iId}/long-leave':
     post:
       summary: ''
@@ -273,13 +278,8 @@ paths:
         name: iId
         in: path
         required: true
-  '/api/positions/{iId}/start-date':
-    parameters:
-      - schema:
-          type: number
-        name: iId
-        in: path
-        required: true
+  /api/positions/start-date:
+    parameters: []
     post:
       summary: ''
       operationId: post-api-positions-iId-start-date
@@ -294,7 +294,17 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ../models/Start-date.yaml
+              type: object
+              properties:
+                aPositionsIds:
+                  type: array
+                  items:
+                    type: number
+                oStartDate:
+                  $ref: ../models/Start-date.yaml
+              required:
+                - aPositionsIds
+                - oStartDate
       description: Изменение поле sStartDate в позиции
   '/api/position/{iId}/return-from-long-leave':
     parameters:
@@ -661,5 +671,18 @@ paths:
       responses:
         '200':
           description: OK
+  '/api/positions/employee-avatar/{sEmployeeId}':
+    parameters:
+      - schema:
+          type: string
+        name: sEmployeeId
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses: {}
+      operationId: get-api-positions-employee-avatar-iEmployeeId
+      description: Получение фотографии соотрудника
 components:
   schemas: {}
