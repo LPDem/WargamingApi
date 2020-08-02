@@ -15,6 +15,7 @@ properties:
       - CopyToVacancy
       - Inactivate
       - ReturnToEdit
+      - ApproveAndSubmit
 required:
   - sTitle
   - sCode
