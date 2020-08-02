@@ -78,6 +78,23 @@ properties:
     type: boolean
   iChangeCount:
     type: number
+  aChanges:
+    type: array
+    items:
+      type: string
+      enum:
+        - status
+        - title
+        - code
+        - vacancyType
+        - employeeClass
+        - salaryBudgeted
+        - startDate
+        - office
+        - department
+        - careerLevel
+        - inactiveDate
+        - futureReplacementDate
 required:
   - iId
   - iReportingFunctionId
@@ -97,3 +114,4 @@ required:
   - sProgressStatus
   - bShowActions
   - iChangeCount
+  - aChanges
