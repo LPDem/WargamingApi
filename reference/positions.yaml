@@ -165,7 +165,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: ../models/Position.yaml
+                type: array
+                items:
+                  $ref: ../models/Position-short.yaml
       requestBody:
         content:
           application/json:
@@ -192,7 +194,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: ../models/Position.yaml
+                $ref: ../models/Position-short.yaml
       requestBody:
         content:
           application/json:
@@ -214,7 +216,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: ../models/Position.yaml
+                $ref: ../models/Position-short.yaml
       requestBody:
         content:
           application/json:
@@ -237,7 +239,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: ../models/Position.yaml
+                $ref: ../models/Position-short.yaml
       requestBody:
         content:
           application/json:
@@ -265,7 +267,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: ../models/Position.yaml
+                $ref: ../models/Position-short.yaml
       requestBody:
         content:
           application/json:
@@ -289,7 +291,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: ../models/Position.yaml
+                type: array
+                items:
+                  $ref: ../models/Position-short.yaml
       requestBody:
         content:
           application/json:
@@ -322,7 +326,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: ../models/Position.yaml
+                $ref: ../models/Position-short.yaml
       requestBody:
         content:
           application/json:
