@@ -341,6 +341,59 @@ paths:
       tags:
         - masterData
     parameters: []
+  /period:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  sStartDate:
+                    type: string
+                  sEndDate:
+                    type: string
+                required:
+                  - sStartDate
+                  - sEndDate
+      operationId: get-getPeriod
+      description: ''
+    post:
+      summary: ''
+      operationId: post-getPeriod
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  sStartDate:
+                    type: string
+                  sEndDate:
+                    type: string
+                required:
+                  - sStartDate
+                  - sEndDate
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                sStartDate:
+                  type: string
+                sEndDate:
+                  type: string
+              required:
+                - sStartDate
+                - sEndDate
+    parameters: []
 components:
   schemas:
     DataGridDto:
