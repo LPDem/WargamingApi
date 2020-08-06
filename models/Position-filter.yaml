@@ -39,3 +39,9 @@ properties:
       - salaryDESC
   iDepartmentId:
     type: number
+  bOnlyInactive:
+    type: boolean
+  bOnlySalaryUpdates:
+    type: boolean
+  bOnlyUpdates:
+    type: boolean
