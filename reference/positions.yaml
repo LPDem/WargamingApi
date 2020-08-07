@@ -53,6 +53,26 @@ paths:
             type: number
           in: query
           name: iDepartmentId
+        - schema:
+            type: boolean
+          in: query
+          name: bOnlyInactive
+        - schema:
+            type: boolean
+          in: query
+          name: bOnlySalaryUpdates
+        - schema:
+            type: boolean
+          in: query
+          name: bOnlyUpdates
+        - schema:
+            type: array
+          in: query
+          name: aCostCenters
+        - schema:
+            type: array
+          in: query
+          name: aSubmissionStatuses
       requestBody:
         content:
           application/json:
@@ -79,6 +99,25 @@ paths:
                   type: array
                   items:
                     $ref: ../models/Participant-short.yaml
+                aCostCenters:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      sId:
+                        type: string
+                      sName:
+                        type: string
+                    required:
+                      - sId
+                      - sName
+              required:
+                - aPositions
+                - aManagers
+                - aOffices
+                - aDepartments
+                - aParticipants
+                - aCostCenters
           application/xml:
             schema:
               type: object
