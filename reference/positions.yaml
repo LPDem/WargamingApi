@@ -73,6 +73,22 @@ paths:
             type: array
           in: query
           name: aSubmissionStatuses
+        - schema:
+            type: string
+          in: query
+          name: sJobFamilyGroupId
+        - schema:
+            type: string
+          in: query
+          name: sJobFamilyId
+        - schema:
+            type: string
+          in: query
+          name: sJobSubFamilyId
+        - schema:
+            type: array
+          in: query
+          name: aExcludeIds
       requestBody:
         content:
           application/json:
@@ -102,15 +118,31 @@ paths:
                 aCostCenters:
                   type: array
                   items:
-                    type: object
-                    properties:
-                      sId:
-                        type: string
-                      sName:
-                        type: string
-                    required:
-                      - sId
-                      - sName
+                    $ref: ../models/Participant-short.yaml
+                iAllPositionsCount:
+                  type: number
+                iEmployeesCount:
+                  type: number
+                iVacanciesCount:
+                  type: number
+                iLongLeaveCount:
+                  type: number
+                aJobFamilyGroups:
+                  type: array
+                  items:
+                    $ref: ../models/Participant-short.yaml
+                aJobFamilies:
+                  type: array
+                  items:
+                    $ref: ../models/Participant-short.yaml
+                aJobSubFamilies:
+                  type: array
+                  items:
+                    $ref: ../models/Participant-short.yaml
+                aExcludeList:
+                  type: array
+                  items:
+                    $ref: ../models/Participant-short.yaml
               required:
                 - aPositions
                 - aManagers
@@ -118,6 +150,14 @@ paths:
                 - aDepartments
                 - aParticipants
                 - aCostCenters
+                - iAllPositionsCount
+                - iEmployeesCount
+                - iVacanciesCount
+                - iLongLeaveCount
+                - aJobFamilyGroups
+                - aJobFamilies
+                - aJobSubFamilies
+                - aExcludeList
           application/xml:
             schema:
               type: object

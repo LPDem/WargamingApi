@@ -45,3 +45,19 @@ properties:
     type: boolean
   bOnlyUpdates:
     type: boolean
+  aSubmissionStatuses:
+    type: array
+    items:
+      type: string
+  aCostCenters:
+    type: array
+    items:
+      type: string
+  sJobFamilyGroupId:
+    type: string
+  sJobSubFamilyId:
+    type: string
+  aExcludeIds:
+    type: array
+    items:
+      type: string
