@@ -123,6 +123,30 @@ paths:
         name: userId
         in: path
         required: true
+  /getUserSettings:
+    parameters: []
+    post:
+      summary: ''
+      operationId: post-getUserSettings
+      tags:
+        - users
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - allOf:
+                      - $ref: ../models/User.yaml
+                      - $ref: ../models/User-jwt-tokens.yaml
+                  - type: object
+                    properties:
+                      sError:
+                        type: string
+                        description: Текст причины неуспешной авторизации
+                    required:
+                      - sError
 components:
   schemas:
     PermissionsDto:
