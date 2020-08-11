@@ -118,7 +118,7 @@ paths:
                 aCostCenters:
                   type: array
                   items:
-                    $ref: ../models/Participant-short.yaml
+                    $ref: ../models/Office.yaml
                 iAllPositionsCount:
                   type: number
                 iEmployeesCount:
