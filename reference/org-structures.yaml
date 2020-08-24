@@ -35,8 +35,35 @@ paths:
     get:
       summary: Получение дочерних элементов
       tags: []
-      responses: {}
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: ../models/Department-node.yaml
       operationId: get-api-org-structures-department-tree-iId
       description: ''
+    post:
+      summary: ''
+      operationId: post-api-org-structures-department-tree-iId
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: ../models/Department-node.yaml
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: number
 components:
   schemas: {}
