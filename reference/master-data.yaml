@@ -394,6 +394,72 @@ paths:
                 - sStartDate
                 - sEndDate
     parameters: []
+  /exportJobs:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses: {}
+      operationId: get-exportJobs
+  /exportPositions:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses: {}
+      operationId: get-exportPositions
+  /exportRoles:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses: {}
+      operationId: get-exportRoles
+  /exportOrgStructure:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses: {}
+      operationId: get-exportOrgStructure
+  /exportFaq:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses: {}
+      operationId: get-exportFaq
+  /exportCurrencies:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses: {}
+      operationId: get-exportCurrencies
+  /exportFrequencies:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses: {}
+      operationId: get-exportFrequencies
+  /exportExchangeRates:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses: {}
+      operationId: get-exportExchangeRates
+  /exportUsers:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses: {}
+      operationId: get-exportUsers
+  /exportEmployees:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses: {}
+      operationId: get-exportEmployees
+  /exportOffices:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses: {}
+      operationId: get-exportOffices
 components:
   schemas:
     DataGridDto:
