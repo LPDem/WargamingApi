@@ -195,8 +195,13 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/summary-filter'
-  /api/summary/career-level-categories:
+              type: object
+              properties:
+                aPositionIds:
+                  type: array
+                  items:
+                    type: number
+  /api/summary/career-streams:
     post:
       summary: ''
       operationId: post-career-level-categories
@@ -220,7 +225,12 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/summary-filter'
+              type: object
+              properties:
+                aPositionIds:
+                  type: array
+                  items:
+                    type: number
         description: ''
     parameters: []
   /api/summary/career-levels:
@@ -286,7 +296,12 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/summary-filter'
+              type: object
+              properties:
+                aPositionIds:
+                  type: array
+                  items:
+                    type: number
     parameters: []
   /api/summary/payroll-by-location:
     post:
@@ -312,9 +327,41 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/payroll-filter'
+              type: object
+              properties:
+                iCurrencyId:
+                  type: number
+                aPositionIds:
+                  type: array
+                  items:
+                    type: number
         description: ''
     parameters: []
+  /api/summary/vacancies-overview:
+    post:
+      summary: ''
+      operationId: post-api-summary-vacancies-overview
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  aChartData:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/monthly-overview'
+                  aPeriods:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/period'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/summary-filter'
 components:
   schemas:
     summary-filter:
