@@ -62,6 +62,7 @@ paths:
                       - dashBoard
                       - masterData
                       - positions
+                      - all plans
                   aCustomFilters:
                     type: string
                 required:
