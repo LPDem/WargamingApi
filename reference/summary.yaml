@@ -187,10 +187,6 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/section'
-                  aPeriods:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/period'
       requestBody:
         content:
           application/json:
@@ -217,10 +213,6 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/section'
-                  '':
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/period'
       requestBody:
         content:
           application/json:
@@ -251,10 +243,6 @@ paths:
                       $ref: '#/components/schemas/period'
                   aChartData:
                     $ref: '#/components/schemas/section'
-                  aPeriods:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/period'
       requestBody:
         content:
           application/json:
@@ -288,10 +276,8 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/office-coordinates'
-                  aPeriods:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/period'
+                required:
+                  - aOffices
       requestBody:
         content:
           application/json:
@@ -319,10 +305,8 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/office-coordinates'
-                  aPeriods:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/period'
+                required:
+                  - aOffices
       requestBody:
         content:
           application/json:
@@ -362,6 +346,160 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/summary-filter'
+  /api/summary/all:
+    post:
+      summary: ''
+      operationId: post-api-summary-all
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  oShortStatistic:
+                    type: object
+                    properties:
+                      oFte:
+                        $ref: '#/components/schemas/short-statistic'
+                      oVacancies:
+                        $ref: '#/components/schemas/short-statistic'
+                      oCost:
+                        $ref: '#/components/schemas/short-statistic'
+                  oHeadcount:
+                    type: object
+                    properties:
+                      aChartData:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/monthly-overview'
+                      aPeriods:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/period'
+                  oHeadcountDynamic:
+                    type: object
+                    properties:
+                      aChartData:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/monthly-change-dynamic'
+                      aPeriods:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/period'
+                  oPayroll:
+                    type: object
+                    properties:
+                      aChartData:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/monthly-overview'
+                      aPeriods:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/period'
+                  oPayrollDynamic:
+                    type: object
+                    properties:
+                      aChartData:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/monthly-change-dynamic'
+                      aPeriods:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/period'
+                  oVacanciesOverview:
+                    type: object
+                    properties:
+                      aChartData:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/monthly-overview'
+                      aPeriods:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/period'
+                  oVacanciesAnalysis:
+                    type: object
+                    properties:
+                      aChartData:
+                        type: object
+                        properties:
+                          sName:
+                            type: string
+                          aAnalysisByType:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                sTypeName:
+                                  type: string
+                                iCount:
+                                  type: number
+                      aPeriods:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/period'
+                  oVacanciesTotal:
+                    type: object
+                    properties:
+                      aChartData:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/section'
+                      aPeriods:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/period'
+                  oCareerStreams:
+                    type: object
+                    properties:
+                      aChartData:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/section'
+                      aPeriods:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/period'
+                  oCareerLevels:
+                    type: object
+                    properties:
+                      aCareerLevelTypes:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/period'
+                      aChartData:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/section'
+                      aPeriods:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/period'
+                  oHeadcountByLocation:
+                    type: object
+                    properties:
+                      aOffices:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/office-coordinates'
+                  oPayrollByLocation:
+                    type: object
+                    properties:
+                      aOffices:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/office-coordinates'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/short-statistic-filter'
+        description: ''
 components:
   schemas:
     summary-filter:
