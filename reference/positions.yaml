@@ -89,6 +89,10 @@ paths:
             type: array
           in: query
           name: aExcludeIds
+        - schema:
+            type: number
+          in: query
+          name: iFilterId
       requestBody:
         content:
           application/json:
@@ -143,6 +147,8 @@ paths:
                   type: array
                   items:
                     $ref: ../models/Participant-short.yaml
+                oSalaryConfig:
+                  $ref: ../models/Salary-config.yaml
               required:
                 - aPositions
                 - aManagers
@@ -767,5 +773,18 @@ paths:
       responses: {}
       operationId: get-api-positions-employee-avatar-iEmployeeId
       description: Получение фотографии соотрудника
+  /api/positions/salary-config:
+    put:
+      summary: ''
+      operationId: put-api-positions-salary-config
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../models/Salary-config-adding.yaml
+      description: ''
 components:
   schemas: {}
