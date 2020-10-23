@@ -117,6 +117,10 @@ paths:
                               bNotificationChanged:
                                 type: boolean
                                 description: Уведомления менялись?
+                              aExcludedEmployees:
+                                type: array
+                                items:
+                                  $ref: ../models/Employee-short.yaml
                             required:
                               - iParticipantId
                               - sName
@@ -127,6 +131,7 @@ paths:
                               - bDueDateChanged
                               - sNotification
                               - bNotificationChanged
+                              - aExcludedEmployees
                       required:
                         - iParticipantGroupId
                         - sName

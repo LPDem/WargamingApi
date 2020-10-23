@@ -1,0 +1,13 @@
+title: Custom-filter
+type: object
+description: ''
+properties:
+  iId:
+    type: number
+  sTitle:
+    type: string
+  oFilter:
+    $ref: ./Position-filter.yaml
+required:
+  - iId
+  - sTitle

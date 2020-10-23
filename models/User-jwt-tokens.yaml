@@ -1,0 +1,10 @@
+title: User-jwt-tokens
+type: object
+properties:
+  sToken:
+    type: string
+  sRefreshToken:
+    type: string
+required:
+  - sToken
+  - sRefreshToken

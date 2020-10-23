@@ -1,0 +1,13 @@
+title: Org-structure-adding
+type: object
+properties:
+  sCostCenterId:
+    type: string
+  sOfficeId:
+    type: string
+  sDepartmentId:
+    type: string
+required:
+  - sCostCenterId
+  - sOfficeId
+  - sDepartmentId

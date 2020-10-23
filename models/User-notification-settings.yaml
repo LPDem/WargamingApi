@@ -1,0 +1,13 @@
+title: User-notification-settings
+type: object
+description: Определяет какие уведомления хочет получать пользователь
+properties:
+  bPositionComment:
+    type: boolean
+    description: Уведомления о коментариях к позициям
+  bResourcePlanUpdate:
+    type: boolean
+    description: Уведомление об изменении ресурсного плана
+required:
+  - bPositionComment
+  - bResourcePlanUpdate

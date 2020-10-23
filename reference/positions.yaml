@@ -19,7 +19,6 @@ paths:
           in: query
           name: iReportingFunctionId
           description: ''
-          required: true
         - schema:
             type: array
           in: query
@@ -46,30 +45,125 @@ paths:
           name: sText
           description: 'Пользовательский ввод. Искоть совпадение по полям sCode, sName, sAssignee'
         - schema:
-            type: number
+            type: array
           in: query
-          name: iCurrencyId
-          description: id валюты на которую нужно конвертировать ЗП сотрудников
+          name: sSort
+          description: "поля по котрым нужно сортировать.\nВсе возможные значения:\n[ sName, \n  sCareerLevel, \n  sStartDateASC,\n  sStartDateDESC,\n  sCurrentStatus,\n  office,\n  sFullOrgPath,\n  sEmployeeClass,\n  sAssignee,\n  salaryASC,\n  salaryDESC\n]"
         - schema:
             type: number
           in: query
-          name: iPaymentFrequencyId
-          description: id Частоты Оплаты
+          name: iDepartmentId
+        - schema:
+            type: boolean
+          in: query
+          name: bOnlyInactive
+        - schema:
+            type: boolean
+          in: query
+          name: bOnlySalaryUpdates
+        - schema:
+            type: boolean
+          in: query
+          name: bOnlyUpdates
         - schema:
             type: array
           in: query
-          name: aSort
-          description: "поля по котрым нужно сортировать.\nВсе возможные значения:\n[ sName, \n  sCareerLevel, \n  sStartDateASC,\n  sStartDateDESC,\n  sCurrentStatus,\n  office,\n  sFullOrgPath,\n  sEmployeeClass,\n  sAssignee,\n  salaryASC,\n  salaryDESC\n]"
+          name: aCostCenters
+        - schema:
+            type: array
+          in: query
+          name: aSubmissionStatuses
+        - schema:
+            type: string
+          in: query
+          name: sJobFamilyGroupId
+        - schema:
+            type: string
+          in: query
+          name: sJobFamilyId
+        - schema:
+            type: string
+          in: query
+          name: sJobSubFamilyId
+        - schema:
+            type: array
+          in: query
+          name: aExcludeIds
+        - schema:
+            type: number
+          in: query
+          name: iFilterId
       requestBody:
         content:
           application/json:
             schema:
               type: object
               properties:
-                aItems:
+                aPositions:
                   type: array
                   items:
-                    $ref: ../models/Position.yaml
+                    $ref: ../models/Position-short.yaml
+                aManagers:
+                  type: array
+                  items:
+                    $ref: ../models/Manager.yaml
+                aOffices:
+                  type: array
+                  items:
+                    $ref: ../models/Office.yaml
+                aDepartments:
+                  type: array
+                  items:
+                    $ref: ../models/Department-node.yaml
+                aParticipants:
+                  type: array
+                  items:
+                    $ref: ../models/Participant-short.yaml
+                aCostCenters:
+                  type: array
+                  items:
+                    $ref: ../models/Office.yaml
+                iAllPositionsCount:
+                  type: number
+                iEmployeesCount:
+                  type: number
+                iVacanciesCount:
+                  type: number
+                iLongLeaveCount:
+                  type: number
+                aJobFamilyGroups:
+                  type: array
+                  items:
+                    $ref: ../models/Participant-short.yaml
+                aJobFamilies:
+                  type: array
+                  items:
+                    $ref: ../models/Participant-short.yaml
+                aJobSubFamilies:
+                  type: array
+                  items:
+                    $ref: ../models/Participant-short.yaml
+                aExcludeList:
+                  type: array
+                  items:
+                    $ref: ../models/Participant-short.yaml
+                oSalaryConfig:
+                  $ref: ../models/Salary-config.yaml
+              required:
+                - aPositions
+                - aManagers
+                - aOffices
+                - aDepartments
+                - aParticipants
+                - aCostCenters
+                - iAllPositionsCount
+                - iEmployeesCount
+                - iVacanciesCount
+                - iLongLeaveCount
+                - aJobFamilyGroups
+                - aJobFamilies
+                - aJobSubFamilies
+                - aExcludeList
           application/xml:
             schema:
               type: object
@@ -156,13 +250,26 @@ paths:
           content:
             application/json:
               schema:
-                $ref: ../models/Position.yaml
+                type: array
+                items:
+                  $ref: ../models/Position-short.yaml
       requestBody:
         content:
           application/json:
             schema:
-              $ref: ../models/Inactive.yaml
-  /api/positions/long-leave:
+              type: object
+              properties:
+                aPositionsIds:
+                  type: array
+                  items:
+                    type: number
+                oInactive:
+                  $ref: ../models/Inactive.yaml
+              required:
+                - aPositionsIds
+                - oInactive
+    parameters: []
+  '/api/positions/{iId}/long-leave':
     post:
       summary: ''
       operationId: post-api-positions-long-leave
@@ -172,13 +279,19 @@ paths:
           content:
             application/json:
               schema:
-                $ref: ../models/Position.yaml
+                $ref: ../models/Position-short.yaml
       requestBody:
         content:
           application/json:
             schema:
               $ref: ../models/Long-leave.yaml
-  /api/positions/future-replacement:
+    parameters:
+      - schema:
+          type: number
+        name: iId
+        in: path
+        required: true
+  '/api/positions/{iId}/future-replacement':
     post:
       summary: ''
       operationId: post-api-positions-future-replacement
@@ -188,17 +301,326 @@ paths:
           content:
             application/json:
               schema:
-                $ref: ../models/Position.yaml
+                $ref: ../models/Position-short.yaml
       requestBody:
         content:
           application/json:
             schema:
               $ref: ../models/Future-replacement.yaml
         description: ''
-  /api/positions/comment:
+    parameters:
+      - schema:
+          type: number
+        name: iId
+        in: path
+        required: true
+  '/api/positions/{iId}/comment':
     post:
       summary: ''
       operationId: post-api-positions-comment
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../models/Position-short.yaml
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                sComment:
+                  type: string
+              required:
+                - sComment
+        description: ''
+    parameters:
+      - schema:
+          type: number
+        name: iId
+        in: path
+        required: true
+  '/api/positions/{iId}/salary-change':
+    post:
+      summary: ''
+      operationId: post-api-positions-salary-change
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../models/Position-short.yaml
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../models/Salary-change-adding.yaml
+        description: ''
+    parameters:
+      - schema:
+          type: number
+        name: iId
+        in: path
+        required: true
+  /api/positions/start-date:
+    parameters: []
+    post:
+      summary: ''
+      operationId: post-api-positions-iId-start-date
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: ../models/Position-short.yaml
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                aPositionsIds:
+                  type: array
+                  items:
+                    type: number
+                oStartDate:
+                  $ref: ../models/Start-date.yaml
+              required:
+                - aPositionsIds
+                - oStartDate
+      description: Изменение поле sStartDate в позиции
+  '/api/position/{iId}/return-from-long-leave':
+    parameters:
+      - schema:
+          type: number
+        name: iId
+        in: path
+        required: true
+    post:
+      summary: ''
+      operationId: post-api-position-iId-return-from-long-leave
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../models/Position-short.yaml
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../models/Return-from-long-leave.yaml
+  /api/positions/add:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  aVacancyTypes:
+                    type: array
+                    items:
+                      $ref: ../models/Catalog.yaml
+                  aEmployeeClasses:
+                    type: array
+                    items:
+                      $ref: ../models/Catalog.yaml
+                  aJobFamilyGroups:
+                    type: array
+                    items:
+                      $ref: ../models/Catalog.yaml
+                  aCareers:
+                    type: array
+                    items:
+                      $ref: ../models/Catalog.yaml
+                  aChangeReasons:
+                    type: array
+                    items:
+                      $ref: ../models/Catalog.yaml
+                  aOffices:
+                    type: array
+                    items:
+                      $ref: ../models/Catalog.yaml
+        '':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+      operationId: get-api-positions-add
+      parameters:
+        - schema:
+            type: number
+          in: query
+          name: reportingFunctionId
+  /api/positions/update:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  aVacancyTypes:
+                    type: array
+                    items:
+                      $ref: ../models/Catalog.yaml
+                  aEmployeeClasses:
+                    type: array
+                    items:
+                      $ref: ../models/Catalog.yaml
+                  aJobFamilyGroups:
+                    type: array
+                    items:
+                      $ref: ../models/Catalog.yaml
+                  aCareers:
+                    type: array
+                    items:
+                      $ref: ../models/Catalog.yaml
+                  aChangeReasons:
+                    type: array
+                    items:
+                      $ref: ../models/Catalog.yaml
+                  aOffices:
+                    type: array
+                    items:
+                      $ref: ../models/Catalog.yaml
+      operationId: get-api-positions-update
+      parameters:
+        - schema:
+            type: number
+          in: query
+          name: reportingFunctionId
+          required: true
+        - schema:
+            type: number
+          in: query
+          name: positionId
+          required: true
+  /api/positions/cost-center:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: ../models/Catalog.yaml
+      operationId: get-api-positions-cost-center
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: office
+          required: true
+        - schema:
+            type: string
+          in: query
+          name: positionId
+          description: передается если на изменение
+  /api/positions/department:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: ../models/Catalog.yaml
+      operationId: get-api-positions-department
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: office
+          required: true
+        - schema:
+            type: string
+          in: query
+          name: costCenter
+          required: true
+        - schema:
+            type: string
+          in: query
+          name: positionId
+          description: передается если на изменение
+      description: ''
+  /api/positions/change-reasons:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  aItems:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        sValue:
+                          type: string
+                        sText:
+                          type: string
+                      required:
+                        - sValue
+                        - sText
+      operationId: get-api-positions-change-reasons
+  '/api/positions/{iId}/salary-change/{iSalaryChangeId}':
+    parameters:
+      - schema:
+          type: number
+        name: iId
+        in: path
+        required: true
+      - schema:
+          type: number
+        name: iSalaryChangeId
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../models/Salary-change.yaml
+      operationId: get-api-positions-iId-salary-change-iSalaryChangeId
+      description: ''
+    put:
+      summary: ''
+      operationId: put-api-positions-iId-salary-change-iSalaryChangeId
       responses:
         '200':
           description: OK
@@ -210,7 +632,159 @@ paths:
         content:
           application/json:
             schema:
-              type: string
+              $ref: ../models/Salary-change-adding.yaml
         description: ''
+    delete:
+      summary: ''
+      operationId: delete-api-positions-iId-salary-change-iSalaryChangeId
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../models/Position-short.yaml
+  /api/positions/job-family:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: ../models/Catalog.yaml
+      operationId: get-api-positions-job-family
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: sJobFamilyGroup
+          required: true
+        - schema:
+            type: string
+          in: query
+          name: iPositionId
+  /api/positions/job-sub-family:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: ../models/Catalog.yaml
+      operationId: get-api-positions-job-sub-family
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: sJobFamilyGroup
+          required: true
+        - schema:
+            type: string
+          in: query
+          name: sJobFamily
+          required: true
+        - schema:
+            type: string
+          in: query
+          name: iPositionId
+  '/api/positions/{iId}/actions':
+    parameters:
+      - schema:
+          type: number
+        name: iId
+        in: path
+        required: true
+    get:
+      summary: ''
+      operationId: get-api-positions-iId-actions
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: ../models/Position-action.yaml
+  /api/positions/approve-and-submit:
+    post:
+      summary: ''
+      operationId: post-api-positions-approve-and-submit
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: number
+        description: передается iId позиции
+  /api/positions/export-to-excel:
+    post:
+      summary: ''
+      operationId: post-api-positions-export-to-excel
+      responses:
+        '200':
+          description: OK
+      description: Возвращать excel file. Здесь нету возможности описывать файл
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: number
+  /api/positions/return-to-edit:
+    post:
+      summary: ''
+      operationId: post-api-positions-return-to-edit
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: number
+      responses:
+        '200':
+          description: OK
+  '/api/positions/employee-avatar/{sEmployeeId}':
+    parameters:
+      - schema:
+          type: string
+        name: sEmployeeId
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses: {}
+      operationId: get-api-positions-employee-avatar-iEmployeeId
+      description: Получение фотографии соотрудника
+  /api/positions/salary-config:
+    put:
+      summary: ''
+      operationId: put-api-positions-salary-config
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../models/Salary-config-adding.yaml
+      description: ''
 components:
   schemas: {}

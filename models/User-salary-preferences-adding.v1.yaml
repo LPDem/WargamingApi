@@ -1,0 +1,11 @@
+title: User-salary-preferences-adding
+type: object
+description: Добавление(изменение) настройки пользователя по ЗП
+properties:
+  iCurrencyId:
+    type: number
+  iPaymentFrequencyId:
+    type: number
+required:
+  - iCurrencyId
+  - iPaymentFrequencyId

@@ -1,0 +1,46 @@
+openapi: 3.0.0
+info:
+  title: notification
+  version: '1.0'
+servers:
+  - url: 'http://localhost:3000'
+paths:
+  /api/notifications/activity-feed:
+    post:
+      summary: ''
+      operationId: post-api-activity-feed
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: ../models/Notification.yaml
+      description: ''
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: number
+        description: передается массив positionId
+    parameters: []
+  /api/notifications:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: ../models/Notification.yaml
+      operationId: get-api-notifications
+components:
+  schemas: {}

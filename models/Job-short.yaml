@@ -1,0 +1,7 @@
+title: Job-short
+type: object
+properties:
+  sCareerLevel:
+    type: string
+required:
+  - sCareerLevel

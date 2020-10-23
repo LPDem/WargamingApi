@@ -1,6 +1,5 @@
-title: Position
+title: Position-short
 type: object
-description: ''
 properties:
   iId:
     type: number
@@ -8,10 +7,8 @@ properties:
     type: number
   sCode:
     type: string
-    description: Код позиции
   sName:
     type: string
-    description: Наименование позиции
   sCurrentStatus:
     type: string
     enum:
@@ -41,33 +38,24 @@ properties:
       - Contractor
       - PaidIntern
       - UnpaidIntern
-  oJob:
-    $ref: ./Job.yaml
-  bRecruitmentNeeded:
-    type: boolean
-    description: Требуется набор
   fSalaryBudgeted:
     type: number
-  oStartDate:
-    $ref: ./Start-date.yaml
+  sStartDate:
+    type: string
   oOrgStructure:
-    $ref: ./Org-structure.yaml
-  oComment:
-    $ref: ./Position-comment.yaml
+    $ref: ./Org-structure-short.yaml
   aSalaryChanges:
     type: array
     items:
-      $ref: ./Salary-change.yaml
+      $ref: ./Salary-change-short.yaml
   oInactive:
-    $ref: ./Inactive.yaml
-  oLongLeave:
-    $ref: ./Long-leave.yaml
-  oFutureReplacement:
-    $ref: ./Future-replacement.yaml
-  oReturnLongLeave:
-    $ref: ./Return-from-long-leave.yaml
-  bUpdated:
+    $ref: ./Inactive-short.yaml
+  sCareerLevel:
     type: string
+  sFutureReplacementDate:
+    type: string
+  bUpdated:
+    type: boolean
   sProgressStatus:
     type: string
     enum:
@@ -105,12 +93,13 @@ required:
   - sEmployeeId
   - sAssignee
   - sEmployeeClass
-  - oJob
-  - bRecruitmentNeeded
   - fSalaryBudgeted
-  - oStartDate
-  - oOrgStructure
+  - sStartDate
   - aSalaryChanges
+  - oInactive
+  - sCareerLevel
+  - sFutureReplacementDate
+  - bUpdated
   - sProgressStatus
   - bShowActions
   - iChangeCount

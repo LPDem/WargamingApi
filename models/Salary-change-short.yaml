@@ -1,0 +1,10 @@
+title: Salary-change-short
+type: object
+properties:
+  iId:
+    type: number
+  fNewSalary:
+    type: number
+required:
+  - iId
+  - fNewSalary

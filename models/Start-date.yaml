@@ -1,0 +1,9 @@
+title: Start-date
+type: object
+properties:
+  sStartDate:
+    type: string
+  sComment:
+    type: string
+required:
+  - sStartDate

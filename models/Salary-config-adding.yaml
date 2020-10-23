@@ -1,0 +1,13 @@
+title: Salary-config-adding
+type: object
+properties:
+  iFunctionId:
+    type: number
+  iDepartmentId:
+    type: number
+  iCustomFilterId:
+    type: number
+  iCurrencyId:
+    type: number
+  iFrequencyId:
+    type: number

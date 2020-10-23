@@ -1,0 +1,7 @@
+title: Salary-config
+type: object
+properties:
+  oCurrency:
+    $ref: ./Currency-rate.yaml
+  oFrequency:
+    $ref: ./Payment-frequency.yaml

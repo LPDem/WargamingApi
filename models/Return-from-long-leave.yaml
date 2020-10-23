@@ -1,0 +1,9 @@
+title: Return-from-long-leave
+type: object
+properties:
+  sPlanedReturnDate:
+    type: string
+  sComment:
+    type: string
+required:
+  - sPlanedReturnDate

@@ -5,7 +5,7 @@ info:
 servers:
   - url: 'http://localhost:3000'
 paths:
-  /api/org-structures:
+  /api/org-structures/department/tree:
     get:
       summary: Your GET endpoint
       tags: []
@@ -15,12 +15,55 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  aItems:
-                    type: array
-                    items:
-                      $ref: ''
-      operationId: get-api-org-structures
+                type: array
+                items:
+                  $ref: ../models/Department-node.yaml
+      operationId: get-api-org-structures-department-tree
+      description: Получение корневых элемениов дерево. Если есть aIds то возвращать ветки включающих этих элементов
+      parameters:
+        - schema:
+            type: array
+          in: query
+          name: aIds
+  '/api/org-structures/department/tree/{iId}':
+    parameters:
+      - schema:
+          type: string
+        name: iId
+        in: path
+        required: true
+    get:
+      summary: Получение дочерних элементов
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: ../models/Department-node.yaml
+      operationId: get-api-org-structures-department-tree-iId
+      description: ''
+    post:
+      summary: ''
+      operationId: post-api-org-structures-department-tree-iId
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: ../models/Department-node.yaml
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: number
 components:
   schemas: {}

@@ -1,0 +1,14 @@
+title: Faq
+type: object
+properties:
+  iId:
+    type: number
+  sQuestion:
+    type: string
+  sAnswer:
+    type: string
+required:
+  - iId
+  - sQuestion
+  - sAnswer
+description: ''

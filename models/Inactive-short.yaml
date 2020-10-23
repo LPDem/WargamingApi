@@ -1,0 +1,7 @@
+title: Inactive-short
+type: object
+properties:
+  sEffectiveDate:
+    type: string
+required:
+  - sEffectiveDate

@@ -1,0 +1,13 @@
+title: job-adding
+type: object
+properties:
+  iJobFamilyGroupId:
+    type: number
+  iJobFamilyId:
+    type: number
+  iJobSubFamilyId:
+    type: number
+required:
+  - iJobFamilyGroupId
+  - iJobFamilyId
+  - iJobSubFamilyId

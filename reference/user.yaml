@@ -36,30 +36,16 @@ paths:
             application/json:
               schema:
                 oneOf:
-                  - properties:
-                      sUserName:
-                        type: string
-                        description: Имя пользователя для заголовка
-                      sToken:
-                        type: string
-                        description: Токен JWT
-                      sRefreshToken:
-                        type: string
-                        description: Токен JWT
-                      oPermissions:
-                        $ref: '#/components/schemas/PermissionsDto'
-                    required:
-                      - sUserName
-                      - sToken
-                      - sRefreshToken
-                      - oPermissions
-                  - properties:
+                  - allOf:
+                      - $ref: ../models/User.yaml
+                      - $ref: ../models/User-jwt-tokens.yaml
+                  - type: object
+                    properties:
                       sError:
                         type: string
                         description: Текст причины неуспешной авторизации
                     required:
                       - sError
-                type: object
     parameters: []
   /refreshToken:
     post:
@@ -71,34 +57,96 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  sToken:
-                    type: string
-                  sRefreshToken:
-                    type: string
-                required:
-                  - sToken
-                  - sRefreshToken
+                $ref: ../models/User-jwt-tokens.yaml
         '401':
           description: Unauthorized
       requestBody:
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                sToken:
-                  type: string
-                sRefreshToken:
-                  type: string
-              required:
-                - sToken
-                - sRefreshToken
+              $ref: ../models/User-jwt-tokens.yaml
       tags:
         - users
       description: Обновление токена авторизации
     parameters: []
+  /update-notification-settings:
+    post:
+      summary: Изменение настройки уведомления
+      operationId: post-update-notification-settings
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../models/User-notification-settings.yaml
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../models/User-notification-settings.yaml
+        description: ''
+      description: ''
+  /update-salary-preferences:
+    post:
+      summary: ''
+      operationId: post-update-salary-preferences
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../models/User-salary-preferences.yaml
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../models/User-salary-preferences-adding.v1.yaml
+  '/avatar/{userId}':
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+      operationId: get-avatar
+      description: Должен возвращат аватар пользовавтеля
+    parameters:
+      - schema:
+          type: number
+        name: userId
+        in: path
+        required: true
+  /getUserSettings:
+    parameters: []
+    post:
+      summary: ''
+      operationId: post-getUserSettings
+      tags:
+        - users
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - allOf:
+                      - $ref: ../models/User.yaml
+                      - $ref: ../models/User-jwt-tokens.yaml
+                  - type: object
+                    properties:
+                      sError:
+                        type: string
+                        description: Текст причины неуспешной авторизации
+                    required:
+                      - sError
 components:
   schemas:
     PermissionsDto:

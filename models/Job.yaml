@@ -2,25 +2,19 @@ title: Job
 type: object
 description: ''
 properties:
-  iId:
-    type: number
   sJobFamilyGroup:
     type: string
   sJobFamily:
     type: string
   sJobSubFamily:
     type: string
-  sCareerStream:
-    type: string
   sCareerLevel:
     type: string
-  sJobClassificationCode:
+  sCareerStream:
     type: string
 required:
-  - iId
   - sJobFamilyGroup
   - sJobFamily
   - sJobSubFamily
-  - sCareerStream
   - sCareerLevel
-  - sJobClassificationCode
+  - sCareerStream

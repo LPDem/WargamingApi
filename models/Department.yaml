@@ -1,13 +1,14 @@
-title: Payment frequency
+title: Department
 type: object
-description: Частота оплаты
+description: ''
 properties:
   iId:
     type: number
   sName:
     type: string
-  fCoefficient:
-    type: number
+  sFullPath:
+    type: string
 required:
   - iId
   - sName
+  - sFullPath

@@ -7,18 +7,13 @@ properties:
   sCurrency:
     type: string
     description: Валюта
-  iUSDToPlan:
-    type: number
-    description: Стоимость с USD
-  iPlanToUSD:
-    type: number
-    description: Стоимость на USD
   sCurrencySymbol:
     type: string
     description: Символ валюты
+  fCoefficient:
+    type: number
 required:
   - iId
   - sCurrency
-  - iUSDToPlan
-  - iPlanToUSD
   - sCurrencySymbol
+  - fCoefficient

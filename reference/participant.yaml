@@ -111,5 +111,52 @@ paths:
       tags:
         - manageParticipants
     parameters: []
+  '/{iId}/saveExcludeEmployee':
+    parameters:
+      - schema:
+          type: number
+        name: iId
+        in: path
+        required: true
+    post:
+      summary: ''
+      operationId: post-iId-saveExcludeEmployee
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: number
+      description: ''
+  '/{iId}/employeeForExclude':
+    parameters:
+      - schema:
+          type: string
+        name: iId
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: ../models/Employee-short.yaml
+      operationId: get-iId-employeeForExclude
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: sText
+          required: true
 components:
   schemas: {}

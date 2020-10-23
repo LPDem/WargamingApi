@@ -1,0 +1,14 @@
+title: Position-comment
+type: object
+description: ''
+properties:
+  sText:
+    type: string
+  sDate:
+    type: string
+  sUserName:
+    type: string
+required:
+  - sText
+  - sDate
+  - sUserName
