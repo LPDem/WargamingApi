@@ -50,6 +50,8 @@ properties:
     type: number
   oStartDate:
     $ref: ./Start-date.yaml
+  sEndDatePlanned:
+    type: string
   oOrgStructure:
     $ref: ./Org-structure.yaml
   oComment:
@@ -109,6 +111,7 @@ required:
   - bRecruitmentNeeded
   - fSalaryBudgeted
   - oStartDate
+  - sEndDatePlanned
   - oOrgStructure
   - aSalaryChanges
   - sProgressStatus

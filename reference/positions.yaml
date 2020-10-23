@@ -10,7 +10,6 @@ paths:
     get:
       summary: Получение списка должностей
       tags: []
-      responses: {}
       operationId: get-positions
       description: Возвращает список должностей по переданным параметрам
       parameters:
@@ -48,7 +47,21 @@ paths:
             type: array
           in: query
           name: sSort
-          description: "поля по котрым нужно сортировать.\nВсе возможные значения:\n[ sName, \n  sCareerLevel, \n  sStartDateASC,\n  sStartDateDESC,\n  sCurrentStatus,\n  office,\n  sFullOrgPath,\n  sEmployeeClass,\n  sAssignee,\n  salaryASC,\n  salaryDESC\n]"
+          description: |-
+            поля по котрым нужно сортировать.
+            Все возможные значения:
+            [ sName, 
+              sCareerLevel, 
+              sStartDateASC,
+              sStartDateDESC,
+              sCurrentStatus,
+              office,
+              sFullOrgPath,
+              sEmployeeClass,
+              sAssignee,
+              salaryASC,
+              salaryDESC
+            ]
         - schema:
             type: number
           in: query
@@ -93,119 +106,80 @@ paths:
             type: number
           in: query
           name: iFilterId
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                aPositions:
-                  type: array
-                  items:
-                    $ref: ../models/Position-short.yaml
-                aManagers:
-                  type: array
-                  items:
-                    $ref: ../models/Manager.yaml
-                aOffices:
-                  type: array
-                  items:
-                    $ref: ../models/Office.yaml
-                aDepartments:
-                  type: array
-                  items:
-                    $ref: ../models/Department-node.yaml
-                aParticipants:
-                  type: array
-                  items:
-                    $ref: ../models/Participant-short.yaml
-                aCostCenters:
-                  type: array
-                  items:
-                    $ref: ../models/Office.yaml
-                iAllPositionsCount:
-                  type: number
-                iEmployeesCount:
-                  type: number
-                iVacanciesCount:
-                  type: number
-                iLongLeaveCount:
-                  type: number
-                aJobFamilyGroups:
-                  type: array
-                  items:
-                    $ref: ../models/Participant-short.yaml
-                aJobFamilies:
-                  type: array
-                  items:
-                    $ref: ../models/Participant-short.yaml
-                aJobSubFamilies:
-                  type: array
-                  items:
-                    $ref: ../models/Participant-short.yaml
-                aExcludeList:
-                  type: array
-                  items:
-                    $ref: ../models/Participant-short.yaml
-                oSalaryConfig:
-                  $ref: ../models/Salary-config.yaml
-              required:
-                - aPositions
-                - aManagers
-                - aOffices
-                - aDepartments
-                - aParticipants
-                - aCostCenters
-                - iAllPositionsCount
-                - iEmployeesCount
-                - iVacanciesCount
-                - iLongLeaveCount
-                - aJobFamilyGroups
-                - aJobFamilies
-                - aJobSubFamilies
-                - aExcludeList
-          application/xml:
-            schema:
-              type: object
-              properties:
-                aItems:
-                  type: array
-                  items:
-                    type: object
-                    properties:
-                      iId:
-                        type: number
-                      sName:
-                        type: string
-                      sType:
-                        type: string
-                      oOffice:
-                        type: object
-                      oDepartment:
-                        type: object
-                      managers:
-                        type: array
-                        items:
-                          type: object
-                '':
-                  type: string
-        description: |-
-          [
-          ]
-    parameters: []
-    post:
-      summary: ''
-      operationId: post-api-positions
       responses:
         '200':
           description: OK
-      description: Добавление
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: ../models/Vacancy-adding.yaml
-        description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  aPositions:
+                    type: array
+                    items:
+                      $ref: ../models/Position-short.yaml
+                  aManagers:
+                    type: array
+                    items:
+                      $ref: ../models/Manager.yaml
+                  aOffices:
+                    type: array
+                    items:
+                      $ref: ../models/Office.yaml
+                  aDepartments:
+                    type: array
+                    items:
+                      $ref: ../models/Department-node.yaml
+                  aParticipants:
+                    type: array
+                    items:
+                      $ref: ../models/Participant-short.yaml
+                  aCostCenters:
+                    type: array
+                    items:
+                      $ref: ../models/Office.yaml
+                  iAllPositionsCount:
+                    type: number
+                  iEmployeesCount:
+                    type: number
+                  iVacanciesCount:
+                    type: number
+                  iLongLeaveCount:
+                    type: number
+                  aJobFamilyGroups:
+                    type: array
+                    items:
+                      $ref: ../models/Participant-short.yaml
+                  aJobFamilies:
+                    type: array
+                    items:
+                      $ref: ../models/Participant-short.yaml
+                  aJobSubFamilies:
+                    type: array
+                    items:
+                      $ref: ../models/Participant-short.yaml
+                  aExcludeList:
+                    type: array
+                    items:
+                      $ref: ../models/Participant-short.yaml
+                  oSalaryConfig:
+                    $ref: ../models/Salary-config.yaml
+                required:
+                  - aPositions
+                  - aManagers
+                  - aOffices
+                  - aDepartments
+                  - aParticipants
+                  - aCostCenters
+                  - iAllPositionsCount
+                  - iEmployeesCount
+                  - iVacanciesCount
+                  - iLongLeaveCount
+                  - aJobFamilyGroups
+                  - aJobFamilies
+                  - aJobSubFamilies
+                  - aExcludeList
+    parameters: []
   '/api/positions/{iId}':
     parameters:
       - schema:
@@ -216,13 +190,14 @@ paths:
     get:
       summary: Your GET endpoint
       tags: []
-      responses: {}
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../models/Position.yaml
       operationId: get-positions-id
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: ../models/Position.yaml
       description: Получения одной позоции
     put:
       summary: ''
