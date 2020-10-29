@@ -75,9 +75,13 @@ paths:
           in: query
           name: bOnlySalaryUpdates
         - schema:
-            type: boolean
+            type: string
+            enum:
+              - All
+              - WithChanges
+              - WithoutChanges
           in: query
-          name: bOnlyUpdates
+          name: sChanges
         - schema:
             type: array
           in: query
