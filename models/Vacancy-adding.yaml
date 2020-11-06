@@ -6,7 +6,7 @@ properties:
     type: string
   sStartDate:
     type: string
-  sEffectiveDate:
+  sEndDatePlanned:
     type: string
   sVacancyType:
     type: string
