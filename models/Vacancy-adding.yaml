@@ -6,7 +6,7 @@ properties:
     type: string
   sStartDate:
     type: string
-  sEndDatePlanned:
+  sEffectiveDate:
     type: string
   sVacancyType:
     type: string
@@ -47,4 +47,3 @@ required:
   - oJob
   - sCareerLevelId
   - oOrgStructure
-  - sEndDatePlanned
