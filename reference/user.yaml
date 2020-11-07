@@ -47,6 +47,44 @@ paths:
                     required:
                       - sError
     parameters: []
+  /proxy-user:
+    post:
+      summary: proxy-user
+      operationId: users-proxy-user
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                sLogin:
+                  type: string
+              required:
+                - sLogin
+            examples: {}
+        description: ''
+      description: Переключение на пользователя с указанным логином
+      tags:
+        - users
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - allOf:
+                      - $ref: ../models/User.yaml
+                      - $ref: ../models/User-jwt-tokens.yaml
+                  - type: object
+                    properties:
+                      sError:
+                        type: string
+                        description: Текст причины неуспешной авторизации
+                    required:
+                      - sError
+    parameters: []    
   /refreshToken:
     post:
       summary: refreshToken
