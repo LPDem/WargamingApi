@@ -1,0 +1,12 @@
+title: Relocation
+type: object
+properties:
+  sStartDate:
+    type: string
+  iOfficeId:
+    type: number
+  sComment:
+    type: string
+required:
+  - sStartDate
+  - iOfficeId

@@ -400,6 +400,28 @@ paths:
           application/json:
             schema:
               $ref: ../models/Return-from-long-leave.yaml
+  '/api/position/{iId}/relocation':
+    parameters:
+      - schema:
+          type: number
+        name: iId
+        in: path
+        required: true
+    post:
+      summary: ''
+      operationId: post-api-position-iId-relocation
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../models/Position-short.yaml
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../models/Relocation.yaml              
   /api/positions/add:
     get:
       summary: Your GET endpoint
