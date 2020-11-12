@@ -267,7 +267,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ../models/Long-leave.yaml
+              $ref: ../models/Add-Long-leave.yaml
     parameters:
       - schema:
           type: number

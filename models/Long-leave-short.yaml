@@ -1,0 +1,14 @@
+title: LongLeave
+type: object
+properties:
+  sStartDate:
+    type: string
+  sExpectedReturnDate:
+    type: string
+  sPlannedReturnDate:
+    type: string
+  sComment:
+    type: string
+required:
+  - sStartDate
+  - sExpectedReturnDate

@@ -83,6 +83,9 @@ properties:
         - careerLevel
         - inactiveDate
         - futureReplacementDate
+        - returnDateFromLongLeave
+  oLongLeave:
+    $ref: ./Long-leave.yaml
 required:
   - iId
   - iReportingFunctionId
