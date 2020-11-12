@@ -421,7 +421,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ../models/Relocation.yaml              
+              $ref: ../models/Relocation.yaml
   /api/positions/add:
     get:
       summary: Your GET endpoint
@@ -791,5 +791,28 @@ paths:
             schema:
               $ref: ../models/Salary-config-adding.yaml
       description: ''
+  '/api/positions/{iId}/add-relocation':
+    parameters:
+      - schema:
+          type: string
+        name: iId
+        in: path
+        required: true
+    get:
+      summary: ''
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  aOffices:
+                    type: array
+                    items:
+                      $ref: ../models/Office.yaml
+      operationId: get-api-positions-iId-add-relocation
 components:
   schemas: {}
