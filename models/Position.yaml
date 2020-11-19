@@ -95,6 +95,8 @@ properties:
         - careerLevel
         - inactiveDate
         - futureReplacementDate
+  oRelocation:
+    $ref: ./Relocation.yaml
 required:
   - iId
   - iReportingFunctionId

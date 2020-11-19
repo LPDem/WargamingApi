@@ -421,7 +421,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ../models/Relocation.yaml
+              $ref: ../models/AddRelocation.yaml
   /api/positions/add:
     get:
       summary: Your GET endpoint

@@ -1,12 +1,12 @@
-title: Relocation
+title: AddRelocation
 type: object
 properties:
   sStartDate:
     type: string
-  sOldOffice:
-    type: string
+  iOfficeId:
+    type: number
   sComment:
     type: string
 required:
   - sStartDate
-  - sOldOffice
+  - iOfficeId
