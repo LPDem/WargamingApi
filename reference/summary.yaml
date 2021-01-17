@@ -42,16 +42,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  aChartData:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/monthly-overview'
-                  aPeriods:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/period'
+                $ref: '#/components/schemas/Headcount'
       requestBody:
         content:
           application/json:
@@ -67,16 +58,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  aChartData:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/monthly-change-dynamic'
-                  aPeriods:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/period'
+                $ref: '#/components/schemas/HeadcountDynamic'
       requestBody:
         content:
           application/json:
@@ -143,28 +125,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  aChartData:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        sName:
-                          type: string
-                        aAnalysisByType:
-                          type: array
-                          items:
-                            type: object
-                            properties:
-                              sTypeName:
-                                type: string
-                              iCount:
-                                type: number
-                  aPeriods:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/period'
+                $ref: '#/components/schemas/VacanciesAnalysis'
       requestBody:
         content:
           application/json:
@@ -331,16 +292,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  aChartData:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/monthly-overview'
-                  aPeriods:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/period'
+                $ref: '#/components/schemas/VacanciesOverview'
       requestBody:
         content:
           application/json:
@@ -358,37 +310,46 @@ paths:
               schema:
                 type: object
                 properties:
+                  sTitle:
+                    type: string
+                  sLevel2Name:
+                    type: string
+                  sLevel3Name:
+                    type: string
                   oShortStatistic:
                     type: object
+                    required:
+                      - oTotalHeadcount
+                      - oActiveHeadcount
+                      - oVacancies
+                      - oFutureReplacements
+                      - oLongLeave
+                      - oSalary
                     properties:
-                      oFte:
+                      oTotalHeadcount:
+                        $ref: '#/components/schemas/short-statistic'
+                      oActiveHeadcount:
                         $ref: '#/components/schemas/short-statistic'
                       oVacancies:
                         $ref: '#/components/schemas/short-statistic'
-                      oCost:
+                      oFutureReplacements:
+                        $ref: '#/components/schemas/short-statistic'
+                      oLongLeave:
+                        $ref: '#/components/schemas/short-statistic'
+                      oSalary:
                         $ref: '#/components/schemas/short-statistic'
                   oHeadcount:
-                    type: object
-                    properties:
-                      aChartData:
-                        type: array
-                        items:
-                          $ref: '#/components/schemas/monthly-overview'
-                      aPeriods:
-                        type: array
-                        items:
-                          $ref: '#/components/schemas/period'
+                    $ref: '#/components/schemas/Headcount'
                   oHeadcountDynamic:
-                    type: object
-                    properties:
-                      aChartData:
-                        type: array
-                        items:
-                          $ref: '#/components/schemas/monthly-change-dynamic'
-                      aPeriods:
-                        type: array
-                        items:
-                          $ref: '#/components/schemas/period'
+                    $ref: '#/components/schemas/HeadcountDynamic'
+                  oHeadcountDescription:
+                    $ref: '#/components/schemas/HeadcountDescription'
+                  oHeadcountTable:
+                    $ref: ./master-data.yaml#/components/schemas/DataGridDto
+                  oProjectedHeadcountAnalysis:
+                    $ref: '#/components/schemas/ProjectedHeadcountAnalysis'
+                  oProjectedHeadcountDescription:
+                    $ref: '#/components/schemas/ProjectedHeadcountDescription'
                   oPayroll:
                     type: object
                     properties:
@@ -412,37 +373,19 @@ paths:
                         items:
                           $ref: '#/components/schemas/period'
                   oVacanciesOverview:
-                    type: object
-                    properties:
-                      aChartData:
-                        type: array
-                        items:
-                          $ref: '#/components/schemas/monthly-overview'
-                      aPeriods:
-                        type: array
-                        items:
-                          $ref: '#/components/schemas/period'
+                    $ref: '#/components/schemas/VacanciesOverview'
+                  oVacanciesDynamic:
+                    $ref: '#/components/schemas/VacanciesDynamic'
+                  oVacanciesOverviewDescription:
+                    $ref: '#/components/schemas/VacanciesOverviewDescription'
+                  oVacanciesDetails:
+                    $ref: '#/components/schemas/VacanciesDetails'
+                  oVacanciesDetailsDescription:
+                    $ref: '#/components/schemas/VacanciesDetailsDescription'
                   oVacanciesAnalysis:
-                    type: object
-                    properties:
-                      aChartData:
-                        type: object
-                        properties:
-                          sName:
-                            type: string
-                          aAnalysisByType:
-                            type: array
-                            items:
-                              type: object
-                              properties:
-                                sTypeName:
-                                  type: string
-                                iCount:
-                                  type: number
-                      aPeriods:
-                        type: array
-                        items:
-                          $ref: '#/components/schemas/period'
+                    $ref: '#/components/schemas/VacanciesAnalysis'
+                  oVacanciesAnalysisDescription:
+                    $ref: '#/components/schemas/VacanciesAnalysisDescription'
                   oVacanciesTotal:
                     type: object
                     properties:
@@ -494,12 +437,76 @@ paths:
                         type: array
                         items:
                           $ref: '#/components/schemas/office-coordinates'
+                required:
+                  - sTitle
+                  - oShortStatistic
+                  - oHeadcount
+                  - oHeadcountDynamic
+                  - oHeadcountDescription
+                  - oHeadcountTable
+                  - oProjectedHeadcountAnalysis
+                  - oProjectedHeadcountDescription
+                  - oVacanciesOverview
+                  - oVacanciesDynamic
+                  - oVacanciesOverviewDescription
+                  - oVacanciesDetails
+                  - oVacanciesDetailsDescription
+                  - oVacanciesAnalysis
+                  - oVacanciesAnalysisDescription
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/short-statistic-filter'
         description: ''
+  /api/summary/projected-headcount-analysis:
+    post:
+      summary: ''
+      operationId: post-api-summary-projected-headcount-analysis
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectedHeadcountAnalysis'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/summary-filter'
+  /api/summary/vacancies-dynamic:
+    post:
+      summary: ''
+      operationId: post-api-summary-vacancies-dynamic
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VacanciesDynamic'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/summary-filter'
+  /api/summary/vacancies-details:
+    post:
+      summary: ''
+      operationId: post-api-summary-vacancies-details
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VacanciesDetails'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/summary-filter'
 components:
   schemas:
     summary-filter:
@@ -636,3 +643,260 @@ components:
       required:
         - aPositionIds
         - iCurrencyId
+    HeadcountDescription:
+      title: HeadcountDescription
+      type: object
+      properties:
+        sTotalHeadcountChangeDirection:
+          type: string
+          enum:
+            - flat
+            - increased
+            - decreased
+        iTotalHeadcountChangeValue:
+          type: number
+        iTotalHeadcountChangePercentValue:
+          type: number
+        iTotalHeadcountEndValue:
+          type: number
+      required:
+        - sTotalHeadcountChangeDirection
+        - iTotalHeadcountEndValue
+    MonthlyProjectedHeadcountAnalysis:
+      title: MonthlyProjectedHeadcountAnalysis
+      type: object
+      properties:
+        sName:
+          type: string
+        iInitial:
+          type: number
+        iRevised:
+          type: number
+      required:
+        - sName
+        - iInitial
+        - iRevised
+    ProjectedHeadcountAnalysis:
+      title: ProjectedHeadcountAnalysis
+      type: object
+      properties:
+        aChartData:
+          type: array
+          items:
+            $ref: '#/components/schemas/MonthlyProjectedHeadcountAnalysis'
+        aPeriods:
+          type: array
+          items:
+            $ref: '#/components/schemas/period'
+      required:
+        - aChartData
+        - aPeriods
+    ProjectedHeadcountDescription:
+      title: ProjectedHeadcountDescription
+      type: object
+      properties:
+        sPlannedHeadcountChangeDirection:
+          type: string
+          enum:
+            - equal
+            - exceeds
+            - less
+        iPlannedHeadcountChangeValue:
+          type: number
+        iPlannedHeadcountChangePercentValue:
+          type: number
+      required:
+        - sPlannedHeadcountChangeDirection
+    VacanciesOverview:
+      title: VacanciesOverview
+      type: object
+      properties:
+        aChartData:
+          type: array
+          items:
+            $ref: '#/components/schemas/monthly-overview'
+        aPeriods:
+          type: array
+          items:
+            $ref: '#/components/schemas/period'
+      required:
+        - aChartData
+        - aPeriods
+    VacanciesDynamic:
+      title: VacanciesDynamic
+      type: object
+      properties:
+        aChartData:
+          type: array
+          items:
+            $ref: '#/components/schemas/monthly-change-dynamic'
+        aPeriods:
+          type: array
+          items:
+            $ref: '#/components/schemas/period'
+      required:
+        - aChartData
+    VacanciesOverviewDescription:
+      title: VacanciesOverviewDescription
+      type: object
+      properties:
+        sPlannedVacanciesChangeDirection:
+          type: string
+          enum:
+            - flat
+            - increased
+            - decreased
+        iPlannedVacanciesChangeValue:
+          type: number
+        iPlannedVacanciesChangePercentValue:
+          type: number
+      required:
+        - sPlannedVacanciesChangeDirection
+    VacanciesDetails:
+      title: VacanciesDetails
+      type: object
+      properties:
+        aChartData:
+          type: array
+          items:
+            $ref: '#/components/schemas/VacanciesDetailsGroup'
+        aPeriods:
+          type: array
+          items:
+            $ref: '#/components/schemas/period'
+      required:
+        - aChartData
+        - aPeriods
+    VacanciesDetailsGroupData:
+      title: VacanciesDetailsGroupData
+      type: object
+      properties:
+        iAdd:
+          type: number
+        iMoved:
+          type: number
+        iClosed:
+          type: number
+        iNoChange:
+          type: number
+      required:
+        - iAdd
+        - iMoved
+        - iClosed
+        - iNoChange
+    VacanciesDetailsGroup:
+      title: VacanciesDetailsGroup
+      type: object
+      properties:
+        sName:
+          type: string
+        oFirst:
+          $ref: '#/components/schemas/VacanciesDetailsGroupData'
+        oSecond:
+          $ref: '#/components/schemas/VacanciesDetailsGroupData'
+      required:
+        - sName
+        - oFirst
+        - oSecond
+    VacanciesDetailsDescription:
+      title: VacanciesDetailsDescription
+      type: object
+      properties:
+        iTotal:
+          type: number
+        iAdded:
+          type: number
+        iFutureReplacements:
+          type: number
+        iRephased:
+          type: number
+        iInactivated:
+          type: number
+      required:
+        - iTotal
+        - iAdded
+        - iFutureReplacements
+        - iRephased
+        - iInactivated
+    VacanciesAnalysis:
+      title: VacanciesAnalysis
+      type: object
+      properties:
+        aChartData:
+          type: array
+          items:
+            $ref: '#/components/schemas/VacanciesAnalysisGroup'
+        aPeriods:
+          type: array
+          items:
+            $ref: '#/components/schemas/period'
+      required:
+        - aChartData
+        - aPeriods
+    VacanciesAnalysisGroup:
+      title: VacanciesAnalysisGroup
+      type: object
+      properties:
+        sName:
+          type: string
+        iNew:
+          type: number
+        iInternalTransfer:
+          type: number
+        iReplacement:
+          type: number
+        iOverlapCover:
+          type: number
+        iFutureReplacement:
+          type: number
+        iLongLeaveCover:
+          type: number
+      required:
+        - sName
+        - iNew
+        - iInternalTransfer
+        - iReplacement
+        - iOverlapCover
+        - iFutureReplacement
+        - iLongLeaveCover
+    VacanciesAnalysisDescription:
+      title: VacanciesAnalysisDescription
+      type: object
+      properties:
+        iNew:
+          type: number
+        iReplacements:
+          type: number
+        iFutureReplacements:
+          type: number
+        iOther:
+          type: number
+      required:
+        - iNew
+        - iReplacements
+        - iFutureReplacements
+        - iOther
+    Headcount:
+      title: Headcount
+      type: object
+      properties:
+        aChartData:
+          type: array
+          items:
+            $ref: '#/components/schemas/monthly-overview'
+        aPeriods:
+          type: array
+          items:
+            $ref: '#/components/schemas/period'
+    HeadcountDynamic:
+      title: HeadcountDynamic
+      type: object
+      properties:
+        aChartData:
+          type: array
+          items:
+            $ref: '#/components/schemas/monthly-change-dynamic'
+        aPeriods:
+          type: array
+          items:
+            $ref: '#/components/schemas/period'
