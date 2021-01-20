@@ -158,69 +158,6 @@ paths:
                   type: array
                   items:
                     type: number
-  /api/summary/career-streams:
-    post:
-      summary: ''
-      operationId: post-career-level-categories
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  aChartData:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/section'
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                aPositionIds:
-                  type: array
-                  items:
-                    type: number
-        description: ''
-    parameters: []
-  /api/summary/career-levels:
-    post:
-      summary: ''
-      operationId: post-career-levels
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  aCareerLevelTypes:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/period'
-                  aChartData:
-                    $ref: '#/components/schemas/section'
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                sCareerLevelTypes:
-                  type: string
-                aPositionIds:
-                  type: array
-                  items:
-                    type: number
-                sPeriod:
-                  type: string
-              required:
-                - aPositionIds
-    parameters: []
   /api/summary/headcount-by-location:
     post:
       summary: ''
@@ -397,32 +334,15 @@ paths:
                         type: array
                         items:
                           $ref: '#/components/schemas/period'
-                  oCareerStreams:
-                    type: object
-                    properties:
-                      aChartData:
-                        type: array
-                        items:
-                          $ref: '#/components/schemas/section'
-                      aPeriods:
-                        type: array
-                        items:
-                          $ref: '#/components/schemas/period'
                   oCareerLevels:
                     type: object
+                    required:
+                      - aChartData
                     properties:
-                      aCareerLevelTypes:
-                        type: array
-                        items:
-                          $ref: '#/components/schemas/period'
                       aChartData:
                         type: array
                         items:
                           $ref: '#/components/schemas/section'
-                      aPeriods:
-                        type: array
-                        items:
-                          $ref: '#/components/schemas/period'
                   oHeadcountByLocation:
                     type: object
                     properties:
@@ -453,6 +373,7 @@ paths:
                   - oVacanciesDetailsDescription
                   - oVacanciesAnalysis
                   - oVacanciesAnalysisDescription
+                  - oCareerLevels
       requestBody:
         content:
           application/json:
