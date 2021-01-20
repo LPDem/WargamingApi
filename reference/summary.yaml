@@ -325,15 +325,31 @@ paths:
                     $ref: '#/components/schemas/VacanciesAnalysisDescription'
                   oVacanciesTotal:
                     type: object
+                    required:
+                      - aChartData
                     properties:
                       aChartData:
                         type: array
                         items:
                           $ref: '#/components/schemas/section'
-                      aPeriods:
+                  oOffices:
+                    type: object
+                    required:
+                      - aChartData
+                    properties:
+                      aChartData:
                         type: array
                         items:
-                          $ref: '#/components/schemas/period'
+                          $ref: '#/components/schemas/section'
+                  oJobFamilies:
+                    type: object
+                    required:
+                      - aChartData
+                    properties:
+                      aChartData:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/section'
                   oCareerLevels:
                     type: object
                     required:
@@ -343,13 +359,8 @@ paths:
                         type: array
                         items:
                           $ref: '#/components/schemas/section'
-                  oHeadcountByLocation:
-                    type: object
-                    properties:
-                      aOffices:
-                        type: array
-                        items:
-                          $ref: '#/components/schemas/office-coordinates'
+                  oPlannedVacanciesMajorityDescription:
+                    $ref: '#/components/schemas/PlannedVacanciesMajorityDescription'
                   oPayrollByLocation:
                     type: object
                     properties:
@@ -373,7 +384,11 @@ paths:
                   - oVacanciesDetailsDescription
                   - oVacanciesAnalysis
                   - oVacanciesAnalysisDescription
+                  - oVacanciesTotal
+                  - oOffices
+                  - oJobFamilies
                   - oCareerLevels
+                  - oPlannedVacanciesMajorityDescription
       requestBody:
         content:
           application/json:
@@ -821,3 +836,17 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/period'
+    PlannedVacanciesMajorityDescription:
+      title: PlannedVacanciesMajorityDescription
+      type: object
+      properties:
+        sJobFamily:
+          type: string
+        sCareerLevel:
+          type: string
+        sLocation:
+          type: string
+      required:
+        - sJobFamily
+        - sCareerLevel
+        - sLocation
