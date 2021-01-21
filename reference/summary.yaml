@@ -64,56 +64,39 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/summary-filter'
-  /api/summary/payroll:
+  /api/summary/salary-budget:
     post:
       summary: ''
-      operationId: post-api-summary-payroll
+      operationId: post-api-summary-salary-budget
       responses:
         '200':
           description: OK
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  aChartData:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/monthly-overview'
-                  aPeriods:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/period'
+                $ref: '#/components/schemas/SalaryBudget'
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/payroll-filter'
-  /api/summary/payroll-dynamic:
+              $ref: '#/components/schemas/SalaryBudgetFilter'
+        description: ''
+  /api/summary/salary-budget-dynamic:
     post:
       summary: ''
-      operationId: post-api-summary-payroll-dynamic
+      operationId: post-api-summary-salary-budget-dynamic
       responses:
         '200':
           description: OK
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  aChartData:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/monthly-change-dynamic'
-                  aPeriods:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/period'
+                $ref: '#/components/schemas/SalaryBudgetDynamic'
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/payroll-filter'
+              $ref: '#/components/schemas/SalaryBudgetFilter'
         description: ''
   /api/summary/vacancies-analysis:
     post:
@@ -131,33 +114,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/summary-filter'
-  /api/summary/vacancies-total:
-    parameters: []
-    post:
-      summary: ''
-      operationId: post-api-summary-vacancies-total
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  aChartData:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/section'
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                aPositionIds:
-                  type: array
-                  items:
-                    type: number
   /api/summary/headcount-by-location:
     post:
       summary: ''
@@ -182,10 +138,8 @@ paths:
             schema:
               type: object
               properties:
-                aPositionIds:
-                  type: array
-                  items:
-                    type: number
+                oPositionsFilter:
+                  $ref: '#/components/schemas/SummaryPositionsFilter'
     parameters: []
   /api/summary/payroll-by-location:
     post:
@@ -213,10 +167,8 @@ paths:
               properties:
                 iCurrencyId:
                   type: number
-                aPositionIds:
-                  type: array
-                  items:
-                    type: number
+                oPositionsFilter:
+                  $ref: '#/components/schemas/SummaryPositionsFilter'
         description: ''
     parameters: []
   /api/summary/vacancies-overview:
@@ -261,7 +213,6 @@ paths:
                       - oVacancies
                       - oFutureReplacements
                       - oLongLeave
-                      - oSalary
                     properties:
                       oTotalHeadcount:
                         $ref: '#/components/schemas/short-statistic'
@@ -273,8 +224,8 @@ paths:
                         $ref: '#/components/schemas/short-statistic'
                       oLongLeave:
                         $ref: '#/components/schemas/short-statistic'
-                      oSalary:
-                        $ref: '#/components/schemas/short-statistic'
+                      '':
+                        type: string
                   oHeadcount:
                     $ref: '#/components/schemas/Headcount'
                   oHeadcountDynamic:
@@ -287,28 +238,12 @@ paths:
                     $ref: '#/components/schemas/ProjectedHeadcountAnalysis'
                   oProjectedHeadcountDescription:
                     $ref: '#/components/schemas/ProjectedHeadcountDescription'
-                  oPayroll:
-                    type: object
-                    properties:
-                      aChartData:
-                        type: array
-                        items:
-                          $ref: '#/components/schemas/monthly-overview'
-                      aPeriods:
-                        type: array
-                        items:
-                          $ref: '#/components/schemas/period'
-                  oPayrollDynamic:
-                    type: object
-                    properties:
-                      aChartData:
-                        type: array
-                        items:
-                          $ref: '#/components/schemas/monthly-change-dynamic'
-                      aPeriods:
-                        type: array
-                        items:
-                          $ref: '#/components/schemas/period'
+                  oSalaryBudget:
+                    $ref: '#/components/schemas/SalaryBudget'
+                  oSalaryBudgetDynamic:
+                    $ref: '#/components/schemas/SalaryBudgetDynamic'
+                  oSalaryBudgetDescription:
+                    $ref: '#/components/schemas/SalaryBudgetDescription'
                   oVacanciesOverview:
                     $ref: '#/components/schemas/VacanciesOverview'
                   oVacanciesDynamic:
@@ -368,6 +303,61 @@ paths:
                         type: array
                         items:
                           $ref: '#/components/schemas/office-coordinates'
+                  oFilterReferences:
+                    type: object
+                    required:
+                      - aOffices
+                      - aDepartments
+                      - aManagers
+                      - aCostCenters
+                      - aExcludeList
+                      - aJobFamilyGroups
+                      - aJobFamilies
+                      - aJobSubFamilies
+                      - aPositionsIds
+                    properties:
+                      aOffices:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/IdNumberList'
+                      aDepartments:
+                        type: array
+                        items:
+                          $ref: ../models/Department-node.yaml
+                      aManagers:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/IdStringList'
+                      aCostCenters:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/IdNumberList'
+                      aExcludeList:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/IdStringList'
+                      aJobFamilyGroups:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/IdStringList'
+                      aJobFamilies:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/IdStringList'
+                      aJobSubFamilies:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/IdStringList'
+                      aPositionsIds:
+                        type: array
+                        items:
+                          type: number
+                  oPlanningChangesImpactOnSalaryBudget:
+                    $ref: ./master-data.yaml#/components/schemas/DataGridDto
+                  oChangesSalaryIncreases:
+                    $ref: '#/components/schemas/ChangesSalaryIncreases'
+                  oChangesSalaryIncreasesDescription:
+                    $ref: '#/components/schemas/ChangesSalaryIncreasesDescription'
                 required:
                   - sTitle
                   - oShortStatistic
@@ -389,6 +379,7 @@ paths:
                   - oJobFamilies
                   - oCareerLevels
                   - oPlannedVacanciesMajorityDescription
+                  - oFilterReferences
       requestBody:
         content:
           application/json:
@@ -443,6 +434,28 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/summary-filter'
+  /api/summary/changes-salary-increases:
+    post:
+      summary: ''
+      operationId: post-api-summary-changes-salary-increases
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                iCurrencyId:
+                  type: number
+                sPeriod:
+                  type: string
+                oPositionsFilter:
+                  $ref: '#/components/schemas/SummaryPositionsFilter'
+              required:
+                - iCurrencyId
+                - oPositionsFilter
 components:
   schemas:
     summary-filter:
@@ -455,20 +468,21 @@ components:
             type: number
         sPeriod:
           type: string
+        oPositionsFilter:
+          $ref: '#/components/schemas/SummaryPositionsFilter'
       required:
         - aPositionIds
+        - oPositionsFilter
     short-statistic-filter:
       title: short-statistic-filter
       type: object
       properties:
-        aPositionIds:
-          type: array
-          items:
-            type: number
+        oPositionsFilter:
+          $ref: '#/components/schemas/SummaryPositionsFilter'
         iCurrencyId:
           type: number
       required:
-        - aPositionIds
+        - oPositionsFilter
         - iCurrencyId
     short-statistic:
       title: short-statistic
@@ -564,8 +578,8 @@ components:
         - fLat
         - fLng
         - iValue
-    payroll-filter:
-      title: payroll-filter
+    SalaryBudgetFilter:
+      title: salary-budget-filter
       type: object
       properties:
         aPositionIds:
@@ -850,3 +864,170 @@ components:
         - sJobFamily
         - sCareerLevel
         - sLocation
+    SalaryBudget:
+      title: SalaryBudget
+      type: object
+      properties:
+        aChartData:
+          type: array
+          items:
+            $ref: '#/components/schemas/monthly-overview'
+        aPeriods:
+          type: array
+          items:
+            $ref: '#/components/schemas/period'
+      required:
+        - aChartData
+        - aPeriods
+    SalaryBudgetDynamic:
+      title: SalaryBudgetDynamic
+      type: object
+      properties:
+        aChartData:
+          type: array
+          items:
+            $ref: '#/components/schemas/monthly-change-dynamic'
+        aPeriods:
+          type: array
+          items:
+            $ref: '#/components/schemas/period'
+      required:
+        - aChartData
+        - aPeriods
+    SalaryBudgetDescription:
+      title: SalaryBudgetDescription
+      type: object
+      properties:
+        sSalaryBudgetChangeDirection:
+          type: string
+          enum:
+            - flat
+            - increased
+            - decreased
+        iSalaryBudgetChangeValue:
+          type: number
+        iSalaryBudgetChangePercentValue:
+          type: number
+        iSalaryBudgetEndValue:
+          type: number
+      required:
+        - sSalaryBudgetChangeDirection
+        - iSalaryBudgetEndValue
+    IdNumberList:
+      title: IdNumberList
+      type: object
+      properties:
+        iId:
+          type: number
+        sName:
+          type: string
+      required:
+        - iId
+        - sName
+    IdStringList:
+      title: IdStringList
+      type: object
+      properties:
+        sId:
+          type: string
+        sName:
+          type: string
+      required:
+        - sId
+        - sName
+    ChangesSalaryIncreases:
+      title: ChangesSalaryIncreases
+      type: object
+      properties:
+        aChartData:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChangesSalaryIncreasesGroup'
+        aPeriods:
+          type: array
+          items:
+            $ref: '#/components/schemas/period'
+        aReasons:
+          type: array
+          items:
+            type: string
+      required:
+        - aChartData
+        - aPeriods
+        - aReasons
+    ChangesSalaryIncreasesGroup:
+      title: ChangesSalaryIncreasesGroup
+      type: object
+      properties:
+        sName:
+          type: string
+        aValues:
+          type: array
+          items:
+            type: number
+      required:
+        - sName
+        - aValues
+    SummaryPositionsFilter:
+      title: SummaryPositionsFilter
+      type: object
+      properties:
+        iReportingFunctionId:
+          type: number
+        aOfficeIds:
+          type: array
+          items:
+            type: number
+        aDepartmentIds:
+          type: array
+          items:
+            type: number
+        aManagerIds:
+          type: array
+          items:
+            type: string
+        sCurrentStatus:
+          type: string
+          enum:
+            - Active Employee
+            - Vacancy
+            - Long Leave
+        iDepartmentId:
+          type: number
+        aSubmissionStatuses:
+          type: array
+          items:
+            type: string
+        aCostCenters:
+          type: array
+          items:
+            type: string
+        sJobFamilyGroupId:
+          type: string
+        sJobSubFamilyId:
+          type: string
+        aExcludeIds:
+          type: array
+          items:
+            type: string
+        aDepartmentIds2:
+          type: array
+          items:
+            type: number
+    ChangesSalaryIncreasesDescription:
+      title: ChangesSalaryIncreasesDescription
+      type: object
+      properties:
+        iEmployeesCount:
+          type: number
+        iTotalPerMonth:
+          type: number
+        iActualEffect:
+          type: number
+        iAnnualizedEffect:
+          type: number
+      required:
+        - iEmployeesCount
+        - iTotalPerMonth
+        - iActualEffect
+        - iAnnualizedEffect
