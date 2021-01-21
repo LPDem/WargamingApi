@@ -213,6 +213,7 @@ paths:
                       - oVacancies
                       - oFutureReplacements
                       - oLongLeave
+                      - oSalary
                     properties:
                       oTotalHeadcount:
                         $ref: '#/components/schemas/short-statistic'
@@ -224,8 +225,8 @@ paths:
                         $ref: '#/components/schemas/short-statistic'
                       oLongLeave:
                         $ref: '#/components/schemas/short-statistic'
-                      '':
-                        type: string
+                      oSalary:
+                        $ref: '#/components/schemas/short-statistic'
                   oHeadcount:
                     $ref: '#/components/schemas/Headcount'
                   oHeadcountDynamic:
