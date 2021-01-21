@@ -463,16 +463,11 @@ components:
       title: Summary-filter
       type: object
       properties:
-        aPositionIds:
-          type: array
-          items:
-            type: number
         sPeriod:
           type: string
         oPositionsFilter:
           $ref: '#/components/schemas/SummaryPositionsFilter'
       required:
-        - aPositionIds
         - oPositionsFilter
     short-statistic-filter:
       title: short-statistic-filter
@@ -583,16 +578,14 @@ components:
       title: salary-budget-filter
       type: object
       properties:
-        aPositionIds:
-          type: array
-          items:
-            type: number
+        oPositionsFilter:
+          $ref: '#/components/schemas/SummaryPositionsFilter'
         iCurrencyId:
           type: number
         sPeriod:
           type: string
       required:
-        - aPositionIds
+        - oPositionsFilter
         - iCurrencyId
     HeadcountDescription:
       title: HeadcountDescription
