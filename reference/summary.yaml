@@ -359,6 +359,10 @@ paths:
                     $ref: '#/components/schemas/ChangesSalaryIncreases'
                   oChangesSalaryIncreasesDescription:
                     $ref: '#/components/schemas/ChangesSalaryIncreasesDescription'
+                  oChangesVacancies:
+                    $ref: '#/components/schemas/ChangesVacancies'
+                  oChangesVacanciesDescription:
+                    $ref: '#/components/schemas/ChangesVacanciesDescription'
                 required:
                   - sTitle
                   - oShortStatistic
@@ -442,6 +446,32 @@ paths:
       responses:
         '200':
           description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                iCurrencyId:
+                  type: number
+                sPeriod:
+                  type: string
+                oPositionsFilter:
+                  $ref: '#/components/schemas/SummaryPositionsFilter'
+              required:
+                - iCurrencyId
+                - oPositionsFilter
+  /api/summary/changes-vacancies:
+    post:
+      summary: ''
+      operationId: post-api-summary-changes-vacancies
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChangesVacancies'
       requestBody:
         content:
           application/json:
@@ -1023,5 +1053,60 @@ components:
       required:
         - iEmployeesCount
         - iTotalPerMonth
+        - iActualEffect
+        - iAnnualizedEffect
+    ChangesVacanciesGroup:
+      title: ChangesVacanciesGroup
+      type: object
+      properties:
+        sName:
+          type: string
+        iNew:
+          type: number
+        iInternalTransfer:
+          type: number
+        iReplacement:
+          type: number
+        iOverlapCover:
+          type: number
+        iFutureReplacement:
+          type: number
+        iLongLeaveCover:
+          type: number
+      required:
+        - sName
+        - iNew
+        - iInternalTransfer
+        - iReplacement
+        - iOverlapCover
+        - iFutureReplacement
+        - iLongLeaveCover
+    ChangesVacancies:
+      title: ChangesVacancies
+      type: object
+      properties:
+        aChartData:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChangesVacanciesGroup'
+        aPeriods:
+          type: array
+          items:
+            $ref: '#/components/schemas/period'
+    ChangesVacanciesDescription:
+      title: ChangesVacanciesDescription
+      type: object
+      properties:
+        iSubmitted:
+          type: number
+        iTotalCostPerMonth:
+          type: number
+        iActualEffect:
+          type: number
+        iAnnualizedEffect:
+          type: number
+      required:
+        - iSubmitted
+        - iTotalCostPerMonth
         - iActualEffect
         - iAnnualizedEffect
