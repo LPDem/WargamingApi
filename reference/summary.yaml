@@ -234,7 +234,7 @@ paths:
                   oHeadcountDescription:
                     $ref: '#/components/schemas/HeadcountDescription'
                   oHeadcountTable:
-                    $ref: ./master-data.yaml#/components/schemas/DataGridDto
+                    $ref: '#/components/schemas/DataTableDto'
                   oProjectedHeadcountAnalysis:
                     $ref: '#/components/schemas/ProjectedHeadcountAnalysis'
                   oProjectedHeadcountDescription:
@@ -354,7 +354,7 @@ paths:
                         items:
                           type: number
                   oPlanningChangesImpactOnSalaryBudget:
-                    $ref: ./master-data.yaml#/components/schemas/DataGridDto
+                    $ref: '#/components/schemas/DataTableDto'
                   oChangesSalaryIncreases:
                     $ref: '#/components/schemas/ChangesSalaryIncreases'
                   oChangesSalaryIncreasesDescription:
@@ -1146,3 +1146,31 @@ components:
           type: number
       required:
         - sChangeDirection
+    DataTableDto:
+      title: DataTableDto
+      type: object
+      properties:
+        aHeaders:
+          type: array
+          items:
+            type: string
+        aRows:
+          type: array
+          items:
+            type: object
+            properties:
+              sCaption:
+                type: string
+              aCells:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    iValue:
+                      type: number
+            required:
+              - sCaption
+              - aCells
+      required:
+        - aHeaders
+        - aRows
