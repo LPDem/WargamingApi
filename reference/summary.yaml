@@ -363,6 +363,10 @@ paths:
                     $ref: '#/components/schemas/ChangesVacancies'
                   oChangesVacanciesDescription:
                     $ref: '#/components/schemas/ChangesVacanciesDescription'
+                  oAverageSalaryBudget:
+                    $ref: '#/components/schemas/AverageSalaryBudget'
+                  oAverageSalaryBudgetDescription:
+                    $ref: '#/components/schemas/AverageSalaryBudgetDescription'
                 required:
                   - sTitle
                   - oShortStatistic
@@ -1110,3 +1114,35 @@ components:
         - iTotalCostPerMonth
         - iActualEffect
         - iAnnualizedEffect
+    AverageSalaryBudget:
+      title: AverageSalaryBudget
+      type: object
+      properties:
+        sLabel:
+          type: string
+        iInitial:
+          type: number
+        iRevised:
+          type: number
+      required:
+        - sLabel
+        - iInitial
+        - iRevised
+    AverageSalaryBudgetDescription:
+      title: AverageSalaryBudgetDescription
+      type: object
+      properties:
+        sChangeDirection:
+          type: string
+          enum:
+            - flat
+            - increased
+            - decreased
+        iChangeValue:
+          type: number
+        iChangePercent:
+          type: number
+        iInitialValue:
+          type: number
+      required:
+        - sChangeDirection
