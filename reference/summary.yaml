@@ -1042,6 +1042,26 @@ components:
           type: array
           items:
             type: number
+        sText:
+          type: string
+        sSort:
+          type: string
+        bOnlyInactive:
+          type: boolean
+        bOnlySalaryUpdates:
+          type: boolean
+        bFutureReplacements:
+          type: boolean
+        sChanges:
+          type: string
+          enum:
+            - All
+            - WithChanges
+            - WithoutChanges
+        sJobFamilyId:
+          type: string
+        iFilterId:
+          type: number
     ChangesSalaryIncreasesDescription:
       title: ChangesSalaryIncreasesDescription
       type: object
