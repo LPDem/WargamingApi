@@ -114,63 +114,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/summary-filter'
-  /api/summary/headcount-by-location:
-    post:
-      summary: ''
-      operationId: post-headcount-by-location
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  aOffices:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/office-coordinates'
-                required:
-                  - aOffices
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                oPositionsFilter:
-                  $ref: '#/components/schemas/SummaryPositionsFilter'
-    parameters: []
-  /api/summary/payroll-by-location:
-    post:
-      summary: ''
-      operationId: post-payroll-by-location
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  aOffices:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/office-coordinates'
-                required:
-                  - aOffices
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                iCurrencyId:
-                  type: number
-                oPositionsFilter:
-                  $ref: '#/components/schemas/SummaryPositionsFilter'
-        description: ''
-    parameters: []
   /api/summary/vacancies-overview:
     post:
       summary: ''
@@ -297,13 +240,16 @@ paths:
                           $ref: '#/components/schemas/section'
                   oPlannedVacanciesMajorityDescription:
                     $ref: '#/components/schemas/PlannedVacanciesMajorityDescription'
-                  oPayrollByLocation:
-                    type: object
-                    properties:
-                      aOffices:
-                        type: array
-                        items:
-                          $ref: '#/components/schemas/office-coordinates'
+                  oHeadcountByLocation:
+                    $ref: '#/components/schemas/ValuesByLocation'
+                  oSalaryBudgetByLocation:
+                    $ref: '#/components/schemas/ValuesByLocation'
+                  oVacanciesByLocation:
+                    $ref: '#/components/schemas/ValuesByLocation'
+                  oVacanciesBudgetByLocation:
+                    $ref: '#/components/schemas/ValuesByLocation'
+                  oSalaryIncreasesByLocation:
+                    $ref: '#/components/schemas/ValuesByLocation'
                   oFilterReferences:
                     type: object
                     required:
@@ -1194,3 +1140,13 @@ components:
       required:
         - aHeaders
         - aRows
+    ValuesByLocation:
+      title: ValuesByLocation
+      type: object
+      properties:
+        aOffices:
+          type: array
+          items:
+            $ref: '#/components/schemas/office-coordinates'
+      required:
+        - aOffices
