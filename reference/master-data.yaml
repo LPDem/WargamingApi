@@ -222,6 +222,26 @@ paths:
       operationId: masterData-getCurrencies
       description: Получение мастер-данных справочника валют
     parameters: []
+  /getProjectedHeadcountAnalysis:
+    get:
+      summary: getProjectedHeadcountAnalysis
+      tags:
+        - masterData
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  oData:
+                    $ref: '#/components/schemas/DataGridDto'
+                required:
+                  - oData
+      operationId: masterData-getCurrencies
+      description: Получение мастер-данных Projected Headcount Analysis
+    parameters: []
   /importFrequencies:
     post:
       summary: importFrequencies
@@ -262,6 +282,22 @@ paths:
         '200':
           description: OK
       description: Загрузка мастер-данных пользователей
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImportMasterDataRequestDto'
+      tags:
+        - masterData
+    parameters: []
+  /importProjectedHeadcountAnalysis:
+    post:
+      summary: importProjectedHeadcountAnalysis
+      operationId: masterData-importProjectedHeadcountAnalysis
+      responses:
+        '200':
+          description: OK
+      description: Загрузка мастер-данных Projected Headcount Analysis
       requestBody:
         content:
           application/json:
@@ -396,70 +432,76 @@ paths:
     parameters: []
   /exportJobs:
     get:
-      summary: Your GET endpoint
+      summary: null
       tags: []
       responses: {}
       operationId: get-exportJobs
   /exportPositions:
     get:
-      summary: Your GET endpoint
+      summary: null
       tags: []
       responses: {}
       operationId: get-exportPositions
   /exportRoles:
     get:
-      summary: Your GET endpoint
+      summary: null
       tags: []
       responses: {}
       operationId: get-exportRoles
   /exportOrgStructure:
     get:
-      summary: Your GET endpoint
+      summary: null
       tags: []
       responses: {}
       operationId: get-exportOrgStructure
   /exportFaq:
     get:
-      summary: Your GET endpoint
+      summary: null
       tags: []
       responses: {}
       operationId: get-exportFaq
   /exportCurrencies:
     get:
-      summary: Your GET endpoint
+      summary: null
       tags: []
       responses: {}
       operationId: get-exportCurrencies
   /exportFrequencies:
     get:
-      summary: Your GET endpoint
+      summary: null
       tags: []
       responses: {}
       operationId: get-exportFrequencies
   /exportExchangeRates:
     get:
-      summary: Your GET endpoint
+      summary: null
       tags: []
       responses: {}
       operationId: get-exportExchangeRates
   /exportUsers:
     get:
-      summary: Your GET endpoint
+      summary: null
       tags: []
       responses: {}
       operationId: get-exportUsers
   /exportEmployees:
     get:
-      summary: Your GET endpoint
+      summary: null
       tags: []
       responses: {}
       operationId: get-exportEmployees
   /exportOffices:
     get:
-      summary: Your GET endpoint
+      summary: null
       tags: []
       responses: {}
       operationId: get-exportOffices
+  /exportProjectedHeadcountAnalysis:
+    get:
+      summary: ''
+      tags: []
+      responses: {}
+      operationId: get-exportProjectedHeadcountAnalysis
 components:
   schemas:
     DataGridDto:
