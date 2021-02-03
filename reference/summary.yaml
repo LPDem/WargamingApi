@@ -592,14 +592,14 @@ components:
       properties:
         sName:
           type: string
-        iInitial:
-          type: number
         iRevised:
+          type: number
+        iProjected:
           type: number
       required:
         - sName
-        - iInitial
         - iRevised
+        - iProjected
     ProjectedHeadcountAnalysis:
       title: ProjectedHeadcountAnalysis
       type: object
@@ -664,18 +664,22 @@ components:
       title: VacanciesOverviewDescription
       type: object
       properties:
-        sPlannedVacanciesChangeDirection:
-          type: string
-          enum:
-            - flat
-            - increased
-            - decreased
-        iPlannedVacanciesChangeValue:
+        iTotal:
           type: number
-        iPlannedVacanciesChangePercentValue:
+        iAdded:
+          type: number
+        iFutureReplacements:
+          type: number
+        iRephased:
+          type: number
+        iInactivated:
           type: number
       required:
-        - sPlannedVacanciesChangeDirection
+        - iTotal
+        - iAdded
+        - iFutureReplacements
+        - iRephased
+        - iInactivated
     VacanciesDetails:
       title: VacanciesDetails
       type: object
