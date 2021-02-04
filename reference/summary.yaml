@@ -664,22 +664,18 @@ components:
       title: VacanciesOverviewDescription
       type: object
       properties:
-        iTotal:
+        sPlannedVacanciesChangeDirection:
+          type: string
+          enum:
+            - flat
+            - increased
+            - decreased
+        iPlannedVacanciesChangeValue:
           type: number
-        iAdded:
-          type: number
-        iFutureReplacements:
-          type: number
-        iRephased:
-          type: number
-        iInactivated:
+        iPlannedVacanciesChangePercentValue:
           type: number
       required:
-        - iTotal
-        - iAdded
-        - iFutureReplacements
-        - iRephased
-        - iInactivated
+        - sPlannedVacanciesChangeDirection
     VacanciesDetails:
       title: VacanciesDetails
       type: object
