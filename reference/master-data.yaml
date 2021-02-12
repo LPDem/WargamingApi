@@ -430,6 +430,59 @@ paths:
                 - sStartDate
                 - sEndDate
     parameters: []
+  /summary-period:
+    get:
+      summary:
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  sStartDate:
+                    type: string
+                  sEndDate:
+                    type: string
+                required:
+                  - sStartDate
+                  - sEndDate
+      operationId: get-summary-period
+      description: ''
+    post:
+      summary: ''
+      operationId: post-summary-period
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  sStartDate:
+                    type: string
+                  sEndDate:
+                    type: string
+                required:
+                  - sStartDate
+                  - sEndDate
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                sStartDate:
+                  type: string
+                sEndDate:
+                  type: string
+              required:
+                - sStartDate
+                - sEndDate
+    parameters: []    
   /exportJobs:
     get:
       summary: null
