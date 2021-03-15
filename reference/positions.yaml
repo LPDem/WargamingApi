@@ -114,6 +114,22 @@ paths:
             type: number
           in: query
           name: iFilterId
+        - schema:
+            type: string
+            enum:
+              - withoutUpdates
+              - withUpdates
+              - periods
+          in: query
+          name: sSalaryUpdatesMode
+        - schema:
+            type: array
+          in: query
+          name: aSalaryUpdates
+        - schema:
+            type: array
+          in: query
+          name: aVacanciesUpdates
       responses:
         '200':
           description: OK
@@ -172,6 +188,10 @@ paths:
                       $ref: ../models/Participant-short.yaml
                   oSalaryConfig:
                     $ref: ../models/Salary-config.yaml
+                  aSalaryUpdatesPeriods:
+                    $ref: ./summary.yaml#/components/schemas/IdNumberList
+                  aVacanciesPeriods:
+                    $ref: ./summary.yaml#/components/schemas/IdNumberList
                 required:
                   - aPositions
                   - aManagers
@@ -187,6 +207,8 @@ paths:
                   - aJobFamilies
                   - aJobSubFamilies
                   - aExcludeList
+                  - aSalaryUpdatesPeriods
+                  - aVacanciesPeriods
     parameters: []
   '/api/positions/{iId}':
     parameters:

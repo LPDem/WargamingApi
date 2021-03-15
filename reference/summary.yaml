@@ -1008,6 +1008,20 @@ components:
           type: string
         iFilterId:
           type: number
+        sSalaryUpdatesMode:
+          type: string
+          enum:
+            - withoutUpdates
+            - withUpdates
+            - periods
+        aSalaryUpdates:
+          type: array
+          items:
+            type: number
+        aVacanciesUpdates:
+          type: array
+          items:
+            type: number
     ChangesSalaryIncreasesDescription:
       title: ChangesSalaryIncreasesDescription
       type: object
