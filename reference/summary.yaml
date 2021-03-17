@@ -1017,11 +1017,11 @@ components:
         aSalaryUpdates:
           type: array
           items:
-            type: number
+            type: string
         aVacanciesUpdates:
           type: array
           items:
-            type: number
+            type: string
     ChangesSalaryIncreasesDescription:
       title: ChangesSalaryIncreasesDescription
       type: object

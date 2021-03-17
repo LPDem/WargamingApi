@@ -189,9 +189,9 @@ paths:
                   oSalaryConfig:
                     $ref: ../models/Salary-config.yaml
                   aSalaryUpdatesPeriods:
-                    $ref: ./summary.yaml#/components/schemas/IdNumberList
+                    $ref: ./summary.yaml#/components/schemas/IdStringList
                   aVacanciesPeriods:
-                    $ref: ./summary.yaml#/components/schemas/IdNumberList
+                    $ref: ./summary.yaml#/components/schemas/IdStringList
                 required:
                   - aPositions
                   - aManagers
