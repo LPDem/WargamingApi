@@ -14,6 +14,12 @@ properties:
     type: string
   sFullPath:
     type: string
+  iOfficeId:
+    type: number
+  iDepartmentId:
+    type: number
+  iCostCenterId:
+    type: number
 required:
   - sOffice
   - sDepartment
@@ -21,3 +27,6 @@ required:
   - sDepartmentCode
   - sParentDepartmentCode
   - sFullPath
+  - iOfficeId
+  - iDepartmentId
+  - iCostCenterId

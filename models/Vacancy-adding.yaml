@@ -37,6 +37,8 @@ properties:
     type: string
   oOrgStructure:
     $ref: ./Org-structure-adding.yaml
+  sOverlapPosition:
+    type: string
 required:
   - sName
   - sStartDate

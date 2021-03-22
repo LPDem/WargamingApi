@@ -12,9 +12,21 @@ properties:
     type: string
   sCareerStream:
     type: string
+  iJobFamilyGroupId:
+    type: number
+  iJobFamilyId:
+    type: number
+  iJobSubFamilyId:
+    type: number
+  iCareerStreamId:
+    type: number
 required:
   - sJobFamilyGroup
   - sJobFamily
   - sJobSubFamily
   - sCareerLevel
   - sCareerStream
+  - iJobFamilyGroupId
+  - iJobFamilyId
+  - iJobSubFamilyId
+  - iCareerStreamId
