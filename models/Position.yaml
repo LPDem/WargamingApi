@@ -97,6 +97,8 @@ properties:
         - futureReplacementDate
   oRelocation:
     $ref: ./Relocation.yaml
+  sOverlapPosition:
+    type: string
 required:
   - iId
   - iReportingFunctionId
