@@ -33,7 +33,7 @@ properties:
     type: boolean
   oJob:
     $ref: ./Job-adding.yaml
-  sCareerLevelId:
+  sStreamLevelId:
     type: string
   oOrgStructure:
     $ref: ./Org-structure-adding.yaml
@@ -47,5 +47,5 @@ required:
   - oSalary
   - aSalaryChanges
   - oJob
-  - sCareerLevelId
+  - sStreamLevelId
   - oOrgStructure
