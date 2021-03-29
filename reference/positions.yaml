@@ -296,6 +296,16 @@ paths:
         name: iId
         in: path
         required: true
+    delete:
+      summary: ''
+      operationId: delete-api-positions-iId-long-leave
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../models/Position-short.yaml
   '/api/positions/{iId}/future-replacement':
     post:
       summary: ''
@@ -319,6 +329,16 @@ paths:
         name: iId
         in: path
         required: true
+    delete:
+      summary: ''
+      operationId: delete-api-positions-iId-future-replacement
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../models/Position-short.yaml
   '/api/positions/{iId}/comment':
     post:
       summary: ''
@@ -422,6 +442,16 @@ paths:
           application/json:
             schema:
               $ref: ../models/Return-from-long-leave.yaml
+    delete:
+      summary: ''
+      operationId: delete-api-position-iId-return-from-long-leave
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../models/Position-short.yaml
   '/api/position/{iId}/relocation':
     parameters:
       - schema:
@@ -444,6 +474,16 @@ paths:
           application/json:
             schema:
               $ref: ../models/AddRelocation.yaml
+    delete:
+      summary: ''
+      operationId: delete-api-position-iId-relocation
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../models/Position-short.yaml
   /api/positions/add:
     get:
       summary: Your GET endpoint
@@ -836,5 +876,60 @@ paths:
                     items:
                       $ref: ../models/Office.yaml
       operationId: get-api-positions-iId-add-relocation
+  '/api/positions/{iId}/permissions':
+    parameters:
+      - schema:
+          type: number
+        name: iId
+        in: path
+        required: true
+        description: Id позиции
+    get:
+      summary: ''
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  bCanEditFutureReplacement:
+                    type: boolean
+                  bCanEditLongLeave:
+                    type: boolean
+                  bCanEditInactivate:
+                    type: boolean
+                  bCanEditRelocation:
+                    type: boolean
+                  bCanEditReturnLongLeave:
+                    type: boolean
+                required:
+                  - bCanEditFutureReplacement
+                  - bCanEditLongLeave
+                  - bCanEditInactivate
+                  - bCanEditRelocation
+                  - bCanEditReturnLongLeave
+      operationId: get-api-positions-iId-permissions
+      description: Получение доступа к позиции
+  '/api/positions/{iId}/inactive':
+    parameters:
+      - schema:
+          type: string
+        name: iId
+        in: path
+        required: true
+        description: Id позиции
+    delete:
+      summary: ''
+      operationId: delete-api-positions-iId-inactive
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../models/Position-short.yaml
 components:
   schemas: {}
