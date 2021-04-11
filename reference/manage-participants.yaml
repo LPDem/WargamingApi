@@ -186,5 +186,16 @@ paths:
                 - iId
         description: ''
     parameters: []
+  /export-to-excel:
+    post:
+      summary: ''
+      operationId: post-export-to-excel
+      responses:
+        '200':
+          description: OK
+          content:
+            application/xlsx:
+              schema: {}
+              examples: {}
 components:
   schemas: {}

@@ -1,5 +1,6 @@
 title: Permissions
 type: object
+description: Права пользователей
 properties:
   bFullDataAccess:
     type: boolean
@@ -27,13 +28,15 @@ properties:
     description: Доступ к уведомлениям по изменениям (в рамках полномочий)
   bPlanApproveAndSubmit:
     type: boolean
-    description: 'Approve & Submit плана'
+    description: Approve & Submit плана
   bViewPlanStatus:
     type: boolean
     description: Просмотр статуса изменения ресурсного плана
   bPlanApprove:
     type: boolean
     description: Approve плана
+  bExportManageParticipants:
+    type: boolean
 required:
   - bFullDataAccess
   - bAdministration
@@ -46,4 +49,4 @@ required:
   - bPlanApproveAndSubmit
   - bViewPlanStatus
   - bPlanApprove
-description: Права пользователей
+  - bExportManageParticipants
