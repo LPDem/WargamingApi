@@ -1022,6 +1022,8 @@ components:
           type: array
           items:
             type: string
+        bOfferAccepted:
+          type: boolean
     ChangesSalaryIncreasesDescription:
       title: ChangesSalaryIncreasesDescription
       type: object

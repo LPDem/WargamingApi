@@ -99,6 +99,10 @@ properties:
     $ref: ./Relocation.yaml
   sOverlapPosition:
     type: string
+  bOfferAccepted:
+    type: boolean
+  sOfferDetails:
+    type: string
 required:
   - iId
   - iReportingFunctionId
@@ -119,3 +123,4 @@ required:
   - bShowActions
   - iChangeCount
   - aChanges
+  - bOfferAccepted

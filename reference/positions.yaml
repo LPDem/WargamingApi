@@ -130,6 +130,10 @@ paths:
             type: array
           in: query
           name: aVacanciesUpdates
+        - schema:
+            type: boolean
+          in: query
+          name: bOfferAccepted
       responses:
         '200':
           description: OK
@@ -321,7 +325,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ../models/Future-replacement.yaml
+              $ref: ../models/Add-Future-Replacement.yaml
         description: ''
     parameters:
       - schema:

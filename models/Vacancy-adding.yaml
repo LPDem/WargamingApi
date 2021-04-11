@@ -39,6 +39,10 @@ properties:
     $ref: ./Org-structure-adding.yaml
   sOverlapPosition:
     type: string
+  bOfferAccepted:
+    type: boolean
+  sOfferDetails:
+    type: string
 required:
   - sName
   - sStartDate
@@ -49,3 +53,4 @@ required:
   - oJob
   - sStreamLevelId
   - oOrgStructure
+  - bOfferAccepted

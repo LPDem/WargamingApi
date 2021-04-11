@@ -1,0 +1,17 @@
+title: Add-Future-replacement
+type: object
+properties:
+  sEffectiveDate:
+    type: string
+  sComment:
+    type: string
+  bRecruitmentNeeded:
+    type: string
+  bOfferAccepted:
+    type: boolean
+  sOfferDetails:
+    type: string
+required:
+  - sEffectiveDate
+  - bRecruitmentNeeded
+  - bOfferAccepted
