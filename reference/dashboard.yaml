@@ -31,5 +31,115 @@ paths:
                   - sMessageHtml
       operationId: get-getDashboard
     parameters: []
+  '/dashboard/self-progress/{iReportingFunctionId}':
+    get:
+      summary: Dashboard Self Progress
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DashboardSelfProgressModel'
+      operationId: get-dashboard-self-progress
+    parameters:
+      - schema:
+          type: number
+        name: iReportingFunctionId
+        in: path
+        required: true
 components:
-  schemas: {}
+  schemas:
+    DashboardSelfProgressModel:
+      title: DashboardSelfProgressModel
+      type: object
+      properties:
+        aItems:
+          type: array
+          items:
+            type: object
+            properties:
+              iDepartmentId:
+                type: number
+              sDepartment:
+                type: string
+              aValues:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    sStatus:
+                      type: string
+                      enum:
+                        - In progress
+                        - On review
+                        - Reviewed
+                        - Approved
+                    iValue:
+                      type: number
+                    iPercent:
+                      type: number
+                  required:
+                    - sStatus
+                    - iValue
+                    - iPercent
+              sDueDate:
+                type: string
+              aDetails:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    sFromStatus:
+                      type: string
+                      enum:
+                        - In progress
+                        - On review
+                        - Reviewed
+                        - Approved
+                    sToStatus:
+                      type: string
+                      enum:
+                        - In progress
+                        - On review
+                        - Reviewed
+                        - Approved
+                    iMoved:
+                      type: number
+                    iTotal:
+                      type: number
+                    aEmployees:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          sName:
+                            type: string
+                          bIsMe:
+                            type: boolean
+                          sRole:
+                            type: string
+                          iMoved:
+                            type: number
+                          sDueDate:
+                            type: string
+                        required:
+                          - sName
+                          - bIsMe
+                          - sRole
+                          - iMoved
+                          - sDueDate
+                  required:
+                    - sFromStatus
+                    - sToStatus
+                    - iMoved
+                    - iTotal
+                    - aEmployees
+            required:
+              - iDepartmentId
+              - sDepartment
+              - aValues
+              - sDueDate
+      required:
+        - aItems
