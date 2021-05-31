@@ -3,9 +3,9 @@ info:
   title: dashboard
   version: '1.0'
 servers:
-  - url: 'http://localhost:3000'
+  - url: 'http://localhost:3000/dashboard'
 paths:
-  /dashboard:
+  /:
     get:
       summary: Your GET endpoint
       tags: []
@@ -31,7 +31,7 @@ paths:
                   - sMessageHtml
       operationId: get-getDashboard
     parameters: []
-  '/dashboard/self-progress/{iReportingFunctionId}':
+  '/self-progress/{iReportingFunctionId}':
     get:
       summary: Dashboard Self Progress
       tags: []
@@ -46,6 +46,24 @@ paths:
     parameters:
       - schema:
           type: number
+        name: iReportingFunctionId
+        in: path
+        required: true
+  '/summary/{iReportingFunctionId}':
+    get:
+      summary: Dashboard Summary of Changes
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DashboardSummaryModel'
+      operationId: get-summary
+    parameters:
+      - schema:
+          type: string
         name: iReportingFunctionId
         in: path
         required: true
@@ -141,5 +159,27 @@ components:
               - sDepartment
               - aValues
               - sDueDate
+      required:
+        - aItems
+      description: ''
+    DashboardSummaryModel:
+      title: DashboardSummaryModel
+      type: object
+      properties:
+        aItems:
+          type: array
+          items:
+            type: object
+            properties:
+              sTypeOfChange:
+                type: string
+              iPlanned:
+                type: number
+              iApproved:
+                type: number
+              iRejected:
+                type: number
+            required:
+              - sTypeOfChange
       required:
         - aItems
