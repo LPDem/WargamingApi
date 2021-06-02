@@ -67,6 +67,50 @@ paths:
         name: iReportingFunctionId
         in: path
         required: true
+  /timelines:
+    get:
+      summary: Dashboard timelines
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  iProgress:
+                    type: number
+                    description: Общий прогресс в процентах
+                  aCycles:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        sName:
+                          type: string
+                        sStart:
+                          type: string
+                        oPreparation:
+                          $ref: '#/components/schemas/DashboardTimelineCyclePeriodModel'
+                        oPlanning:
+                          $ref: '#/components/schemas/DashboardTimelineCyclePeriodModel'
+                        oProcessing:
+                          $ref: '#/components/schemas/DashboardTimelineCyclePeriodModel'
+                        bStarted:
+                          type: boolean
+                          description: Цикл начался
+                      required:
+                        - sName
+                        - sStart
+                        - oPreparation
+                        - oPlanning
+                        - oProcessing
+                        - bStarted
+                required:
+                  - iProgress
+                  - aCycles
+      operationId: get-timelines
 components:
   schemas:
     DashboardSelfProgressModel:
@@ -183,3 +227,25 @@ components:
               - sTypeOfChange
       required:
         - aItems
+    DashboardTimelineCyclePeriodModel:
+      title: DashboardTimelineCyclePeriodModel
+      type: object
+      description: ''
+      properties:
+        sStartDate:
+          type: string
+          format: date
+          description: Дата начала в формате YYYY-MM-DD
+        sEndDate:
+          type: string
+          format: date
+          description: Дата окончания в формате YYYY-MM-DD
+        bCurrent:
+          type: boolean
+          description: Период текущий (сейчас выполняется)
+        bCompleted:
+          type: boolean
+          description: Период завершён
+      required:
+        - bCurrent
+        - bCompleted
