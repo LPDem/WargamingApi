@@ -22,6 +22,22 @@ paths:
       tags:
         - masterData
     parameters: []
+  /importCodesMapping:
+    post:
+      summary: importCodesMapping
+      operationId: masterData-importCodesMapping
+      responses:
+        '200':
+          description: OK
+      description: Загрузка мастер-данных codes mapping
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImportMasterDataRequestDto'
+      tags:
+        - masterData
+    parameters: []
   /getRoles:
     get:
       summary: getRoles
@@ -41,6 +57,26 @@ paths:
                   - oData
       operationId: masterData-getRoles
       description: Получение мастер-данных ролей и доступа
+    parameters: []
+  /getCodesMapping:
+    get:
+      summary: getCodesMapping
+      tags:
+        - masterData
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  oData:
+                    $ref: '#/components/schemas/DataGridDto'
+                required:
+                  - oData
+      operationId: masterData-getCodesMapping
+      description: Получение мастер-данных codes mapping
     parameters: []
   /importPositions:
     post:
@@ -501,6 +537,13 @@ paths:
       tags: []
       responses: {}
       operationId: get-exportRoles
+  /exportCodesMapping:
+    get:
+      summary: exportCodesMapping
+      tags: []
+      responses: {}
+      operationId: get-exportCodesMapping
+    parameters: []
   /exportOrgStructure:
     get:
       summary: null
