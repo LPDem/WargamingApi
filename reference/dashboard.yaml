@@ -223,8 +223,16 @@ components:
                 type: number
               iRejected:
                 type: number
+              sFilterType:
+                type: string
+                enum:
+                  - newVacancies
+                  - positionUpdates
+                  - salaryChanges
+                  - positionDeactivation
             required:
               - sTypeOfChange
+              - sFilterType
       required:
         - aItems
     DashboardTimelineCyclePeriodModel:
