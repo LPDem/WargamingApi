@@ -935,5 +935,32 @@ paths:
             application/json:
               schema:
                 $ref: ../models/Position-short.yaml
+  /api/positions/show-net-value:
+    post:
+      summary: ''
+      operationId: post-api-positions-show-net-value
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  bShowNetValue:
+                    type: boolean
+                required:
+                  - bShowNetValue
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                iOfficeId:
+                  type: number
+              required:
+                - iOfficeId
+        description: ''
 components:
   schemas: {}
