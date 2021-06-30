@@ -134,6 +134,14 @@ paths:
             type: boolean
           in: query
           name: bOfferAccepted
+        - schema:
+            type: string
+            enum:
+              - All
+              - Uploaded
+              - New
+          in: query
+          name: sUpdateType
       responses:
         '200':
           description: OK
@@ -196,6 +204,8 @@ paths:
                     $ref: ./summary.yaml#/components/schemas/IdStringList
                   aVacanciesPeriods:
                     $ref: ./summary.yaml#/components/schemas/IdStringList
+                  bShowUpdateTypeFilter:
+                    type: boolean
                 required:
                   - aPositions
                   - aManagers
@@ -213,6 +223,7 @@ paths:
                   - aExcludeList
                   - aSalaryUpdatesPeriods
                   - aVacanciesPeriods
+                  - bShowUpdateTypeFilter
     parameters: []
   '/api/positions/{iId}':
     parameters:
@@ -232,7 +243,7 @@ paths:
               schema:
                 $ref: ../models/Position.yaml
       operationId: get-positions-id
-      description: Получения одной позоции
+      description: Получение одной позиции
     put:
       summary: ''
       operationId: put-api-positions-iId

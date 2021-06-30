@@ -103,6 +103,10 @@ properties:
     type: boolean
   sOfferDetails:
     type: string
+  fSalaryNetBudgeted:
+    type: number
+  bShowNetValue:
+    type: boolean
 required:
   - iId
   - iReportingFunctionId
@@ -124,3 +128,4 @@ required:
   - iChangeCount
   - aChanges
   - bOfferAccepted
+  - bShowNetValue

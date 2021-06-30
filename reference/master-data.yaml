@@ -22,6 +22,22 @@ paths:
       tags:
         - masterData
     parameters: []
+  /importCodesMapping:
+    post:
+      summary: importCodesMapping
+      operationId: masterData-importCodesMapping
+      responses:
+        '200':
+          description: OK
+      description: Загрузка мастер-данных codes mapping
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImportMasterDataRequestDto'
+      tags:
+        - masterData
+    parameters: []
   /getRoles:
     get:
       summary: getRoles
@@ -41,6 +57,26 @@ paths:
                   - oData
       operationId: masterData-getRoles
       description: Получение мастер-данных ролей и доступа
+    parameters: []
+  /getCodesMapping:
+    get:
+      summary: getCodesMapping
+      tags:
+        - masterData
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  oData:
+                    $ref: '#/components/schemas/DataGridDto'
+                required:
+                  - oData
+      operationId: masterData-getCodesMapping
+      description: Получение мастер-данных codes mapping
     parameters: []
   /importPositions:
     post:
@@ -432,7 +468,7 @@ paths:
     parameters: []
   /summary-period:
     get:
-      summary:
+      summary: null
       tags: []
       responses:
         '200':
@@ -482,7 +518,7 @@ paths:
               required:
                 - sStartDate
                 - sEndDate
-    parameters: []    
+    parameters: []
   /exportJobs:
     get:
       summary: null
@@ -501,6 +537,13 @@ paths:
       tags: []
       responses: {}
       operationId: get-exportRoles
+  /exportCodesMapping:
+    get:
+      summary: exportCodesMapping
+      tags: []
+      responses: {}
+      operationId: get-exportCodesMapping
+    parameters: []
   /exportOrgStructure:
     get:
       summary: null
@@ -555,6 +598,30 @@ paths:
       tags: []
       responses: {}
       operationId: get-exportProjectedHeadcountAnalysis
+  /getTimelines:
+    get:
+      summary: getTimelines
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TimelinesDto'
+      operationId: get-getTimelines
+  /saveTimelines:
+    post:
+      summary: saveTimelines
+      operationId: post-saveTimelines
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TimelinesDto'
 components:
   schemas:
     DataGridDto:
@@ -606,3 +673,42 @@ components:
       required:
         - sFileContent
       description: Мастер-данные для импорта
+    TimelinesDto:
+      title: TimelinesDto
+      type: object
+      properties:
+        aCycles:
+          type: array
+          items:
+            type: object
+            properties:
+              sName:
+                type: string
+              sStart:
+                type: string
+              oPreparation:
+                $ref: '#/components/schemas/TimelinesCyclePeriodDto'
+              oPlanning:
+                $ref: '#/components/schemas/TimelinesCyclePeriodDto'
+              oProcessing:
+                $ref: '#/components/schemas/TimelinesCyclePeriodDto'
+            required:
+              - sName
+              - sStart
+              - oPreparation
+              - oPlanning
+              - oProcessing
+      required:
+        - aCycles
+    TimelinesCyclePeriodDto:
+      title: TimelinesCyclePeriodDto
+      type: object
+      properties:
+        sStartDate:
+          type: string
+          description: Дата в формате YYYY-MM-DD
+          format: date
+        sEndDate:
+          type: string
+          description: Дата в формате YYYY-MM-DD
+          format: date

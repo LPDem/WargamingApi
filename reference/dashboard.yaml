@@ -3,9 +3,9 @@ info:
   title: dashboard
   version: '1.0'
 servers:
-  - url: 'http://localhost:3000'
+  - url: 'http://localhost:3000/dashboard'
 paths:
-  /dashboard:
+  /:
     get:
       summary: Your GET endpoint
       tags: []
@@ -31,5 +31,229 @@ paths:
                   - sMessageHtml
       operationId: get-getDashboard
     parameters: []
+  '/self-progress/{iReportingFunctionId}':
+    get:
+      summary: Dashboard Self Progress
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DashboardSelfProgressModel'
+      operationId: get-dashboard-self-progress
+    parameters:
+      - schema:
+          type: number
+        name: iReportingFunctionId
+        in: path
+        required: true
+  '/summary/{iReportingFunctionId}':
+    get:
+      summary: Dashboard Summary of Changes
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DashboardSummaryModel'
+      operationId: get-summary
+    parameters:
+      - schema:
+          type: string
+        name: iReportingFunctionId
+        in: path
+        required: true
+  /timelines:
+    get:
+      summary: Dashboard timelines
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  iProgress:
+                    type: number
+                    description: Общий прогресс в процентах
+                  aCycles:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        sName:
+                          type: string
+                        sStart:
+                          type: string
+                        oPreparation:
+                          $ref: '#/components/schemas/DashboardTimelineCyclePeriodModel'
+                        oPlanning:
+                          $ref: '#/components/schemas/DashboardTimelineCyclePeriodModel'
+                        oProcessing:
+                          $ref: '#/components/schemas/DashboardTimelineCyclePeriodModel'
+                        bStarted:
+                          type: boolean
+                          description: Цикл начался
+                      required:
+                        - sName
+                        - sStart
+                        - oPreparation
+                        - oPlanning
+                        - oProcessing
+                        - bStarted
+                required:
+                  - iProgress
+                  - aCycles
+      operationId: get-timelines
 components:
-  schemas: {}
+  schemas:
+    DashboardSelfProgressModel:
+      title: DashboardSelfProgressModel
+      type: object
+      properties:
+        aItems:
+          type: array
+          items:
+            type: object
+            properties:
+              iDepartmentId:
+                type: number
+              sDepartment:
+                type: string
+              aValues:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    sStatus:
+                      type: string
+                      enum:
+                        - In progress
+                        - On review
+                        - Reviewed
+                        - Approved
+                    iValue:
+                      type: number
+                    iPercent:
+                      type: number
+                  required:
+                    - sStatus
+                    - iValue
+                    - iPercent
+              sDueDate:
+                type: string
+              aDetails:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    sFromStatus:
+                      type: string
+                      enum:
+                        - In progress
+                        - On review
+                        - Reviewed
+                        - Approved
+                    sToStatus:
+                      type: string
+                      enum:
+                        - In progress
+                        - On review
+                        - Reviewed
+                        - Approved
+                    iMoved:
+                      type: number
+                    iTotal:
+                      type: number
+                    aEmployees:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          sName:
+                            type: string
+                          bIsMe:
+                            type: boolean
+                          sRole:
+                            type: string
+                          iMoved:
+                            type: number
+                          sDueDate:
+                            type: string
+                        required:
+                          - sName
+                          - bIsMe
+                          - sRole
+                          - iMoved
+                          - sDueDate
+                  required:
+                    - sFromStatus
+                    - sToStatus
+                    - iMoved
+                    - iTotal
+                    - aEmployees
+            required:
+              - iDepartmentId
+              - sDepartment
+              - aValues
+              - sDueDate
+      required:
+        - aItems
+      description: ''
+    DashboardSummaryModel:
+      title: DashboardSummaryModel
+      type: object
+      properties:
+        aItems:
+          type: array
+          items:
+            type: object
+            properties:
+              sTypeOfChange:
+                type: string
+              iPlanned:
+                type: number
+              iApproved:
+                type: number
+              iRejected:
+                type: number
+              sFilterType:
+                type: string
+                enum:
+                  - newVacancies
+                  - positionUpdates
+                  - salaryChanges
+                  - positionDeactivation
+            required:
+              - sTypeOfChange
+              - sFilterType
+      required:
+        - aItems
+    DashboardTimelineCyclePeriodModel:
+      title: DashboardTimelineCyclePeriodModel
+      type: object
+      description: ''
+      properties:
+        sStartDate:
+          type: string
+          format: date
+          description: Дата начала в формате YYYY-MM-DD
+        sEndDate:
+          type: string
+          format: date
+          description: Дата окончания в формате YYYY-MM-DD
+        bCurrent:
+          type: boolean
+          description: Период текущий (сейчас выполняется)
+        bCompleted:
+          type: boolean
+          description: Период завершён
+      required:
+        - bCurrent
+        - bCompleted
