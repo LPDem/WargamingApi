@@ -125,9 +125,9 @@ paths:
                                 description: Уведомления менялись?
                               aExcludedEmployees:
                                 type: array
+                                description: Исключённые сотрудники
                                 items:
                                   $ref: ../models/Employee-short.yaml
-                                description: Исключённые сотрудники
                               bExcludedEmployeesChanged:
                                 type: boolean
                                 description: Исключённые сотрудники менялись?
@@ -135,6 +135,7 @@ paths:
                               - iParticipantId
                               - sName
                               - bHasAccess
+                              - bHasAccessChanged
                               - sPermissions
                               - bPermissionsChanged
                               - sDueDate
@@ -142,14 +143,16 @@ paths:
                               - sNotification
                               - bNotificationChanged
                               - aExcludedEmployees
-                              - bHasAccessChanged
                               - bExcludedEmployeesChanged
+                        bLocked:
+                          type: boolean
                       required:
                         - iParticipantGroupId
                         - sName
                         - bHasAccess
                         - bHasAccessChanged
                         - aParticipants
+                        - bLocked
                 required:
                   - iId
                   - sName
