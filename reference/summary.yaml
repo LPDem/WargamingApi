@@ -5,33 +5,6 @@ info:
 servers:
   - url: 'http://localhost:3000'
 paths:
-  /api/summary/short-statistics:
-    post:
-      summary: ''
-      operationId: post-api-summary-short-statistics
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  oFte:
-                    $ref: '#/components/schemas/short-statistic'
-                  oVacancies:
-                    $ref: '#/components/schemas/short-statistic'
-                  oCost:
-                    $ref: '#/components/schemas/short-statistic'
-                required:
-                  - oFte
-                  - oVacancies
-                  - oCost
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/short-statistic-filter'
   /api/summary/headcount:
     post:
       summary: ''
@@ -157,6 +130,8 @@ paths:
                       - oFutureReplacements
                       - oLongLeave
                       - oSalary
+                      - oFYSalaryBudgeted
+                      - oAnnualizedFYSalaryBudgeted
                     properties:
                       oTotalHeadcount:
                         $ref: '#/components/schemas/short-statistic'
@@ -170,6 +145,10 @@ paths:
                         $ref: '#/components/schemas/short-statistic'
                       oSalary:
                         $ref: '#/components/schemas/short-statistic'
+                      oFYSalaryBudgeted:
+                        $ref: '#/components/schemas/short-statistic'
+                      oAnnualizedFYSalaryBudgeted:
+                        $ref: '#/components/schemas/short-statistic'
                   oHeadcount:
                     $ref: '#/components/schemas/Headcount'
                   oHeadcountDynamic:
@@ -177,7 +156,7 @@ paths:
                   oHeadcountDescription:
                     $ref: '#/components/schemas/HeadcountDescription'
                   oHeadcountTable:
-                    $ref: '#/components/schemas/DataTableDto'
+                    $ref: '#/components/schemas/PeriodDataTableDto'
                   oProjectedHeadcountAnalysis:
                     $ref: '#/components/schemas/ProjectedHeadcountAnalysis'
                   oProjectedHeadcountDescription:
@@ -300,7 +279,7 @@ paths:
                         items:
                           type: number
                   oPlanningChangesImpactOnSalaryBudget:
-                    $ref: '#/components/schemas/DataTableDto'
+                    $ref: '#/components/schemas/PeriodDataTableDto'
                   oChangesSalaryIncreases:
                     $ref: '#/components/schemas/ChangesSalaryIncreases'
                   oChangesSalaryIncreasesDescription:
@@ -437,6 +416,38 @@ paths:
               required:
                 - iCurrencyId
                 - oPositionsFilter
+  /api/summary/headcount-table:
+    post:
+      summary: ''
+      operationId: post-api-summary-headcount-table
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PeriodDataTableDto'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/summary-filter'  
+  /api/summary/planning-changes-impact-on-salary-budget-table:
+    post:
+      summary: ''
+      operationId: post-api-summary-planning-changes-impact-on-salary-budget-table
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PeriodDataTableDto'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/summary-filter'                            
 components:
   schemas:
     summary-filter:
@@ -1172,3 +1183,13 @@ components:
             $ref: '#/components/schemas/office-coordinates'
       required:
         - aOffices
+    PeriodDataTableDto:
+      title: PeriodDataTableDto
+      type: object
+      properties:
+        oTable:
+          $ref: '#/components/schemas/DataTableDto'
+        aPeriods:
+          type: array
+          items:
+            $ref: '#/components/schemas/period'
