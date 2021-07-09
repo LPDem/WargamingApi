@@ -42,26 +42,12 @@ paths:
             type: string
           in: query
           name: sText
-          description: 'Пользовательский ввод. Искоть совпадение по полям sCode, sName, sAssignee'
+          description: 'Поиск по полям sCode, sName, sAssignee'
         - schema:
             type: array
           in: query
           name: sSort
-          description: |-
-            поля по котрым нужно сортировать.
-            Все возможные значения:
-            [ sName, 
-              sCareerLevel, 
-              sStartDateASC,
-              sStartDateDESC,
-              sCurrentStatus,
-              office,
-              sFullOrgPath,
-              sEmployeeClass,
-              sAssignee,
-              salaryASC,
-              salaryDESC
-            ]
+          description: Поле для сортировки
         - schema:
             type: number
           in: query
@@ -206,6 +192,35 @@ paths:
                     $ref: ./summary.yaml#/components/schemas/IdStringList
                   bShowUpdateTypeFilter:
                     type: boolean
+                  oSorting:
+                    type: object
+                    required:
+                      - aPosition
+                      - aCurrentStatus
+                      - aOrgInfo
+                      - aEmployee
+                      - aSalary
+                    properties:
+                      aPosition:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/PositionListFieldSorting'
+                      aCurrentStatus:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/PositionListFieldSorting'
+                      aOrgInfo:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/PositionListFieldSorting'
+                      aEmployee:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/PositionListFieldSorting'
+                      aSalary:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/PositionListFieldSorting'
                 required:
                   - aPositions
                   - aManagers
@@ -224,6 +239,7 @@ paths:
                   - aSalaryUpdatesPeriods
                   - aVacanciesPeriods
                   - bShowUpdateTypeFilter
+                  - oSorting
     parameters: []
   '/api/positions/{iId}':
     parameters:
@@ -974,4 +990,18 @@ paths:
                 - iOfficeId
         description: ''
 components:
-  schemas: {}
+  schemas:
+    PositionListFieldSorting:
+      title: PositionListSorting
+      type: object
+      properties:
+        sCode:
+          type: string
+        sTitle:
+          type: string
+        bDescending:
+          type: boolean
+      required:
+        - sCode
+        - sTitle
+        - bDescending

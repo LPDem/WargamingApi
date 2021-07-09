@@ -1001,8 +1001,6 @@ components:
             type: number
         sText:
           type: string
-        sSort:
-          type: string
         bOnlyInactive:
           type: boolean
         bOnlySalaryUpdates:
