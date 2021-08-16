@@ -65,12 +65,20 @@ paths:
                       - all plans
                   aCustomFilters:
                     type: string
+                  bCrpDefault:
+                    type: boolean
+                    description: Открывать режим CRP по умолчанию при входе
+                  bCrpAvailable:
+                    type: boolean
+                    description: Доступен ли режим CRP сейчас текущему пользователю
                 required:
                   - aFunctions
                   - bShowMasterDataMenu
                   - bShowManageParticipantsMenu
                   - sFirstPage
                   - aCustomFilters
+                  - bCrpDefault
+                  - bCrpAvailable
       operationId: common-getMenu
       description: Получение содержимого меню для левой панели
     parameters: []
