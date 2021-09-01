@@ -84,7 +84,7 @@ paths:
                         description: Текст причины неуспешной авторизации
                     required:
                       - sError
-    parameters: []    
+    parameters: []
   /refreshToken:
     post:
       summary: refreshToken
@@ -185,6 +185,37 @@ paths:
                         description: Текст причины неуспешной авторизации
                     required:
                       - sError
+  /get-themes:
+    get:
+      summary: Получение тем пользователя
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserThemes'
+      operationId: get-themes
+      description: ''
+  /update-themes:
+    parameters: []
+    post:
+      summary: Обновление тем пользователя
+      operationId: update-themes
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserThemes'
+      description: ''
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserThemes'
 components:
   schemas:
     PermissionsDto:
@@ -218,7 +249,7 @@ components:
           description: Доступ к уведомлениям по изменениям (в рамках полномочий)
         bPlanApproveAndSubmit:
           type: boolean
-          description: 'Approve & Submit плана'
+          description: Approve & Submit плана
         bViewPlanStatus:
           type: boolean
           description: Просмотр статуса изменения ресурсного плана
@@ -237,3 +268,16 @@ components:
         - bPlanApproveAndSubmit
         - bViewPlanStatus
         - bPlanApprove
+    UserThemes:
+      title: UserThemes
+      type: object
+      properties:
+        bRpDark:
+          type: boolean
+          description: Тема RP тёмная?
+        bCrpDark:
+          type: boolean
+          description: Тема CRP тёмная?
+      required:
+        - bRpDark
+        - bCrpDark
