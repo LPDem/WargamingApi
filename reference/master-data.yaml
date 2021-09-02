@@ -326,6 +326,22 @@ paths:
       tags:
         - masterData
     parameters: []
+  /importAccessSettings:
+    post:
+      summary: importAccessSettings
+      operationId: masterData-importAccessSettings
+      responses:
+        '200':
+          description: OK
+      description: Загрузка мастер-данных настроек доступа
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImportMasterDataRequestDto'
+      tags:
+        - masterData
+    parameters: []
   /importProjectedHeadcountAnalysis:
     post:
       summary: importProjectedHeadcountAnalysis
@@ -401,6 +417,26 @@ paths:
                   - oData
       operationId: masterData-getUsers
       description: Получение мастер-данных пользователей
+    parameters: []
+  /getAccessSettings:
+    get:
+      summary: getAccessSettings
+      tags:
+        - masterData
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  oData:
+                    $ref: '#/components/schemas/DataGridDto'
+                required:
+                  - oData
+      operationId: masterData-getAccessSettings
+      description: Получение мастер-данных настроек доступа
     parameters: []
   /clearData:
     post:
@@ -580,6 +616,13 @@ paths:
       tags: []
       responses: {}
       operationId: get-exportUsers
+  /exportAccessSettings:
+    get:
+      summary: null
+      tags: []
+      responses: {}
+      operationId: get-exportAccessSettings
+      description: Экспорт мастер-данных настроек доступа
   /exportEmployees:
     get:
       summary: null
