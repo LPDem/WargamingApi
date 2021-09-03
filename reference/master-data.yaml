@@ -665,6 +665,26 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/TimelinesDto'
+  /getLastUpdateDate:
+    get:
+      summary: ''
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  sLastUpdateDate:
+                    type: string
+                    format: YYYY-MM-DD
+                    description: Дата в формате YYYY-MM-DD
+                required:
+                  - sLastUpdateDate
+      operationId: getLastUpdateDate
+      description: Получение даты последнего обновления данных (дата загрузки файла «Master data positions»)
 components:
   schemas:
     DataGridDto:
