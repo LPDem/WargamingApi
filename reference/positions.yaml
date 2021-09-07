@@ -67,7 +67,6 @@ paths:
         - schema:
             type: string
             enum:
-              - All
               - WithChanges
               - WithoutChanges
           in: query
@@ -123,11 +122,17 @@ paths:
         - schema:
             type: string
             enum:
-              - All
               - Uploaded
               - New
           in: query
           name: sUpdateType
+        - schema:
+            type: string
+            enum:
+              - Planned
+              - Unplanned
+          in: query
+          name: sPlanningStatus
       responses:
         '200':
           description: OK

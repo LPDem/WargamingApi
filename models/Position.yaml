@@ -74,6 +74,11 @@ properties:
       - onEdit
       - onReview
       - approved
+  sPlanningStatus:
+    type: string
+    enum:
+      - planned
+      - unplanned
   bShowActions:
     type: boolean
   iChangeCount:
@@ -124,6 +129,7 @@ required:
   - oOrgStructure
   - aSalaryChanges
   - sProgressStatus
+  - sPlanningStatus
   - bShowActions
   - iChangeCount
   - aChanges
