@@ -38,6 +38,22 @@ paths:
       tags:
         - masterData
     parameters: []
+  /importApprovalMatrix:
+    post:
+      summary: importApprovalMatrix
+      operationId: masterData-importApprovalMatrix
+      responses:
+        '200':
+          description: OK
+      description: Загрузка мастер-данных approval matrix
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImportMasterDataRequestDto'
+      tags:
+        - masterData
+    parameters: []
   /getRoles:
     get:
       summary: getRoles
@@ -77,6 +93,26 @@ paths:
                   - oData
       operationId: masterData-getCodesMapping
       description: Получение мастер-данных codes mapping
+    parameters: []
+  /getApprovalMatrix:
+    get:
+      summary: getApprovalMatrix
+      tags:
+        - masterData
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  oData:
+                    $ref: '#/components/schemas/DataGridDto'
+                required:
+                  - oData
+      operationId: masterData-getApprovalMatrix
+      description: Получение мастер-данных approval matrix
     parameters: []
   /importPositions:
     post:
@@ -579,6 +615,13 @@ paths:
       tags: []
       responses: {}
       operationId: get-exportCodesMapping
+    parameters: []
+  /exportApprovalMatrix:
+    get:
+      summary: exportApprovalMatrix
+      tags: []
+      responses: {}
+      operationId: get-exportApprovalMatrix
     parameters: []
   /exportOrgStructure:
     get:
