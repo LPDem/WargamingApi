@@ -98,6 +98,16 @@ properties:
       - approved
       - declined
     description: Статус согласования новой вакансии
+  sGreenhouseStatus:
+    type: string
+    enum:
+      - Open
+      - Hired
+      - Canceled
+  sGreenhouseProfile:
+    type: string
+  sMyTeamProfile:
+    type: string
 required:
   - iId
   - iReportingFunctionId
