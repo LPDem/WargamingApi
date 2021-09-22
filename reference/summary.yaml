@@ -431,7 +431,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/summary-filter'  
+              $ref: '#/components/schemas/summary-filter'
   /api/summary/planning-changes-impact-on-salary-budget-table:
     post:
       summary: ''
@@ -447,7 +447,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/summary-filter'                            
+              $ref: '#/components/schemas/summary-filter'
 components:
   schemas:
     summary-filter:
@@ -1039,6 +1039,15 @@ components:
             - All
             - Uploaded
             - New
+        aConfirmationStatuses:
+          type: array
+          items:
+            type: string
+            enum:
+              - NoStatus
+              - Approved
+              - Declined
+              - Pending
     ChangesSalaryIncreasesDescription:
       title: ChangesSalaryIncreasesDescription
       type: object

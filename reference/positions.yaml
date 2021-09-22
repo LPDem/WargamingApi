@@ -133,6 +133,15 @@ paths:
               - Unplanned
           in: query
           name: sPlanningStatus
+        - schema:
+            type: array
+            enum:
+              - NoStatus
+              - Pending
+              - Approved
+              - Declined
+          in: query
+          name: aConfirmationStatuses
       responses:
         '200':
           description: OK
