@@ -994,6 +994,65 @@ paths:
               required:
                 - iOfficeId
         description: ''
+  /api/positions/approvals:
+    post:
+      summary: ''
+      operationId: post-api-positions-approvals
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Approval'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: number
+  '/api/positions/approve-approval/{positionId}':
+    post:
+      summary: ''
+      operationId: post-api-positions-approve-approval
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Approval'
+        '':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Approval'
+    parameters:
+      - schema:
+          type: number
+        name: positionId
+        in: path
+        required: true
+  '/api/positions/decline-approval/{positionId}':
+    parameters:
+      - schema:
+          type: number
+        name: positionId
+        in: path
+        required: true
+    post:
+      summary: ''
+      operationId: post-api-positions-decline-approval-positionId
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Approval'
 components:
   schemas:
     PositionListFieldSorting:
@@ -1010,3 +1069,32 @@ components:
         - sCode
         - sTitle
         - bDescending
+    Approval:
+      title: Approval
+      type: object
+      properties:
+        iPositionId:
+          type: number
+        sRequestType:
+          type: string
+        sEmployee:
+          type: string
+        sCreator:
+          type: string
+        sApproval:
+          type: string
+        sStatus:
+          type: string
+          enum:
+            - Approve
+            - Decline
+            - PendingApproval
+        bShowStatusButton:
+          type: boolean
+      required:
+        - iPositionId
+        - sRequestType
+        - sCreator
+        - sApproval
+        - sStatus
+        - bShowStatusButton
