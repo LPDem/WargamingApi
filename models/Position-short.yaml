@@ -108,6 +108,13 @@ properties:
     type: string
   sMyTeamProfile:
     type: string
+  oRelocation:
+    type: object
+    properties:
+      sOffice:
+        type: string
+    required:
+      - sOffice
 required:
   - iId
   - iReportingFunctionId

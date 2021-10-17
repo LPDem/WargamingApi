@@ -1,12 +1,21 @@
 title: Relocation
 type: object
 properties:
+  sStage:
+    type: string
+    enum:
+      - Preliminary
+      - Defined
   sStartDate:
     type: string
   sOldOffice:
     type: string
+  sNewOffice:
+    type: string
   sComment:
     type: string
 required:
+  - sStage
   - sStartDate
   - sOldOffice
+  - sNewOffice

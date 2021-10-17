@@ -132,6 +132,7 @@ paths:
                       - oSalary
                       - oFYSalaryBudgeted
                       - oAnnualizedFYSalaryBudgeted
+                      - oRelocations
                     properties:
                       oTotalHeadcount:
                         $ref: '#/components/schemas/short-statistic'
@@ -148,6 +149,8 @@ paths:
                       oFYSalaryBudgeted:
                         $ref: '#/components/schemas/short-statistic'
                       oAnnualizedFYSalaryBudgeted:
+                        $ref: '#/components/schemas/short-statistic'
+                      oRelocations:
                         $ref: '#/components/schemas/short-statistic'
                   oHeadcount:
                     $ref: '#/components/schemas/Headcount'
@@ -292,6 +295,10 @@ paths:
                     $ref: '#/components/schemas/AverageSalaryBudget'
                   oAverageSalaryBudgetDescription:
                     $ref: '#/components/schemas/AverageSalaryBudgetDescription'
+                  oRelocations:
+                    $ref: '#/components/schemas/Relocations'
+                  oRelocationsDescription:
+                    $ref: '#/components/schemas/RelocationsDescription'
                 required:
                   - sTitle
                   - oShortStatistic
@@ -314,6 +321,8 @@ paths:
                   - oCareerLevels
                   - oPlannedVacanciesMajorityDescription
                   - oFilterReferences
+                  - oRelocations
+                  - oRelocationsDescription
       requestBody:
         content:
           application/json:
@@ -443,6 +452,22 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PeriodDataTableDto'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/summary-filter'
+  /api/summary/relocations:
+    post:
+      summary: ''
+      operationId: post-api-summary-relocations
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Relocations'
       requestBody:
         content:
           application/json:
@@ -1048,6 +1073,14 @@ components:
               - Approved
               - Declined
               - Pending
+        aRelocationByOffice:
+          type: array
+          items:
+            type: number
+        aRelocationByDate:
+          type: array
+          items:
+            type: string
     ChangesSalaryIncreasesDescription:
       title: ChangesSalaryIncreasesDescription
       type: object
@@ -1200,3 +1233,29 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/period'
+    Relocations:
+      title: Relocations
+      type: object
+      properties:
+        aChartData:
+          type: array
+          items:
+            $ref: '#/components/schemas/monthly-change-dynamic'
+        aPeriods:
+          type: array
+          items:
+            $ref: '#/components/schemas/period'
+    RelocationsDescription:
+      title: RelocationsDescription
+      type: object
+      properties:
+        iTotal:
+          type: number
+        iInitial:
+          type: number
+        iDefined:
+          type: number
+      required:
+        - iTotal
+        - iInitial
+        - iDefined

@@ -1,6 +1,11 @@
 title: AddRelocation
 type: object
 properties:
+  sStage:
+    type: string
+    enum:
+      - Preliminary
+      - Defined
   sStartDate:
     type: string
   iOfficeId:
@@ -8,5 +13,6 @@ properties:
   sComment:
     type: string
 required:
+  - sStage
   - sStartDate
   - iOfficeId
