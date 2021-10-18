@@ -150,6 +150,13 @@ paths:
             type: string
           in: query
           name: aRelocationByDate
+        - schema:
+            type: string
+            enum:
+              - Visible
+              - Hidden
+          in: query
+          name: sVisibility
       responses:
         '200':
           description: OK
@@ -251,6 +258,8 @@ paths:
                     type: array
                     items:
                       $ref: ./summary.yaml#/components/schemas/IdStringList
+                  bShowVisibilityFilter:
+                    type: boolean
                 required:
                   - aPositions
                   - aManagers
@@ -272,6 +281,7 @@ paths:
                   - oSorting
                   - aRelocationByOffice
                   - aRelocationByDate
+                  - bShowVisibilityFilter
     parameters: []
   '/api/positions/{iId}':
     parameters:
@@ -1080,6 +1090,34 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Approval'
+  /api/positions/add-inactive:
+    post:
+      summary: ''
+      operationId: post-api-positions-add-inactive
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  bShowVisibility:
+                    type: boolean
+                required:
+                  - bShowVisibility
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                aPositionIds:
+                  type: array
+                  items:
+                    type: string
+              required:
+                - aPositionIds
 components:
   schemas:
     PositionListFieldSorting:

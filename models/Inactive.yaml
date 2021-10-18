@@ -6,5 +6,10 @@ properties:
     type: string
   sComment:
     type: string
+  sVisibility:
+    type: string
+    enum:
+      - Visible
+      - Hidden
 required:
   - sEffectiveDate

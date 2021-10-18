@@ -1081,6 +1081,11 @@ components:
           type: array
           items:
             type: string
+        sVisibility:
+          type: string
+          enum:
+            - Visible
+            - Hidden
     ChangesSalaryIncreasesDescription:
       title: ChangesSalaryIncreasesDescription
       type: object
