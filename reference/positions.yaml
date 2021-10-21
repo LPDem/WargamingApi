@@ -1051,8 +1051,11 @@ paths:
                 properties:
                   bShowNetValue:
                     type: boolean
+                  bAutoCalcNetValue:
+                    type: boolean
                 required:
                   - bShowNetValue
+                  - bAutoCalcNetValue
       requestBody:
         content:
           application/json:
