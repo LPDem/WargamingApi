@@ -1086,6 +1086,10 @@ components:
           enum:
             - Visible
             - Hidden
+        aProducts:
+          type: array
+          items:
+            type: number
     ChangesSalaryIncreasesDescription:
       title: ChangesSalaryIncreasesDescription
       type: object
