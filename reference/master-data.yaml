@@ -378,6 +378,38 @@ paths:
       tags:
         - masterData
     parameters: []
+  /importMyTeams:
+    post:
+      summary: importMyTeam
+      operationId: masterData-importMyTeam
+      responses:
+        '200':
+          description: OK
+      description: Загрузка мастер-данных MyTeam
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImportMasterDataRequestDto'
+      tags:
+        - masterData
+    parameters: []
+  /importAccessExceptions:
+    post:
+      summary: importAccessExceptions
+      operationId: masterData-importAccessExceptions
+      responses:
+        '200':
+          description: OK
+      description: Загрузка мастер-данных исключений доступа
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImportMasterDataRequestDto'
+      tags:
+        - masterData
+    parameters: []
   /importProjectedHeadcountAnalysis:
     post:
       summary: importProjectedHeadcountAnalysis
@@ -474,6 +506,46 @@ paths:
       operationId: masterData-getAccessSettings
       description: Получение мастер-данных настроек доступа
     parameters: []
+  /getMyTeam:
+    get:
+      summary: getMyTeam
+      tags:
+        - masterData
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  oData:
+                    $ref: '#/components/schemas/DataGridDto'
+                required:
+                  - oData
+      operationId: masterData-getMyTeam
+      description: Получение мастер-данных MyTeam
+    parameters: []
+  /getAccessExceptions:
+    get:
+      summary: getAccessExceptions
+      tags:
+        - masterData
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  oData:
+                    $ref: '#/components/schemas/DataGridDto'
+                required:
+                  - oData
+      operationId: masterData-getAccessExceptions
+      description: Получение мастер-данных исключений доступа
+    parameters: []
   /clearData:
     post:
       summary: clearData
@@ -487,7 +559,7 @@ paths:
     parameters: []
   /period:
     get:
-      summary: Your GET endpoint
+      summary: getPeriod
       tags: []
       responses:
         '200':
@@ -666,6 +738,20 @@ paths:
       responses: {}
       operationId: get-exportAccessSettings
       description: Экспорт мастер-данных настроек доступа
+  /exportMyTeam:
+    get:
+      summary: null
+      tags: []
+      responses: {}
+      operationId: get-exportMyTeam
+      description: Экспорт мастер-данных MyTeam
+  /exportAccessExceptions:
+    get:
+      summary: null
+      tags: []
+      responses: {}
+      operationId: get-exportAccessExceptions
+      description: Экспорт мастер-данных исключений доступа
   /exportEmployees:
     get:
       summary: null
