@@ -112,6 +112,8 @@ properties:
     type: number
   bShowNetValue:
     type: boolean
+  iProductId:
+    type: number
 required:
   - iId
   - iReportingFunctionId

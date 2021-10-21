@@ -410,6 +410,22 @@ paths:
       tags:
         - masterData
     parameters: []
+  /importProducts:
+    post:
+      summary: importProducts
+      operationId: masterData-importProducts
+      responses:
+        '200':
+          description: OK
+      description: Загрузка мастер-данных продуктов
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImportMasterDataRequestDto'
+      tags:
+        - masterData
+    parameters: []
   /importProjectedHeadcountAnalysis:
     post:
       summary: importProjectedHeadcountAnalysis
@@ -545,6 +561,26 @@ paths:
                   - oData
       operationId: masterData-getAccessExceptions
       description: Получение мастер-данных исключений доступа
+    parameters: []
+  /getProducts:
+    get:
+      summary: getProducts
+      tags:
+        - masterData
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  oData:
+                    $ref: '#/components/schemas/DataGridDto'
+                required:
+                  - oData
+      operationId: masterData-getProducts
+      description: Получение мастер-данных продуктов
     parameters: []
   /clearData:
     post:
@@ -752,6 +788,13 @@ paths:
       responses: {}
       operationId: get-exportAccessExceptions
       description: Экспорт мастер-данных исключений доступа
+  /exportProducts:
+    get:
+      summary: null
+      tags: []
+      responses: {}
+      operationId: get-exportProducts
+      description: Экспорт мастер-данных продуктов
   /exportEmployees:
     get:
       summary: null

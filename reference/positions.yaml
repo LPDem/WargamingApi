@@ -8,7 +8,7 @@ servers:
 paths:
   /api/positions:
     get:
-      summary: Получение списка должностей
+      summary: Получение списка позиций
       tags: []
       operationId: get-positions
       description: Возвращает список должностей по переданным параметрам
@@ -157,6 +157,10 @@ paths:
               - Hidden
           in: query
           name: sVisibility
+        - schema:
+            type: array
+          in: query
+          name: aProducts
       responses:
         '200':
           description: OK
@@ -260,6 +264,10 @@ paths:
                       $ref: ./summary.yaml#/components/schemas/IdStringList
                   bShowVisibilityFilter:
                     type: boolean
+                  aProducts:
+                    type: array
+                    items:
+                      $ref: ./summary.yaml#/components/schemas/IdNumberList
                 required:
                   - aPositions
                   - aManagers
@@ -282,6 +290,7 @@ paths:
                   - aRelocationByOffice
                   - aRelocationByDate
                   - bShowVisibilityFilter
+                  - aProducts
     parameters: []
   '/api/positions/{iId}':
     parameters:
@@ -291,7 +300,7 @@ paths:
         in: path
         required: true
     get:
-      summary: Your GET endpoint
+      summary: Получение полной позиции
       tags: []
       responses:
         '200':
@@ -559,7 +568,7 @@ paths:
                 $ref: ../models/Position-short.yaml
   /api/positions/add:
     get:
-      summary: Your GET endpoint
+      summary: ''
       tags: []
       responses:
         '200':
@@ -593,6 +602,18 @@ paths:
                     type: array
                     items:
                       $ref: ../models/Catalog.yaml
+                  aProducts:
+                    type: array
+                    items:
+                      $ref: ./summary.yaml#/components/schemas/IdNumberList
+                required:
+                  - aVacancyTypes
+                  - aEmployeeClasses
+                  - aJobFamilyGroups
+                  - aCareers
+                  - aChangeReasons
+                  - aOffices
+                  - aProducts
         '':
           content:
             application/json:
@@ -607,7 +628,7 @@ paths:
           name: reportingFunctionId
   /api/positions/update:
     get:
-      summary: Your GET endpoint
+      summary: ''
       tags: []
       responses:
         '200':
@@ -641,6 +662,18 @@ paths:
                     type: array
                     items:
                       $ref: ../models/Catalog.yaml
+                  aProducts:
+                    type: array
+                    items:
+                      $ref: ./summary.yaml#/components/schemas/IdNumberList
+                required:
+                  - aVacancyTypes
+                  - aEmployeeClasses
+                  - aJobFamilyGroups
+                  - aCareers
+                  - aChangeReasons
+                  - aOffices
+                  - aProducts
       operationId: get-api-positions-update
       parameters:
         - schema:

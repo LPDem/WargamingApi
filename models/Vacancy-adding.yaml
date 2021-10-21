@@ -43,6 +43,8 @@ properties:
     type: boolean
   sOfferDetails:
     type: string
+  iProductId:
+    type: number
 required:
   - sName
   - sStartDate
