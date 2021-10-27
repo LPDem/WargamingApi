@@ -602,10 +602,6 @@ paths:
                     type: array
                     items:
                       $ref: ../models/Catalog.yaml
-                  aProducts:
-                    type: array
-                    items:
-                      $ref: ./summary.yaml#/components/schemas/IdNumberList
                 required:
                   - aVacancyTypes
                   - aEmployeeClasses
@@ -613,7 +609,6 @@ paths:
                   - aCareers
                   - aChangeReasons
                   - aOffices
-                  - aProducts
         '':
           content:
             application/json:
@@ -662,10 +657,6 @@ paths:
                     type: array
                     items:
                       $ref: ../models/Catalog.yaml
-                  aProducts:
-                    type: array
-                    items:
-                      $ref: ./summary.yaml#/components/schemas/IdNumberList
                 required:
                   - aVacancyTypes
                   - aEmployeeClasses
@@ -673,7 +664,6 @@ paths:
                   - aCareers
                   - aChangeReasons
                   - aOffices
-                  - aProducts
       operationId: get-api-positions-update
       parameters:
         - schema:

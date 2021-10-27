@@ -1,0 +1,32 @@
+openapi: 3.1.0
+info:
+  title: products
+  version: '1.0'
+servers:
+  - url: 'http://localhost:3000/api/products'
+paths:
+  /SelectProducts:
+    get:
+      summary: Получение продуктов для выбора в позиции
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  aItems:
+                    type: array
+                    items:
+                      $ref: ./summary.yaml#/components/schemas/IdNumberList
+      operationId: get-SelectProducts
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: departmentId
+          required: true
+components:
+  schemas: {}
