@@ -112,8 +112,8 @@ properties:
     type: number
   bShowNetValue:
     type: boolean
-  iProductId:
-    type: number
+  oProduct:
+    $ref: ../reference/summary.yaml#/components/schemas/IdNumberList
   bAutoCalcNetValue:
     type: boolean
 required:
