@@ -299,6 +299,10 @@ paths:
                     $ref: '#/components/schemas/Relocations'
                   oRelocationsDescription:
                     $ref: '#/components/schemas/RelocationsDescription'
+                  aBlocks:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/SummaryBlock'
                 required:
                   - sTitle
                   - oShortStatistic
@@ -323,6 +327,7 @@ paths:
                   - oFilterReferences
                   - oRelocations
                   - oRelocationsDescription
+                  - aBlocks
       requestBody:
         content:
           application/json:
@@ -1268,3 +1273,29 @@ components:
         - iTotal
         - iInitial
         - iDefined
+    SummaryBlock:
+      title: SummaryBlock
+      type: object
+      properties:
+        sBlockName:
+          $ref: ./summary-lego.yaml#/components/schemas/SummaryLegoBlockName
+        bComments:
+          type: boolean
+        aChilds:
+          type: array
+          items:
+            $ref: '#/components/schemas/SummaryChildBlock'
+      required:
+        - sBlockName
+    SummaryChildBlock:
+      title: SummaryChildBlock
+      type: object
+      properties:
+        sBlockName:
+          oneOf:
+            - $ref: ./summary-lego.yaml#/components/schemas/SummaryLegoBlockPlanSummaryChildName
+            - $ref: ./summary-lego.yaml#/components/schemas/SummaryLegoBlockPlanVacanciesChartsName
+        bComments:
+          type: boolean
+      required:
+        - sBlockName

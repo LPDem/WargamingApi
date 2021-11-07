@@ -1,0 +1,264 @@
+openapi: 3.1.0
+info:
+  title: summary-lego
+  version: '1.0'
+servers:
+  - url: 'http://localhost:3000/api/summary-lego'
+paths:
+  /current-template:
+    get:
+      summary: Получение текущего шаблона
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SummaryLegoTemplate'
+      operationId: get-current-template
+    post:
+      summary: Сохранение текущего шаблона
+      operationId: post-current-template
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SummaryLegoTemplate'
+  /templates:
+    parameters: []
+    post:
+      summary: Сохранение шаблона с новым именем
+      operationId: post-templates
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SummaryLegoTemplate'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SummaryLegoTemplate'
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses: {}
+      operationId: get-templates
+  '/templates/{id}':
+    get:
+      summary: Получение шаблона по id
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SummaryLegoTemplate'
+      operationId: get-template-by-id
+    parameters:
+      - schema:
+          type: number
+        name: id
+        in: path
+        required: true
+    delete:
+      summary: Удаление шаблона по id
+      operationId: delete-template-by-id
+      responses:
+        '200':
+          description: OK
+      description: ''
+  /rename-template:
+    post:
+      summary: ''
+      operationId: post-rename-template
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RenameTemplateResponse'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RenameTemplateRequest'
+        description: ''
+  /templates/check-name:
+    get:
+      summary: Проверка существования шаблона с указанным именем
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CheckTemplateNameResponse'
+      operationId: get-templates-check-name
+      parameters:
+        - schema:
+            type: number
+          in: query
+          name: id
+          description: id текущего шаблона
+        - schema:
+            type: string
+          in: query
+          name: name
+          description: предполагаемое название
+          required: true
+    parameters: []
+components:
+  schemas:
+    SummaryLegoPeriod:
+      type: string
+      title: SummaryLegoPeriod
+      enum:
+        - monthly
+        - quarterly
+    SummaryLegoBlockName:
+      type: string
+      title: SummaryLegoBlockName
+      enum:
+        - resourcePlanSummary
+        - headcountOverviewTable
+        - headcountOverviewChart
+        - projectedHeadcountAnalysis
+        - vacanciesOverview
+        - vacanciesDetails
+        - vacanciesAnalysis
+        - vacanciesCharts
+        - salaryBudgetOverview
+        - changesImpactOnSalaryBudget
+        - changesSalaryIncreases
+        - changesVacancies
+        - averageSalaryBudget
+        - relocations
+        - headcountAndSalaryBudgetedMap
+    SummaryLegoBlockPlanSummaryChildName:
+      type: string
+      title: SummaryLegoBlockPlanSummaryChildName
+      enum:
+        - totalHeadcount
+        - activeHeadcount
+        - vacancies
+        - futureReplacements
+        - longLeave
+        - salaryBudgeted
+        - fySalaryBudgeted
+        - annualizedFYSalaryBudgeted
+        - relocations
+    SummaryLegoBlockPlanVacanciesChartsName:
+      type: string
+      title: SummaryLegoBlockPlanVacanciesChartsName
+      enum:
+        - vacanciesTotal
+        - offices
+        - jobFamilies
+        - careerLevels
+    SummaryLegoBlock:
+      title: SummaryLegoBlock
+      type: object
+      properties:
+        iOrder:
+          type: number
+        sBlockName:
+          $ref: '#/components/schemas/SummaryLegoBlockName'
+        oSettings:
+          $ref: '#/components/schemas/SummaryLegoBlockSettings'
+        aChilds:
+          type: array
+          items:
+            $ref: '#/components/schemas/SummaryLegoBlockChild'
+      required:
+        - iOrder
+        - sBlockName
+        - oSettings
+    SummaryLegoBlockSettings:
+      title: SummaryLegoBlockSettings
+      type: object
+      properties:
+        bVisible:
+          type: boolean
+        sPeriod:
+          $ref: '#/components/schemas/SummaryLegoPeriod'
+        bComments:
+          type: boolean
+      required:
+        - bVisible
+    SummaryLegoBlockChild:
+      title: SummaryLegoBlockChild
+      type: object
+      properties:
+        iOrder:
+          type: number
+        sBlockName:
+          oneOf:
+            - $ref: '#/components/schemas/SummaryLegoBlockPlanSummaryChildName'
+            - $ref: '#/components/schemas/SummaryLegoBlockPlanVacanciesChartsName'
+        oSettings:
+          $ref: '#/components/schemas/SummaryLegoBlockSettings'
+      required:
+        - iOrder
+        - sBlockName
+        - oSettings
+    SummaryLegoTemplate:
+      title: SummaryLegoTemplate
+      type: object
+      properties:
+        iId:
+          type: number
+        sName:
+          type: string
+        aBlocks:
+          type: array
+          items:
+            $ref: '#/components/schemas/SummaryLegoBlock'
+      required:
+        - sName
+    GetTemplatesResult:
+      title: GetTemplatesResult
+      type: object
+      properties:
+        aItems:
+          type: array
+          items:
+            $ref: ./summary.yaml#/components/schemas/IdNumberList
+      required:
+        - aItems
+    RenameTemplateRequest:
+      title: RenameTemplateRequest
+      type: object
+      properties:
+        iId:
+          type: number
+        sName:
+          type: string
+      required:
+        - iId
+        - sName
+    RenameTemplateResponse:
+      title: RenameTemplateResponse
+      type: object
+      properties:
+        sName:
+          type: string
+      required:
+        - sName
+    CheckTemplateNameResponse:
+      title: CheckTemplateNameResponse
+      type: object
+      properties:
+        bValid:
+          type: boolean
+      required:
+        - bValid
