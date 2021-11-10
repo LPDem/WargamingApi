@@ -48,7 +48,18 @@ paths:
     get:
       summary: Your GET endpoint
       tags: []
-      responses: {}
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  aItems:
+                    type: array
+                    items:
+                      $ref: ./summary.yaml#/components/schemas/IdNumberList
       operationId: get-templates
   '/templates/{id}':
     get:
