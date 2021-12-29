@@ -161,6 +161,14 @@ paths:
             type: array
           in: query
           name: aProducts
+        - schema:
+            type: string
+            enum:
+              - Workplace
+              - Remote
+              - Hybrid
+          in: query
+          name: sWorkplacePattern
       responses:
         '200':
           description: OK
@@ -268,6 +276,12 @@ paths:
                     type: array
                     items:
                       $ref: ./summary.yaml#/components/schemas/IdNumberList
+                  sWorkplacePattern:
+                    type: string
+                    enum:
+                      - Workplace
+                      - Remote
+                      - Hybrid
                 required:
                   - aPositions
                   - aManagers
@@ -291,6 +305,7 @@ paths:
                   - aRelocationByDate
                   - bShowVisibilityFilter
                   - aProducts
+                  - sWorkplacePattern
     parameters: []
   '/api/positions/{iId}':
     parameters:
@@ -1144,6 +1159,18 @@ paths:
                     type: string
               required:
                 - aPositionIds
+  /api/positions/update-workplace-pattern:
+    post:
+      summary: Update Workplace Pattern
+      operationId: post-api-positions-update-workplace-pattern
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateWorkplacePattern'
 components:
   schemas:
     PositionListFieldSorting:
@@ -1189,3 +1216,20 @@ components:
         - sApproval
         - sStatus
         - bShowStatusButton
+    UpdateWorkplacePattern:
+      title: UpdateWorkplacePattern
+      type: object
+      properties:
+        aPositionIds:
+          type: array
+          items:
+            type: number
+        sWorkplacePattern:
+          type: string
+          enum:
+            - Workplace
+            - Remote
+            - Hybrid
+      required:
+        - aPositionIds
+        - sWorkplacePattern

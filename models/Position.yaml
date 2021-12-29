@@ -116,6 +116,12 @@ properties:
     $ref: ../reference/summary.yaml#/components/schemas/IdNumberList
   bAutoCalcNetValue:
     type: boolean
+  sWorkplacePattern:
+    type: string
+    enum:
+      - Workplace
+      - Remote
+      - Hybrid
 required:
   - iId
   - iReportingFunctionId
@@ -140,3 +146,4 @@ required:
   - bOfferAccepted
   - bShowNetValue
   - bAutoCalcNetValue
+  - sWorkplacePattern

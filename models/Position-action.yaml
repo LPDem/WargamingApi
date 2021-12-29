@@ -16,6 +16,7 @@ properties:
       - Inactivate
       - ReturnToEdit
       - ApproveAndSubmit
+      - UpdateWorkplacePattern
 required:
   - sTitle
   - sCode
