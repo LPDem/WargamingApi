@@ -37,6 +37,10 @@ properties:
     description: Approve плана
   bExportManageParticipants:
     type: boolean
+    description: Выгрузка Manage Participants в xls
+  bCompensationInformationBonus:
+    type: boolean
+    description: Доступ к разделу мастер-данных Compensation information_Bonus
 required:
   - bFullDataAccess
   - bAdministration
@@ -50,3 +54,4 @@ required:
   - bViewPlanStatus
   - bPlanApprove
   - bExportManageParticipants
+  - bCompensationInformationBonus

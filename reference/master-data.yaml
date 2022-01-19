@@ -6,14 +6,14 @@ info:
 servers:
   - url: 'http://localhost:3000/masterData'
 paths:
-  /importRoles:
+  /import:
     post:
-      summary: importRoles
-      operationId: masterData-importRoles
+      summary: import
+      operationId: masterData-import
       responses:
         '200':
           description: OK
-      description: Загрузка мастер-данных ролей и доступа
+      description: Загрузка мастер-данных
       requestBody:
         content:
           application/json:
@@ -22,39 +22,7 @@ paths:
       tags:
         - masterData
     parameters: []
-  /importCodesMapping:
-    post:
-      summary: importCodesMapping
-      operationId: masterData-importCodesMapping
-      responses:
-        '200':
-          description: OK
-      description: Загрузка мастер-данных codes mapping
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ImportMasterDataRequestDto'
-      tags:
-        - masterData
-    parameters: []
-  /importApprovalMatrix:
-    post:
-      summary: importApprovalMatrix
-      operationId: masterData-importApprovalMatrix
-      responses:
-        '200':
-          description: OK
-      description: Загрузка мастер-данных approval matrix
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ImportMasterDataRequestDto'
-      tags:
-        - masterData
-    parameters: []
-  /getRoles:
+  /getData:
     get:
       summary: getRoles
       tags:
@@ -71,516 +39,31 @@ paths:
                     $ref: '#/components/schemas/DataGridDto'
                 required:
                   - oData
-      operationId: masterData-getRoles
-      description: Получение мастер-данных ролей и доступа
+      operationId: masterData-getData
+      description: Получение мастер-данных
+      parameters:
+        - $ref: '#/components/schemas/MasterDataType'
+        - schema:
+            type: string
+          in: query
+          name: type
+          description: Тип мастер-данных
+          required: true
     parameters: []
-  /getCodesMapping:
+  /export:
     get:
-      summary: getCodesMapping
-      tags:
-        - masterData
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  oData:
-                    $ref: '#/components/schemas/DataGridDto'
-                required:
-                  - oData
-      operationId: masterData-getCodesMapping
-      description: Получение мастер-данных codes mapping
-    parameters: []
-  /getApprovalMatrix:
-    get:
-      summary: getApprovalMatrix
-      tags:
-        - masterData
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  oData:
-                    $ref: '#/components/schemas/DataGridDto'
-                required:
-                  - oData
-      operationId: masterData-getApprovalMatrix
-      description: Получение мастер-данных approval matrix
-    parameters: []
-  /importPositions:
-    post:
-      summary: importPositions
-      operationId: masterData-importPositions
-      responses:
-        '200':
-          description: OK
-      description: Загрузка мастер-данных позиций
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ImportMasterDataRequestDto'
-      tags:
-        - masterData
-    parameters: []
-  /getPositions:
-    get:
-      summary: getPositions
-      tags:
-        - masterData
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  oData:
-                    $ref: '#/components/schemas/DataGridDto'
-                required:
-                  - oData
-      operationId: masterData-getPositions
-      description: Получение мастер-данных позиций
-    parameters: []
-  /importOrgStructure:
-    post:
-      summary: importOrgStructure
-      operationId: masterData-importOrgStructure
-      responses:
-        '200':
-          description: OK
-      description: Загрузка мастер-данных оргструктуры
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ImportMasterDataRequestDto'
-      tags:
-        - masterData
-    parameters: []
-  /getOrgStructure:
-    get:
-      summary: getOrgStructure
-      tags:
-        - masterData
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  oData:
-                    $ref: '#/components/schemas/DataGridDto'
-                required:
-                  - oData
-      operationId: masterData-getOrgStructure
-      description: Получение мастер-данных оргструктуры
-    parameters: []
-  /importJobs:
-    post:
-      summary: importJobs
-      operationId: masterData-importJobs
-      responses:
-        '200':
-          description: OK
-      description: Загрузка мастер-данных каталога должностей
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ImportMasterDataRequestDto'
-      tags:
-        - masterData
-    parameters: []
-  /getJobs:
-    get:
-      summary: getJobs
-      tags:
-        - masterData
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  oData:
-                    $ref: '#/components/schemas/DataGridDto'
-                required:
-                  - oData
-      operationId: masterData-getJobs
-      description: Получение мастер-данных каталога должностей
-    parameters: []
-  /importFaq:
-    post:
-      summary: importFaq
-      operationId: masterData-importFaq
-      responses:
-        '200':
-          description: OK
-      description: Загрузка мастер-данных FAQ
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ImportMasterDataRequestDto'
-      tags:
-        - masterData
-    parameters: []
-  /getFaq:
-    get:
-      summary: getFaq
-      tags:
-        - masterData
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  oData:
-                    $ref: '#/components/schemas/DataGridDto'
-                required:
-                  - oData
-      operationId: masterData-getFaq
-      description: Получение мастер-данных FAQ
-    parameters: []
-  /importCurrencies:
-    post:
-      summary: importCurrencies
-      operationId: masterData-importCurrencies
-      responses:
-        '200':
-          description: OK
-      description: Загрузка мастер-данных справочника валют
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ImportMasterDataRequestDto'
-      tags:
-        - masterData
-    parameters: []
-  /getCurrencies:
-    get:
-      summary: getCurrencies
-      tags:
-        - masterData
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  oData:
-                    $ref: '#/components/schemas/DataGridDto'
-                required:
-                  - oData
-      operationId: masterData-getCurrencies
-      description: Получение мастер-данных справочника валют
-    parameters: []
-  /getProjectedHeadcountAnalysis:
-    get:
-      summary: getProjectedHeadcountAnalysis
-      tags:
-        - masterData
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  oData:
-                    $ref: '#/components/schemas/DataGridDto'
-                required:
-                  - oData
-      operationId: masterData-getCurrencies
-      description: Получение мастер-данных Projected Headcount Analysis
-    parameters: []
-  /importFrequencies:
-    post:
-      summary: importFrequencies
-      operationId: masterData-importFrequencies
-      responses:
-        '200':
-          description: OK
-      description: Загрузка мастер-данных частоты выплат
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ImportMasterDataRequestDto'
-      tags:
-        - masterData
-    parameters: []
-  /importExchangeRates:
-    post:
-      summary: importExchangeRates
-      operationId: masterData-importExchangeRates
-      responses:
-        '200':
-          description: OK
-      description: Загрузка мастер-данных курсов обмена валют
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ImportMasterDataRequestDto'
-      tags:
-        - masterData
-    parameters: []
-  /importUsers:
-    post:
-      summary: importUsers
-      operationId: masterData-importUsers
-      responses:
-        '200':
-          description: OK
-      description: Загрузка мастер-данных пользователей
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ImportMasterDataRequestDto'
-      tags:
-        - masterData
-    parameters: []
-  /importAccessSettings:
-    post:
-      summary: importAccessSettings
-      operationId: masterData-importAccessSettings
-      responses:
-        '200':
-          description: OK
-      description: Загрузка мастер-данных настроек доступа
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ImportMasterDataRequestDto'
-      tags:
-        - masterData
-    parameters: []
-  /importMyTeams:
-    post:
-      summary: importMyTeam
-      operationId: masterData-importMyTeam
-      responses:
-        '200':
-          description: OK
-      description: Загрузка мастер-данных MyTeam
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ImportMasterDataRequestDto'
-      tags:
-        - masterData
-    parameters: []
-  /importAccessExceptions:
-    post:
-      summary: importAccessExceptions
-      operationId: masterData-importAccessExceptions
-      responses:
-        '200':
-          description: OK
-      description: Загрузка мастер-данных исключений доступа
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ImportMasterDataRequestDto'
-      tags:
-        - masterData
-    parameters: []
-  /importProducts:
-    post:
-      summary: importProducts
-      operationId: masterData-importProducts
-      responses:
-        '200':
-          description: OK
-      description: Загрузка мастер-данных продуктов
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ImportMasterDataRequestDto'
-      tags:
-        - masterData
-    parameters: []
-  /importProjectedHeadcountAnalysis:
-    post:
-      summary: importProjectedHeadcountAnalysis
-      operationId: masterData-importProjectedHeadcountAnalysis
-      responses:
-        '200':
-          description: OK
-      description: Загрузка мастер-данных Projected Headcount Analysis
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ImportMasterDataRequestDto'
-      tags:
-        - masterData
-    parameters: []
-  /getFrequencies:
-    get:
-      summary: getFrequencies
-      tags:
-        - masterData
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  oData:
-                    $ref: '#/components/schemas/DataGridDto'
-                required:
-                  - oData
-      operationId: masterData-getFrequencies
-      description: Получение мастер-данных частоты выплат
-    parameters: []
-  /getExchangeRates:
-    get:
-      summary: getExchangeRates
-      tags:
-        - masterData
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  oData:
-                    $ref: '#/components/schemas/DataGridDto'
-                required:
-                  - oData
-      operationId: masterData-getExchangeRates
-      description: Получение мастер-данных курсов обмена валют
-    parameters: []
-  /getUsers:
-    get:
-      summary: getUsers
-      tags:
-        - masterData
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  oData:
-                    $ref: '#/components/schemas/DataGridDto'
-                required:
-                  - oData
-      operationId: masterData-getUsers
-      description: Получение мастер-данных пользователей
-    parameters: []
-  /getAccessSettings:
-    get:
-      summary: getAccessSettings
-      tags:
-        - masterData
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  oData:
-                    $ref: '#/components/schemas/DataGridDto'
-                required:
-                  - oData
-      operationId: masterData-getAccessSettings
-      description: Получение мастер-данных настроек доступа
-    parameters: []
-  /getMyTeam:
-    get:
-      summary: getMyTeam
-      tags:
-        - masterData
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  oData:
-                    $ref: '#/components/schemas/DataGridDto'
-                required:
-                  - oData
-      operationId: masterData-getMyTeam
-      description: Получение мастер-данных MyTeam
-    parameters: []
-  /getAccessExceptions:
-    get:
-      summary: getAccessExceptions
-      tags:
-        - masterData
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  oData:
-                    $ref: '#/components/schemas/DataGridDto'
-                required:
-                  - oData
-      operationId: masterData-getAccessExceptions
-      description: Получение мастер-данных исключений доступа
-    parameters: []
-  /getProducts:
-    get:
-      summary: getProducts
-      tags:
-        - masterData
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  oData:
-                    $ref: '#/components/schemas/DataGridDto'
-                required:
-                  - oData
-      operationId: masterData-getProducts
-      description: Получение мастер-данных продуктов
+      summary: export
+      tags: []
+      responses: {}
+      operationId: masterData-export
+      description: Экспорт мастер-данных
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: type
+          description: Тип мастер-данных
+          required: true
     parameters: []
   /clearData:
     post:
@@ -699,120 +182,6 @@ paths:
                 - sStartDate
                 - sEndDate
     parameters: []
-  /exportJobs:
-    get:
-      summary: null
-      tags: []
-      responses: {}
-      operationId: get-exportJobs
-  /exportPositions:
-    get:
-      summary: null
-      tags: []
-      responses: {}
-      operationId: get-exportPositions
-  /exportRoles:
-    get:
-      summary: null
-      tags: []
-      responses: {}
-      operationId: get-exportRoles
-  /exportCodesMapping:
-    get:
-      summary: exportCodesMapping
-      tags: []
-      responses: {}
-      operationId: get-exportCodesMapping
-    parameters: []
-  /exportApprovalMatrix:
-    get:
-      summary: exportApprovalMatrix
-      tags: []
-      responses: {}
-      operationId: get-exportApprovalMatrix
-    parameters: []
-  /exportOrgStructure:
-    get:
-      summary: null
-      tags: []
-      responses: {}
-      operationId: get-exportOrgStructure
-  /exportFaq:
-    get:
-      summary: null
-      tags: []
-      responses: {}
-      operationId: get-exportFaq
-  /exportCurrencies:
-    get:
-      summary: null
-      tags: []
-      responses: {}
-      operationId: get-exportCurrencies
-  /exportFrequencies:
-    get:
-      summary: null
-      tags: []
-      responses: {}
-      operationId: get-exportFrequencies
-  /exportExchangeRates:
-    get:
-      summary: null
-      tags: []
-      responses: {}
-      operationId: get-exportExchangeRates
-  /exportUsers:
-    get:
-      summary: null
-      tags: []
-      responses: {}
-      operationId: get-exportUsers
-  /exportAccessSettings:
-    get:
-      summary: null
-      tags: []
-      responses: {}
-      operationId: get-exportAccessSettings
-      description: Экспорт мастер-данных настроек доступа
-  /exportMyTeam:
-    get:
-      summary: null
-      tags: []
-      responses: {}
-      operationId: get-exportMyTeam
-      description: Экспорт мастер-данных MyTeam
-  /exportAccessExceptions:
-    get:
-      summary: null
-      tags: []
-      responses: {}
-      operationId: get-exportAccessExceptions
-      description: Экспорт мастер-данных исключений доступа
-  /exportProducts:
-    get:
-      summary: null
-      tags: []
-      responses: {}
-      operationId: get-exportProducts
-      description: Экспорт мастер-данных продуктов
-  /exportEmployees:
-    get:
-      summary: null
-      tags: []
-      responses: {}
-      operationId: get-exportEmployees
-  /exportOffices:
-    get:
-      summary: null
-      tags: []
-      responses: {}
-      operationId: get-exportOffices
-  /exportProjectedHeadcountAnalysis:
-    get:
-      summary: ''
-      tags: []
-      responses: {}
-      operationId: get-exportProjectedHeadcountAnalysis
   /getTimelines:
     get:
       summary: getTimelines
@@ -901,13 +270,15 @@ components:
     ImportMasterDataRequestDto:
       title: ImportMasterDataRequestDto
       type: object
+      description: Мастер-данные для импорта
       properties:
+        sType:
+          $ref: '#/components/schemas/MasterDataType'
         sFileContent:
           type: string
           description: 'Содержимое файла, с префиксом data:text/plain;base64,'
       required:
         - sFileContent
-      description: Мастер-данные для импорта
     TimelinesDto:
       title: TimelinesDto
       type: object
@@ -947,3 +318,30 @@ components:
           type: string
           description: Дата в формате YYYY-MM-DD
           format: date
+    MasterDataType:
+      type: string
+      title: MasterDataType
+      enum:
+        - Positions
+        - Roles
+        - OrgStructure
+        - Jobs
+        - Faq
+        - Currencies
+        - Frequencies
+        - ExchangeRates
+        - Users
+        - Employees
+        - Offices
+        - ProjectedHeadcountAnalysis
+        - CodesMapping
+        - AccessSettings
+        - ApprovalMatrix
+        - Greenhouse
+        - MyTeam
+        - AccessExceptions
+        - Products
+        - PayRanges
+        - CompensationInformationGeneral
+        - CompensationInformationBonus
+      description: Тип мастер-данных
