@@ -122,6 +122,8 @@ properties:
       - Workplace
       - Remote
       - Hybrid
+  bMultipleOfficesForRecruitment:
+    type: boolean
 required:
   - iId
   - iReportingFunctionId
@@ -147,3 +149,4 @@ required:
   - bShowNetValue
   - bAutoCalcNetValue
   - sWorkplacePattern
+  - bMultipleOfficesForRecruitment

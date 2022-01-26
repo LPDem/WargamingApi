@@ -1095,6 +1095,10 @@ components:
           type: array
           items:
             type: number
+        sWorkplacePattern:
+          $ref: ./positions.yaml#/components/schemas/UpdateWorkplacePattern
+        bVacanciesWithMultipleOffices:
+          type: boolean
     ChangesSalaryIncreasesDescription:
       title: ChangesSalaryIncreasesDescription
       type: object

@@ -45,6 +45,10 @@ properties:
     type: string
   iProductId:
     type: number
+  bMultipleOfficesForRecruitment:
+    type: boolean
+  sComment:
+    type: string
 required:
   - sName
   - sStartDate
@@ -56,3 +60,4 @@ required:
   - sStreamLevelId
   - oOrgStructure
   - bOfferAccepted
+  - bMultipleOfficesForRecruitment

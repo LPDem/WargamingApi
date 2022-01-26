@@ -169,6 +169,10 @@ paths:
               - Hybrid
           in: query
           name: sWorkplacePattern
+        - schema:
+            type: boolean
+          in: query
+          name: bVacanciesWithMultipleOffices
       responses:
         '200':
           description: OK
