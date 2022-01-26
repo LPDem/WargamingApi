@@ -168,6 +168,7 @@ components:
         - fySalaryBudgeted
         - annualizedFYSalaryBudgeted
         - relocations
+        - acceptedOffers
     SummaryLegoBlockPlanVacanciesChartsName:
       type: string
       title: SummaryLegoBlockPlanVacanciesChartsName

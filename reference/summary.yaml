@@ -133,6 +133,7 @@ paths:
                       - oFYSalaryBudgeted
                       - oAnnualizedFYSalaryBudgeted
                       - oRelocations
+                      - oAcceptedOffers
                     properties:
                       oTotalHeadcount:
                         $ref: '#/components/schemas/short-statistic'
@@ -151,6 +152,8 @@ paths:
                       oAnnualizedFYSalaryBudgeted:
                         $ref: '#/components/schemas/short-statistic'
                       oRelocations:
+                        $ref: '#/components/schemas/short-statistic'
+                      oAcceptedOffers:
                         $ref: '#/components/schemas/short-statistic'
                   oHeadcount:
                     $ref: '#/components/schemas/Headcount'
