@@ -124,6 +124,8 @@ properties:
       - Hybrid
   bMultipleOfficesForRecruitment:
     type: boolean
+  sActualLocationForRemoteEmployee:
+    type: string
 required:
   - iId
   - iReportingFunctionId

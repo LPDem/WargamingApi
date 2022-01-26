@@ -49,6 +49,8 @@ properties:
     type: boolean
   sComment:
     type: string
+  sActualLocationForRemoteEmployee:
+    type: string
 required:
   - sName
   - sStartDate
