@@ -1175,6 +1175,34 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/UpdateWorkplacePattern'
+  /api/positions/update-job-mapping:
+    post:
+      summary: Update Job Mapping
+      operationId: post-api-positions-update-job-mapping
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateJobMapping'
+    get:
+      summary: Get Job Mapping Catalogs
+      operationId: get-api-positions-get-job-mapping
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateJobMappingCatalogs'
+      parameters:
+        - schema:
+            type: number
+          in: query
+          name: positionId
+          description: 'Id позиции, если справочники для редактирования единственной позиции'
 components:
   schemas:
     PositionListFieldSorting:
@@ -1237,3 +1265,34 @@ components:
       required:
         - aPositionIds
         - sWorkplacePattern
+    UpdateJobMappingCatalogs:
+      title: UpdateJobMappingCatalogs
+      type: object
+      properties:
+        aJobFamilyGroups:
+          type: array
+          items:
+            $ref: ../models/Catalog.yaml
+        aCareers:
+          type: array
+          items:
+            $ref: ../models/Catalog.yaml
+      required:
+        - aJobFamilyGroups
+        - aCareers
+    UpdateJobMapping:
+      title: UpdateJobMapping
+      type: object
+      properties:
+        aPositionIds:
+          type: array
+          items:
+            type: number
+        oJob:
+          $ref: ../models/Job-adding.yaml
+        sStreamLevelId:
+          type: number
+      required:
+        - aPositionIds
+        - oJob
+        - sStreamLevelId

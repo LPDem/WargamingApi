@@ -17,6 +17,7 @@ properties:
       - ReturnToEdit
       - ApproveAndSubmit
       - UpdateWorkplacePattern
+      - UpdateJobMapping
 required:
   - sTitle
   - sCode
