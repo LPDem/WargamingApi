@@ -167,6 +167,7 @@ components:
         - averageSalaryBudget
         - relocations
         - headcountAndSalaryBudgetedMap
+        - relocationAnalysisTable
     SummaryLegoBlockPlanSummaryChildName:
       type: string
       title: SummaryLegoBlockPlanSummaryChildName

@@ -306,6 +306,8 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/SummaryBlock'
+                  oRelocationAnalysisTable:
+                    $ref: '#/components/schemas/PeriodDataTableDto'
                 required:
                   - sTitle
                   - oShortStatistic
@@ -331,6 +333,7 @@ paths:
                   - oRelocations
                   - oRelocationsDescription
                   - aBlocks
+                  - oRelocationAnalysisTable
       requestBody:
         content:
           application/json:
@@ -437,6 +440,22 @@ paths:
     post:
       summary: ''
       operationId: post-api-summary-headcount-table
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PeriodDataTableDto'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/summary-filter'
+  /api/summary/relocation-analysis-table:
+    post:
+      summary: ''
+      operationId: post-api-summary-relocation-analysis-table
       responses:
         '200':
           description: OK
