@@ -6,14 +6,14 @@ info:
 servers:
   - url: 'http://localhost:3000/masterData'
 paths:
-  /importRoles:
+  /importUsersAndPermissions:
     post:
-      summary: importRoles
-      operationId: masterData-importRoles
+      summary: importUsersAndPermissions
+      operationId: masterData-importUsersAndPermissions
       responses:
         '200':
           description: OK
-      description: Загрузка мастер-данных ролей и доступа
+      description: Загрузка мастер-данных пользователей и доступа
       requestBody:
         content:
           application/json:
@@ -54,9 +54,9 @@ paths:
       tags:
         - masterData
     parameters: []
-  /getRoles:
+  /getUsersAndPermissions:
     get:
-      summary: getRoles
+      summary: getUsersAndPermissions
       tags:
         - masterData
       responses:
@@ -71,8 +71,8 @@ paths:
                     $ref: '#/components/schemas/DataGridDto'
                 required:
                   - oData
-      operationId: masterData-getRoles
-      description: Получение мастер-данных ролей и доступа
+      operationId: masterData-getUsersAndPermissions
+      description: Получение мастер-данных пользователей и доступа
     parameters: []
   /getCodesMapping:
     get:
@@ -711,12 +711,12 @@ paths:
       tags: []
       responses: {}
       operationId: get-exportPositions
-  /exportRoles:
+  /exportUsersAndPermissions:
     get:
       summary: null
       tags: []
       responses: {}
-      operationId: get-exportRoles
+      operationId: get-exportUsersAndPermissions
   /exportCodesMapping:
     get:
       summary: exportCodesMapping
@@ -857,6 +857,30 @@ paths:
                   - sLastUpdateDate
       operationId: getLastUpdateDate
       description: Получение даты последнего обновления данных (дата загрузки файла «Master data positions»)
+  /roles:
+    get:
+      summary: Get master data roles
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MasterDataRolesDto'
+      operationId: get-roles
+    post:
+      summary: Update master data roles
+      operationId: post-roles
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MasterDataRolesDto'
+      description: ''
 components:
   schemas:
     DataGridDto:
@@ -947,3 +971,19 @@ components:
           type: string
           description: Дата в формате YYYY-MM-DD
           format: date
+    MasterDataRolesDto:
+      title: MasterDataRolesDto
+      type: object
+      properties:
+        aRoles:
+          type: array
+          items:
+            type: object
+            properties:
+              iCode:
+                type: number
+              sDescription:
+                type: string
+            required:
+              - iCode
+              - sDescription
