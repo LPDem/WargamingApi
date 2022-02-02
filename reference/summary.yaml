@@ -308,6 +308,8 @@ paths:
                       $ref: '#/components/schemas/SummaryBlock'
                   oRelocationAnalysisTable:
                     $ref: '#/components/schemas/PeriodDataTableDto'
+                  sTemplateName:
+                    type: string
                 required:
                   - sTitle
                   - oShortStatistic
@@ -334,6 +336,7 @@ paths:
                   - oRelocationsDescription
                   - aBlocks
                   - oRelocationAnalysisTable
+                  - sTemplateName
       requestBody:
         content:
           application/json:
