@@ -302,14 +302,16 @@ paths:
                     $ref: '#/components/schemas/Relocations'
                   oRelocationsDescription:
                     $ref: '#/components/schemas/RelocationsDescription'
+                  oRelocationAnalysisTable:
+                    $ref: '#/components/schemas/PeriodDataTableDto'
+                  oChangesRephasedVacancies:
+                    $ref: '#/components/schemas/ChangesRephasedVacancies'
+                  sTemplateName:
+                    type: string
                   aBlocks:
                     type: array
                     items:
                       $ref: '#/components/schemas/SummaryBlock'
-                  oRelocationAnalysisTable:
-                    $ref: '#/components/schemas/PeriodDataTableDto'
-                  sTemplateName:
-                    type: string
                 required:
                   - sTitle
                   - oShortStatistic
@@ -334,9 +336,10 @@ paths:
                   - oFilterReferences
                   - oRelocations
                   - oRelocationsDescription
-                  - aBlocks
                   - oRelocationAnalysisTable
+                  - oChangesRephasedVacancies
                   - sTemplateName
+                  - aBlocks
       requestBody:
         content:
           application/json:
@@ -498,6 +501,22 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Relocations'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/summary-filter'
+  /api/summary/changes-rephased-vacancies:
+    post:
+      summary: ''
+      operationId: post-api-summary-changes-rephased-vacancies
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChangesRephasedVacancies'
       requestBody:
         content:
           application/json:
@@ -763,7 +782,9 @@ components:
       properties:
         iAdd:
           type: number
-        iMoved:
+        iMovedIn:
+          type: number
+        iMovedOut:
           type: number
         iClosed:
           type: number
@@ -771,7 +792,8 @@ components:
           type: number
       required:
         - iAdd
-        - iMoved
+        - iMovedIn
+        - iMovedOut
         - iClosed
         - iNoChange
     VacanciesDetailsGroup:
@@ -798,7 +820,9 @@ components:
           type: number
         iFutureReplacements:
           type: number
-        iRephased:
+        iMovedIn:
+          type: number
+        iMovedOut:
           type: number
         iInactivated:
           type: number
@@ -806,7 +830,8 @@ components:
         - iTotal
         - iAdded
         - iFutureReplacements
-        - iRephased
+        - iMovedIn
+        - iMovedOut
         - iInactivated
     VacanciesAnalysis:
       title: VacanciesAnalysis
@@ -1328,3 +1353,29 @@ components:
           type: boolean
       required:
         - sBlockName
+    ChangesRephasedVacanciesItem:
+      title: ChangesRephasedVacanciesItem
+      type: object
+      properties:
+        sName:
+          type: string
+        iMovedOut:
+          type: number
+        iMovedIn:
+          type: number
+      required:
+        - sName
+        - iMovedOut
+        - iMovedIn
+    ChangesRephasedVacancies:
+      title: ChangesRephasedVacancies
+      type: object
+      properties:
+        aPeriods:
+          type: array
+          items:
+            $ref: '#/components/schemas/period'
+        aChartData:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChangesRephasedVacanciesItem'
