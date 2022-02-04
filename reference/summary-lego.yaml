@@ -169,6 +169,7 @@ components:
         - headcountAndSalaryBudgetedMap
         - relocationAnalysisTable
         - changesRephasedVacancies
+        - headcountAnalysisPreviousVsCurrent
     SummaryLegoBlockPlanSummaryChildName:
       type: string
       title: SummaryLegoBlockPlanSummaryChildName

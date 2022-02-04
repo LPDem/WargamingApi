@@ -306,6 +306,8 @@ paths:
                     $ref: '#/components/schemas/PeriodDataTableDto'
                   oChangesRephasedVacancies:
                     $ref: '#/components/schemas/ChangesRephasedVacancies'
+                  oHeadcountAnalysisPreviousVsCurrent:
+                    $ref: '#/components/schemas/HeadcountAnalysisPreviousVsCurrent'
                   sTemplateName:
                     type: string
                   aBlocks:
@@ -517,6 +519,22 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ChangesRephasedVacancies'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/summary-filter'
+  /api/summary/headcount-analysis-previous-vs-current:
+    post:
+      summary: ''
+      operationId: post-api-summary-headcount-analysis-previous-vs-current
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HeadcountAnalysisPreviousVsCurrent'
       requestBody:
         content:
           application/json:
@@ -1379,3 +1397,38 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ChangesRephasedVacanciesItem'
+    HeadcountAnalysisPreviousVsCurrentItem:
+      title: HeadcountAnalysisPreviousVsCurrentItem
+      type: object
+      properties:
+        sName:
+          type: string
+        iPrevious:
+          type: number
+        iCurrent:
+          type: number
+      required:
+        - sName
+        - iPrevious
+        - iCurrent
+    HeadcountAnalysisPreviousVsCurrent:
+      title: HeadcountAnalysisPreviousVsCurrent
+      type: object
+      properties:
+        aPeriods:
+          type: array
+          items:
+            $ref: '#/components/schemas/period'
+        sFirstName:
+          type: string
+        sSecondName:
+          type: string
+        aChartData:
+          type: array
+          items:
+            $ref: '#/components/schemas/HeadcountAnalysisPreviousVsCurrentItem'
+      required:
+        - aPeriods
+        - sFirstName
+        - sSecondName
+        - aChartData
