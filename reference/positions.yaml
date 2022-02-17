@@ -1273,16 +1273,8 @@ components:
           type: array
           items:
             $ref: ../models/Salary-change-short.yaml
-        iPayRangeMin:
-          type: number
-        iPayRangeMid:
-          type: number
-        iPayRangeMax:
-          type: number
-        iCompaRatio:
-          type: number
-        sPositionInTheRange:
-          $ref: '#/components/schemas/PositionInTheRange'
+        oPayRangeExternal:
+          $ref: '#/components/schemas/SalaryViewPayRange'
         sLastSalaryChangeDate:
           type: string
         sLastSalaryChangeReason:
@@ -1321,3 +1313,31 @@ components:
         - BelowTheRange
         - InTheRange
         - AboveTheRange
+    SalaryViewPayRange:
+      title: SalaryViewPayRange
+      type: object
+      properties:
+        iMin:
+          type: number
+        iMid:
+          type: number
+        iMax:
+          type: number
+        iCompaRatio:
+          type: number
+        aCompaRatioChanges:
+          type: array
+          items:
+            type: number
+        sPositionInTheRange:
+          $ref: '#/components/schemas/PositionInTheRange'
+        aPositionInTheRangeChanges:
+          type: array
+          items:
+            $ref: '#/components/schemas/PositionInTheRange'
+      required:
+        - iMin
+        - iMid
+        - iMax
+        - iCompaRatio
+        - sPositionInTheRange
