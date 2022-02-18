@@ -1305,6 +1305,12 @@ components:
         - sCurrentStatus
         - oOrgStructure
         - fSalaryBudgeted
+        - sLastSalaryChangeDate
+        - sLastSalaryChangeReason
+        - iPreviousSalaryAmount
+        - sCurrentPerformanceDate
+        - sLastPerformanceDate
+        - sTenure
         - sPlanningStatus
     PositionInTheRange:
       type: string
