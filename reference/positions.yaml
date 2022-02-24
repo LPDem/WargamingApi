@@ -1122,6 +1122,10 @@ components:
             type: number
         sWorkplacePattern:
           $ref: '#/components/schemas/WorkplacePattern'
+        aSalaryVsMarket:
+          type: array
+          items:
+            $ref: '#/components/schemas/PositionInTheRange'
     PositionListInternalData:
       title: PositionListInternalData
       type: object
