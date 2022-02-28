@@ -37,6 +37,9 @@ properties:
     description: Approve плана
   bExportManageParticipants:
     type: boolean
+  bEditSalary:
+    type: boolean
+    description: Можно видеть и редактировать salary
 required:
   - bFullDataAccess
   - bAdministration
@@ -50,3 +53,4 @@ required:
   - bViewPlanStatus
   - bPlanApprove
   - bExportManageParticipants
+  - bEditSalary
