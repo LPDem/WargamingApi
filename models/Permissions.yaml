@@ -40,6 +40,9 @@ properties:
   bEditSalary:
     type: boolean
     description: Можно видеть и редактировать salary
+  bNoRole:
+    type: boolean
+    description: У пользователя нет роли
 required:
   - bFullDataAccess
   - bAdministration
@@ -54,3 +57,4 @@ required:
   - bPlanApprove
   - bExportManageParticipants
   - bEditSalary
+  - bNoRole
