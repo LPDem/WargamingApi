@@ -1086,16 +1086,24 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Approval'
+                type: object
+                properties:
+                  aApprovals:
+                    $ref: '#/components/schemas/Approval'
+                  aActionTypes:
+                    type:
+                      - string
+                      - array
+                    items:
+                      $ref: ./summary.yaml#/components/schemas/IdStringList
+                required:
+                  - aApprovals
+                  - aActionTypes
       requestBody:
         content:
           application/json:
             schema:
-              type: array
-              items:
-                type: number
+              $ref: '#/components/schemas/ApprovalsFilters'
   '/api/positions/approve-approval/{positionId}':
     post:
       summary: ''
@@ -1296,3 +1304,31 @@ components:
         - aPositionIds
         - oJob
         - sStreamLevelId
+    ApprovalsFilters:
+      title: ApprovalsFilters
+      type: object
+      properties:
+        aPositionIds:
+          type: array
+          items:
+            type: number
+        sPeriod:
+          type: string
+          enum:
+            - LastHour
+            - LastDay
+            - LastWeek
+            - LastMonth
+            - Customised
+        sDateFrom:
+          type: string
+        sDateTo:
+          type: string
+        aActionTypes:
+          type: array
+          items:
+            type: string
+        sSearch:
+          type: string
+      required:
+        - aPositionIds
