@@ -1337,5 +1337,7 @@ components:
             type: string
         sSearch:
           type: string
+        bUnapprovedOnly:
+          type: boolean
       required:
         - aPositionIds
