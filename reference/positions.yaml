@@ -173,6 +173,13 @@ paths:
             type: boolean
           in: query
           name: bVacanciesWithMultipleOffices
+        - schema:
+            type: string
+            enum:
+              - new
+              - old
+          in: query
+          name: sVacancyByCreation
       responses:
         '200':
           description: OK
