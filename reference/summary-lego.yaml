@@ -128,6 +128,18 @@ paths:
           description: предполагаемое название
           required: true
     parameters: []
+  /default-template:
+    get:
+      summary: Получение шаблона по умолчанию
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SummaryLegoTemplate'
+      operationId: get-default-template
 components:
   schemas:
     SummaryLegoPeriod:
@@ -155,6 +167,9 @@ components:
         - averageSalaryBudget
         - relocations
         - headcountAndSalaryBudgetedMap
+        - relocationAnalysisTable
+        - changesRephasedVacancies
+        - headcountAnalysisPreviousVsCurrent
     SummaryLegoBlockPlanSummaryChildName:
       type: string
       title: SummaryLegoBlockPlanSummaryChildName
@@ -168,6 +183,7 @@ components:
         - fySalaryBudgeted
         - annualizedFYSalaryBudgeted
         - relocations
+        - acceptedOffers
     SummaryLegoBlockPlanVacanciesChartsName:
       type: string
       title: SummaryLegoBlockPlanVacanciesChartsName

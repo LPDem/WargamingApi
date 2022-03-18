@@ -11,7 +11,10 @@ properties:
     type: boolean
   sOfferDetails:
     type: string
+  bMultipleOfficesForRecruitment:
+    type: boolean
 required:
   - sEffectiveDate
   - bRecruitmentNeeded
   - bOfferAccepted
+  - bMultipleOfficesForRecruitment

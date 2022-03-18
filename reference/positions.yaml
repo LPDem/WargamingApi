@@ -11,6 +11,17 @@ paths:
     post:
       summary: Получение списка позиций
       operationId: get-position-list
+        - schema:
+            type: boolean
+          in: query
+          name: bVacanciesWithMultipleOffices
+        - schema:
+            type: string
+            enum:
+              - new
+              - old
+          in: query
+          name: sVacancyByCreation
       responses:
         '200':
           description: OK
@@ -852,16 +863,24 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Approval'
+                type: object
+                properties:
+                  aApprovals:
+                    $ref: '#/components/schemas/Approval'
+                  aActionTypes:
+                    type:
+                      - string
+                      - array
+                    items:
+                      $ref: ./summary.yaml#/components/schemas/IdStringList
+                required:
+                  - aApprovals
+                  - aActionTypes
       requestBody:
         content:
           application/json:
             schema:
-              type: array
-              items:
-                type: number
+              $ref: '#/components/schemas/ApprovalsFilters'
   '/api/positions/approve-approval/{positionId}':
     post:
       summary: ''
@@ -941,6 +960,34 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/UpdateWorkplacePattern'
+  /api/positions/update-job-mapping:
+    post:
+      summary: Update Job Mapping
+      operationId: post-api-positions-update-job-mapping
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateJobMapping'
+    get:
+      summary: Get Job Mapping Catalogs
+      operationId: get-api-positions-get-job-mapping
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateJobMappingCatalogs'
+      parameters:
+        - schema:
+            type: number
+          in: query
+          name: positionId
+          description: 'Id позиции, если справочники для редактирования единственной позиции'
 components:
   schemas:
     PositionListFieldSorting:
@@ -1226,8 +1273,195 @@ components:
           items:
             $ref: ./summary.yaml#/components/schemas/IdNumberList
       required:
+        - aPositionIds
+        - sWorkplacePattern
         - aManagers
         - aOffices
+        - aDepartments
+        - aParticipants
+        - aCostCenters
+        - iAllPositionsCount
+        - iEmployeesCount
+        - iVacanciesCount
+        - iLongLeaveCount
+        - aJobFamilyGroups
+        - aJobFamilies
+        - aJobSubFamilies
+        - aExcludeList
+        - aSalaryUpdatesPeriods
+        - aVacanciesPeriods
+        - bShowUpdateTypeFilter
+        - oSorting
+        - aRelocationByOffice
+        - aRelocationByDate
+        - bShowVisibilityFilter
+        - aProducts
+    UpdateJobMappingCatalogs:
+      title: UpdateJobMappingCatalogs
+      type: object
+      properties:
+        aJobFamilyGroups:
+          type: array
+          items:
+            $ref: ../models/Catalog.yaml
+        aCareers:
+          type: array
+          items:
+            $ref: ../models/Catalog.yaml
+      required:
+        - aJobFamilyGroups
+        - aCareers
+    UpdateJobMapping:
+      title: UpdateJobMapping
+      type: object
+      properties:
+        aPositionIds:
+          type: array
+          items:
+            type: number
+        oJob:
+          $ref: ../models/Job-adding.yaml
+        sStreamLevelId:
+          type: number
+      required:
+        - aPositionIds
+        - oJob
+        - sStreamLevelId
+    ApprovalsFilters:
+      title: ApprovalsFilters
+      type: object
+      properties:
+        aPositionIds:
+          type: array
+          items:
+            type: number
+        sPeriod:
+          type: string
+          enum:
+            - LastHour
+            - LastDay
+            - LastWeek
+            - LastMonth
+            - Customised
+        sDateFrom:
+          type: string
+        sDateTo:
+          type: string
+        aActionTypes:
+          type: array
+          items:
+            type: string
+        sSearch:
+          type: string
+        bUnapprovedOnly:
+          type: boolean
+      required:
+        - aPositionIds
+    SalaryViewPosition:
+      title: SalaryViewPosition
+      type: object
+      properties:
+        iId:
+          type: number
+        sAssignee:
+          type: string
+        sEmployeeId:
+          type: string
+        sEmployeeClass:
+          type: string
+        sName:
+          type: string
+        bIsManager:
+          type: boolean
+        sCode:
+          type: string
+        sCareerLevel:
+          type: string
+        sCurrentStatus:
+          type: string
+        oOrgStructure:
+          $ref: ../models/Org-structure-short.yaml
+        fSalaryBudgeted:
+          type: number
+        aSalaryChanges:
+          type: array
+          items:
+            $ref: ../models/Salary-change-short.yaml
+        oPayRangeExternal:
+          $ref: '#/components/schemas/SalaryViewPayRange'
+        sLastSalaryChangeDate:
+          type: string
+        sLastSalaryChangeReason:
+          type: string
+        iPreviousSalaryAmount:
+          type: number
+        sCurrentPerformanceRating:
+          type: string
+        sCurrentPerformanceDate:
+          type: string
+        iLastPerformanceBonusAmount:
+          type: number
+        sLastPerformanceDate:
+          type: string
+        iTotalIncome:
+          type: number
+        sTenure:
+          type: string
+        sPlanningStatus:
+          type: string
+      required:
+        - iId
+        - sEmployeeClass
+        - sName
+        - bIsManager
+        - sCode
+        - sCareerLevel
+        - sCurrentStatus
+        - oOrgStructure
+        - fSalaryBudgeted
+        - sLastSalaryChangeDate
+        - sLastSalaryChangeReason
+        - iPreviousSalaryAmount
+        - sCurrentPerformanceDate
+        - sLastPerformanceDate
+        - sTenure
+        - sPlanningStatus
+    PositionInTheRange:
+      type: string
+      title: PositionInTheRange
+      enum:
+        - BelowTheRange
+        - InTheRange
+        - AboveTheRange
+    SalaryViewPayRange:
+      title: SalaryViewPayRange
+      type: object
+      properties:
+        iMin:
+          type: number
+        iMid:
+          type: number
+        iMax:
+          type: number
+        iCompaRatio:
+          type: number
+        aCompaRatioChanges:
+          type: array
+          items:
+            type: number
+        sPositionInTheRange:
+          $ref: '#/components/schemas/PositionInTheRange'
+        aPositionInTheRangeChanges:
+          type: array
+          items:
+            $ref: '#/components/schemas/PositionInTheRange'
+      required:
+        - iMin
+        - iMid
+        - iMax
+        - iCompaRatio
+
+<<<<<<< .mine
         - aDepartments
         - aParticipants
         - aCostCenters
@@ -1351,3 +1585,128 @@ components:
         - iMax
         - iCompaRatio
         - sPositionInTheRange
+=======
+    UpdateJobMappingCatalogs:
+      title: UpdateJobMappingCatalogs
+      type: object
+      properties:
+        aJobFamilyGroups:
+          type: array
+          items:
+            $ref: ../models/Catalog.yaml
+        aCareers:
+          type: array
+          items:
+            $ref: ../models/Catalog.yaml
+      required:
+        - aJobFamilyGroups
+        - aCareers
+    UpdateJobMapping:
+      title: UpdateJobMapping
+      type: object
+      properties:
+        aPositionIds:
+          type: array
+          items:
+            type: number
+        oJob:
+          $ref: ../models/Job-adding.yaml
+        sStreamLevelId:
+          type: number
+      required:
+        - aPositionIds
+        - oJob
+        - sStreamLevelId
+    ApprovalsFilters:
+      title: ApprovalsFilters
+      type: object
+      properties:
+        aPositionIds:
+          type: array
+          items:
+            type: number
+        sPeriod:
+          type: string
+          enum:
+            - LastHour
+            - LastDay
+            - LastWeek
+            - LastMonth
+            - Customised
+        sDateFrom:
+          type: string
+        sDateTo:
+          type: string
+        aActionTypes:
+          type: array
+          items:
+            type: string
+        sSearch:
+          type: string
+        bUnapprovedOnly:
+          type: boolean
+      required:
+        - aPositionIds
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+>>>>>>> .theirs

@@ -15,18 +15,26 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: ../models/Notification.yaml
+                type: object
+                properties:
+                  aNotifications:
+                    $ref: ../models/Notification.yaml
+                  aActionTypes:
+                    type:
+                      - string
+                      - array
+                    items:
+                      $ref: ./summary.yaml#/components/schemas/IdStringList
+                required:
+                  - aNotifications
+                  - aActionTypes
       description: ''
       requestBody:
         content:
           application/json:
             schema:
-              type: array
-              items:
-                type: number
-        description: передается массив positionId
+              $ref: '#/components/schemas/ActivityFeedFilters'
+        description: ''
     parameters: []
   /api/notifications:
     get:
@@ -43,4 +51,32 @@ paths:
                   $ref: ../models/Notification.yaml
       operationId: get-api-notifications
 components:
-  schemas: {}
+  schemas:
+    ActivityFeedFilters:
+      title: ActivityFeedFilters
+      type: object
+      properties:
+        aPositionIds:
+          type: array
+          items:
+            type: number
+        sPeriod:
+          type: string
+          enum:
+            - LastHour
+            - LastDay
+            - LastWeek
+            - LastMonth
+            - Customised
+        sDateFrom:
+          type: string
+        sDateTo:
+          type: string
+        aActionTypes:
+          type: array
+          items:
+            type: string
+        sSearch:
+          type: string
+      required:
+        - aPositionIds

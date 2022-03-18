@@ -133,6 +133,7 @@ paths:
                       - oFYSalaryBudgeted
                       - oAnnualizedFYSalaryBudgeted
                       - oRelocations
+                      - oAcceptedOffers
                     properties:
                       oTotalHeadcount:
                         $ref: '#/components/schemas/short-statistic'
@@ -151,6 +152,8 @@ paths:
                       oAnnualizedFYSalaryBudgeted:
                         $ref: '#/components/schemas/short-statistic'
                       oRelocations:
+                        $ref: '#/components/schemas/short-statistic'
+                      oAcceptedOffers:
                         $ref: '#/components/schemas/short-statistic'
                   oHeadcount:
                     $ref: '#/components/schemas/Headcount'
@@ -299,6 +302,14 @@ paths:
                     $ref: '#/components/schemas/Relocations'
                   oRelocationsDescription:
                     $ref: '#/components/schemas/RelocationsDescription'
+                  oRelocationAnalysisTable:
+                    $ref: '#/components/schemas/PeriodDataTableDto'
+                  oChangesRephasedVacancies:
+                    $ref: '#/components/schemas/ChangesRephasedVacancies'
+                  oHeadcountAnalysisPreviousVsCurrent:
+                    $ref: '#/components/schemas/HeadcountAnalysisPreviousVsCurrent'
+                  sTemplateName:
+                    type: string
                   aBlocks:
                     type: array
                     items:
@@ -327,6 +338,9 @@ paths:
                   - oFilterReferences
                   - oRelocations
                   - oRelocationsDescription
+                  - oRelocationAnalysisTable
+                  - oChangesRephasedVacancies
+                  - sTemplateName
                   - aBlocks
       requestBody:
         content:
@@ -446,6 +460,22 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/summary-filter'
+  /api/summary/relocation-analysis-table:
+    post:
+      summary: ''
+      operationId: post-api-summary-relocation-analysis-table
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PeriodDataTableDto'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/summary-filter'
   /api/summary/planning-changes-impact-on-salary-budget-table:
     post:
       summary: ''
@@ -473,6 +503,38 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Relocations'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/summary-filter'
+  /api/summary/changes-rephased-vacancies:
+    post:
+      summary: ''
+      operationId: post-api-summary-changes-rephased-vacancies
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChangesRephasedVacancies'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/summary-filter'
+  /api/summary/headcount-analysis-previous-vs-current:
+    post:
+      summary: ''
+      operationId: post-api-summary-headcount-analysis-previous-vs-current
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HeadcountAnalysisPreviousVsCurrent'
       requestBody:
         content:
           application/json:
@@ -738,7 +800,9 @@ components:
       properties:
         iAdd:
           type: number
-        iMoved:
+        iMovedIn:
+          type: number
+        iMovedOut:
           type: number
         iClosed:
           type: number
@@ -746,7 +810,8 @@ components:
           type: number
       required:
         - iAdd
-        - iMoved
+        - iMovedIn
+        - iMovedOut
         - iClosed
         - iNoChange
     VacanciesDetailsGroup:
@@ -773,7 +838,9 @@ components:
           type: number
         iFutureReplacements:
           type: number
-        iRephased:
+        iMovedIn:
+          type: number
+        iMovedOut:
           type: number
         iInactivated:
           type: number
@@ -781,7 +848,8 @@ components:
         - iTotal
         - iAdded
         - iFutureReplacements
-        - iRephased
+        - iMovedIn
+        - iMovedOut
         - iInactivated
     VacanciesAnalysis:
       title: VacanciesAnalysis
@@ -983,6 +1051,10 @@ components:
       required:
         - sName
         - aValues
+        sWorkplacePattern:
+          $ref: ./positions.yaml#/components/schemas/UpdateWorkplacePattern
+        bVacanciesWithMultipleOffices:
+          type: boolean
     ChangesSalaryIncreasesDescription:
       title: ChangesSalaryIncreasesDescription
       type: object
@@ -1187,3 +1259,64 @@ components:
           type: boolean
       required:
         - sBlockName
+    ChangesRephasedVacanciesItem:
+      title: ChangesRephasedVacanciesItem
+      type: object
+      properties:
+        sName:
+          type: string
+        iMovedOut:
+          type: number
+        iMovedIn:
+          type: number
+      required:
+        - sName
+        - iMovedOut
+        - iMovedIn
+    ChangesRephasedVacancies:
+      title: ChangesRephasedVacancies
+      type: object
+      properties:
+        aPeriods:
+          type: array
+          items:
+            $ref: '#/components/schemas/period'
+        aChartData:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChangesRephasedVacanciesItem'
+    HeadcountAnalysisPreviousVsCurrentItem:
+      title: HeadcountAnalysisPreviousVsCurrentItem
+      type: object
+      properties:
+        sName:
+          type: string
+        iPrevious:
+          type: number
+        iCurrent:
+          type: number
+      required:
+        - sName
+        - iPrevious
+        - iCurrent
+    HeadcountAnalysisPreviousVsCurrent:
+      title: HeadcountAnalysisPreviousVsCurrent
+      type: object
+      properties:
+        aPeriods:
+          type: array
+          items:
+            $ref: '#/components/schemas/period'
+        sFirstName:
+          type: string
+        sSecondName:
+          type: string
+        aChartData:
+          type: array
+          items:
+            $ref: '#/components/schemas/HeadcountAnalysisPreviousVsCurrentItem'
+      required:
+        - aPeriods
+        - sFirstName
+        - sSecondName
+        - aChartData
