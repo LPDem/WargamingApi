@@ -94,9 +94,10 @@ properties:
   sApproveNewStatus:
     type: string
     enum:
-      - pending
-      - approved
-      - declined
+      - Pending
+      - Approved
+      - Declined
+      - UpdatedInHRMS
     description: Статус согласования новой вакансии
   sGreenhouseStatus:
     type: string
