@@ -8,7 +8,10 @@ properties:
     type: string
   sUserName:
     type: string
+  bMyComment:
+    type: boolean
 required:
   - sText
   - sDate
   - sUserName
+  - bMyComment

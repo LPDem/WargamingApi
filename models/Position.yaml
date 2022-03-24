@@ -52,8 +52,10 @@ properties:
     $ref: ./Start-date.yaml
   oOrgStructure:
     $ref: ./Org-structure.yaml
-  oComment:
-    $ref: ./Position-comment.yaml
+  aComments:
+    type: array
+    items:
+      $ref: ./Position-comment.yaml
   aSalaryChanges:
     type: array
     items:
