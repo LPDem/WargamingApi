@@ -10,6 +10,10 @@ properties:
     $ref: ./User-notification-settings.yaml
   oSalaryPreferences:
     $ref: ./User-salary-preferences.yaml
+  sTechWorksEndDate:
+    type: string
+    description: 'Дата окончания работ, в формате YYYY-MM-DD HH:mm'
+    example: '2022-03-28 18:00'
 required:
   - sUserName
   - oPermissions

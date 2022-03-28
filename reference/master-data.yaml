@@ -881,6 +881,30 @@ paths:
             schema:
               $ref: '#/components/schemas/MasterDataRolesDto'
       description: ''
+  /getTechWorks:
+    get:
+      summary: getTechWorks
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TechWorksDto'
+      operationId: get-getTechWorks
+  /setTechWorks:
+    post:
+      summary: setTechWorks
+      operationId: post-setTechWorks
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TechWorksDto'
+      description: ''
 components:
   schemas:
     DataGridDto:
@@ -987,3 +1011,11 @@ components:
             required:
               - iCode
               - sDescription
+    TechWorksDto:
+      title: TechWorksDto
+      type: object
+      properties:
+        sEndDate:
+          type: string
+          description: 'Дата и время окончания работ, в формате YYYY-MM-DD HH:mm'
+          example: '2021-01-30 15:30'
