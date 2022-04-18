@@ -1547,6 +1547,8 @@ components:
           $ref: ''
         sOffice:
           type: string
+        iOfficeId:
+          type: number
       required:
         - sTypeOfChange
     AddReorganization:
