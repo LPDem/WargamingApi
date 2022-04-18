@@ -115,6 +115,8 @@ properties:
         type: string
     required:
       - sOffice
+  sReorganizationTypeOfChange:
+    $ref: ../reference/positions.yaml#/components/schemas/ReorganizationTypeOfChange
 required:
   - iId
   - iReportingFunctionId

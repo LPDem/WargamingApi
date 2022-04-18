@@ -126,6 +126,8 @@ properties:
     type: boolean
   sActualLocationForRemoteEmployee:
     type: string
+  oReorganization:
+    $ref: ../reference/positions.yaml#/components/schemas/Reorganization
 required:
   - iId
   - iReportingFunctionId

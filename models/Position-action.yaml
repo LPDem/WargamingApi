@@ -18,6 +18,7 @@ properties:
       - ApproveAndSubmit
       - UpdateWorkplacePattern
       - UpdateJobMapping
+      - Reorganization
 required:
   - sTitle
   - sCode

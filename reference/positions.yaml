@@ -977,6 +977,50 @@ paths:
           in: query
           name: positionId
           description: 'Id позиции, если справочники для редактирования единственной позиции'
+  /api/positions/reorganization:
+    get:
+      summary: Получение справочников реорганизации
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  aOffices:
+                    type: array
+                    items:
+                      $ref: ../models/Office.yaml
+      operationId: get-api-positions-reorganization
+      parameters:
+        - schema:
+            type: number
+          in: query
+          name: positionId
+          description: 'Id позиции, если справочники для редактирования единственной позиции'
+    post:
+      summary: Добавление или изменение реорганизации
+      operationId: post-api-positions-reorganization
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                aPositionIds:
+                  type: array
+                  items:
+                    type: number
+                oReorganization:
+                  $ref: '#/components/schemas/AddReorganization'
+              required:
+                - aPositionIds
+                - oReorganization
 components:
   schemas:
     PositionListFieldSorting:
@@ -1169,6 +1213,10 @@ components:
           enum:
             - new
             - old
+        aReorganizationTypeOfChange:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReorganizationTypeOfChange'
     PositionListInternalData:
       title: PositionListInternalData
       type: object
@@ -1475,3 +1523,49 @@ components:
         - aRelocationByDate
         - bShowVisibilityFilter
         - aProducts
+    ReorganizationTypeOfChange:
+      type: string
+      title: ReorganizationTypeOfChange
+      enum:
+        - Termination
+        - Relocation
+        - TalentPoolWG
+        - TalentPoolLesta
+        - NoChanges
+    Reorganization:
+      title: Reorganization
+      type: object
+      properties:
+        sTypeOfChange:
+          $ref: '#/components/schemas/ReorganizationTypeOfChange'
+        sEffectiveDate:
+          type: string
+        sSaverancePackage:
+          enum:
+            - 'package3Salaries]'
+            - package5Salaries
+          $ref: ''
+        sOffice:
+          type: string
+      required:
+        - sTypeOfChange
+    AddReorganization:
+      title: AddReorganization
+      type: object
+      properties:
+        sTypeOfChange:
+          $ref: '#/components/schemas/ReorganizationTypeOfChange'
+        sEffectiveDate:
+          type: string
+        sSaverancePackage:
+          $ref: '#/components/schemas/SaverancePackage'
+        iOfficeId:
+          type: number
+      required:
+        - sTypeOfChange
+    SaverancePackage:
+      type: string
+      title: SaverancePackage
+      enum:
+        - package3Salaries
+        - package5Salaries
