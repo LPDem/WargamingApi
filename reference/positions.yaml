@@ -1524,9 +1524,10 @@ components:
       enum:
         - Termination
         - Relocation
-        - TalentPoolWG
-        - TalentPoolLesta
-        - NoChanges
+        - Talent pool WG
+        - Talent pool Lesta
+        - No Changes
+        - Transfer to Playsense
     Reorganization:
       title: Reorganization
       type: object
@@ -1569,5 +1570,5 @@ components:
       type: string
       title: SaverancePackage
       enum:
-        - package3Salaries
-        - package5Salaries
+        - 3 salaries
+        - 5 salaries
