@@ -1010,17 +1010,7 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                aPositionIds:
-                  type: array
-                  items:
-                    type: number
-                oReorganization:
-                  $ref: '#/components/schemas/AddReorganization'
-              required:
-                - aPositionIds
-                - oReorganization
+              $ref: '#/components/schemas/AddReorganization'
 components:
   schemas:
     PositionListFieldSorting:
