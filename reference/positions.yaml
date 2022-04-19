@@ -1453,6 +1453,10 @@ components:
           type: string
         sPlanningStatus:
           type: string
+        bCanAddSalaryChange:
+          type: boolean
+        sVacancyType:
+          type: string
       required:
         - iId
         - sEmployeeClass
@@ -1470,6 +1474,7 @@ components:
         - sLastPerformanceDate
         - sTenure
         - sPlanningStatus
+        - bCanAddSalaryChange
     PositionInTheRange:
       type: string
       title: PositionInTheRange
