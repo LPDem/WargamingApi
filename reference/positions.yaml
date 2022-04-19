@@ -1560,6 +1560,10 @@ components:
       title: AddReorganization
       type: object
       properties:
+        aPositionIds:
+          type: array
+          items:
+            type: number
         sTypeOfChange:
           $ref: '#/components/schemas/ReorganizationTypeOfChange'
         sEffectiveDate:
@@ -1569,6 +1573,7 @@ components:
         iOfficeId:
           type: number
       required:
+        - aPositionIds
         - sTypeOfChange
     SaverancePackage:
       type: string
