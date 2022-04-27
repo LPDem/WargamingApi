@@ -1211,12 +1211,18 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/SeverancePackage'
-        sTerminationDate:
-          type: string
+        aTerminationDate:
+          type: array
+          items:
+            type: string
         aRelocationOffice:
           type: array
           items:
             type: number
+        aRelocationDate:
+          type: array
+          items:
+            type: string
     PositionListInternalData:
       title: PositionListInternalData
       type: object
@@ -1320,6 +1326,14 @@ components:
           type: array
           items:
             $ref: ../models/Office.yaml
+        aRelocationDates:
+          type: array
+          items:
+            $ref: ./summary.yaml#/components/schemas/IdStringList
+        aTerminationDates:
+          type: array
+          items:
+            $ref: ./summary.yaml#/components/schemas/IdStringList            
       required:
         - aManagers
         - aOffices
