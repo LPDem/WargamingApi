@@ -1207,6 +1207,16 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ReorganizationTypeOfChange'
+        aSeverancePackage:
+          type: array
+          items:
+            $ref: '#/components/schemas/SeverancePackage'
+        sTerminationDate:
+          type: string
+        aRelocationOffice:
+          type: array
+          items:
+            type: number
     PositionListInternalData:
       title: PositionListInternalData
       type: object
@@ -1306,9 +1316,11 @@ components:
           type: array
           items:
             $ref: ./summary.yaml#/components/schemas/IdNumberList
+        aRelocationOffices:
+          type: array
+          items:
+            $ref: ../models/Office.yaml
       required:
-        - aPositionIds
-        - sWorkplacePattern
         - aManagers
         - aOffices
         - aDepartments
@@ -1536,11 +1548,8 @@ components:
           $ref: '#/components/schemas/ReorganizationTypeOfChange'
         sEffectiveDate:
           type: string
-        sSaverancePackage:
-          enum:
-            - 'package3Salaries]'
-            - package5Salaries
-          $ref: ''
+        sSeverancePackage:
+          $ref: '#/components/schemas/SeverancePackage'
         sOffice:
           type: string
         iOfficeId:
@@ -1559,16 +1568,16 @@ components:
           $ref: '#/components/schemas/ReorganizationTypeOfChange'
         sEffectiveDate:
           type: string
-        sSaverancePackage:
-          $ref: '#/components/schemas/SaverancePackage'
+        sSeverancePackage:
+          $ref: '#/components/schemas/SeverancePackage'
         iOfficeId:
           type: number
       required:
         - aPositionIds
         - sTypeOfChange
-    SaverancePackage:
+    SeverancePackage:
       type: string
-      title: SaverancePackage
+      title: SeverancePackage
       enum:
         - 3 salaries
         - 5 salaries
