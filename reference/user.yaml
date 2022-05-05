@@ -256,9 +256,6 @@ components:
         bPlanApprove:
           type: boolean
           description: Approve плана
-        bCompensationInformationBonus:
-          type: boolean
-          description: Доступ к разделу мастер-данных Compensation information_Bonus
       required:
         - bFullDataAccess
         - bAdministration
@@ -271,7 +268,6 @@ components:
         - bPlanApproveAndSubmit
         - bViewPlanStatus
         - bPlanApprove
-        - bCompensationInformationBonus
     UserThemes:
       title: UserThemes
       type: object

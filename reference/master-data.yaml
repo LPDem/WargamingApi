@@ -42,7 +42,6 @@ paths:
       operationId: masterData-getData
       description: Получение мастер-данных
       parameters:
-        - $ref: '#/components/schemas/MasterDataType'
         - schema:
             type: string
           in: query
@@ -273,7 +272,7 @@ components:
       description: Мастер-данные для импорта
       properties:
         sType:
-          $ref: '#/components/schemas/MasterDataType'
+          type: string
         sFileContent:
           type: string
           description: 'Содержимое файла, с префиксом data:text/plain;base64,'
@@ -318,30 +317,3 @@ components:
           type: string
           description: Дата в формате YYYY-MM-DD
           format: date
-    MasterDataType:
-      type: string
-      title: MasterDataType
-      enum:
-        - Positions
-        - Roles
-        - OrgStructure
-        - Jobs
-        - Faq
-        - Currencies
-        - Frequencies
-        - ExchangeRates
-        - Users
-        - Employees
-        - Offices
-        - ProjectedHeadcountAnalysis
-        - CodesMapping
-        - AccessSettings
-        - ApprovalMatrix
-        - Greenhouse
-        - MyTeam
-        - AccessExceptions
-        - Products
-        - PayRanges
-        - CompensationInformationGeneral
-        - CompensationInformationBonus
-      description: Тип мастер-данных
