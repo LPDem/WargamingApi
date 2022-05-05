@@ -35,9 +35,12 @@ paths:
               schema:
                 type: object
                 properties:
+                  sTitle:
+                    type: string
                   oData:
                     $ref: '#/components/schemas/DataGridDto'
                 required:
+                  - sTitle
                   - oData
       operationId: masterData-getData
       description: Получение мастер-данных
