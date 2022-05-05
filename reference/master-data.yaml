@@ -24,7 +24,7 @@ paths:
     parameters: []
   /getData:
     get:
-      summary: getRoles
+      summary: getData
       tags:
         - masterData
       responses:
