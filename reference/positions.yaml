@@ -1011,6 +1011,27 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/AddReorganization'
+  /api/positions/talent-pool-lesta-review:
+    post:
+      summary: Talent pool Lesta Review
+      operationId: post-api-positions-talent-pool-lesta-review
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  aPositionIds:
+                    type: array
+                    items:
+                      type: number
+                  sStatus:
+                    $ref: '#/components/schemas/TalentPoolLestaReviewStatus'
+                required:
+                  - aPositionIds
+                  - sStatus
 components:
   schemas:
     PositionListFieldSorting:
@@ -1223,6 +1244,10 @@ components:
           type: array
           items:
             type: string
+        aTalentPoolLestaReviewStatus:
+          type: array
+          items:
+            type: string
     PositionListInternalData:
       title: PositionListInternalData
       type: object
@@ -1333,7 +1358,7 @@ components:
         aTerminationDates:
           type: array
           items:
-            $ref: ./summary.yaml#/components/schemas/IdStringList            
+            $ref: ./summary.yaml#/components/schemas/IdStringList
       required:
         - aManagers
         - aOffices
@@ -1595,3 +1620,11 @@ components:
       enum:
         - 3 salaries
         - 5 salaries
+    TalentPoolLestaReviewStatus:
+      type: string
+      title: TalentPoolLestaReviewStatus
+      enum:
+        - No changes
+        - On hold
+        - Reviewed
+        - Rejected
