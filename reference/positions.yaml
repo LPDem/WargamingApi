@@ -1626,5 +1626,5 @@ components:
       enum:
         - No changes
         - On hold
-        - Reviewed
+        - Approved
         - Rejected
