@@ -6,7 +6,7 @@ info:
 servers:
   - url: 'http://localhost:3000'
 paths:
-  /api/positions:
+  /api/positions/list:
     parameters: []
     post:
       summary: Получение списка позиций
@@ -97,7 +97,7 @@ paths:
       operationId: get-positions-id
       description: Получение одной позиции
     put:
-      summary: ''
+      summary: Обновление позиции
       operationId: put-api-positions-iId
       responses:
         '200':
@@ -105,8 +105,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: ../models/Position.yaml
-      description: Изменение должности
+                type: number
+      description: ''
       requestBody:
         content:
           application/json:
@@ -1032,6 +1032,58 @@ paths:
                 required:
                   - aPositionIds
                   - sStatus
+  /api/positions:
+    post:
+      summary: Добавление позиции
+      operationId: post-api-positions
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: number
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../models/Vacancy-adding.yaml
+  '/api/positions/short-position/{positionId}':
+    get:
+      summary: Получение короткой позиции по id
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../models/Position-short.yaml
+      operationId: get-api-positions-short-position
+    parameters:
+      - schema:
+          type: number
+        name: positionId
+        in: path
+        required: true
+  '/api/positions/salary-view-position/{positionId}':
+    get:
+      summary: Получение позиции salary view по id
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SalaryViewPosition'
+      operationId: get-api-positions-salary-view-position
+    parameters:
+      - schema:
+          type: number
+        name: positionId
+        in: path
+        required: true
 components:
   schemas:
     PositionListFieldSorting:
