@@ -1048,9 +1048,9 @@ paths:
           application/json:
             schema:
               $ref: ../models/Vacancy-adding.yaml
-  '/api/positions/short-position/{positionId}':
-    get:
-      summary: Получение короткой позиции по id
+  /api/positions/short-position:
+    post:
+      summary: Получение коротких позиций по списку id
       tags: []
       responses:
         '200':
@@ -1060,15 +1060,15 @@ paths:
               schema:
                 $ref: ../models/Position-short.yaml
       operationId: get-api-positions-short-position
-    parameters:
-      - schema:
-          type: number
-        name: positionId
-        in: path
-        required: true
-  '/api/positions/salary-view-position/{positionId}':
-    get:
-      summary: Получение позиции salary view по id
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PositionIds'
+    parameters: []
+  /api/positions/salary-view-position:
+    post:
+      summary: Получение позиций salary view по списку id
       tags: []
       responses:
         '200':
@@ -1078,12 +1078,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/SalaryViewPosition'
       operationId: get-api-positions-salary-view-position
-    parameters:
-      - schema:
-          type: number
-        name: positionId
-        in: path
-        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PositionIds'
+    parameters: []
 components:
   schemas:
     PositionListFieldSorting:
@@ -1680,3 +1680,13 @@ components:
         - On hold
         - Approved
         - Rejected
+    PositionIds:
+      title: PositionIds
+      x-stoplight:
+        id: b09fihofy3uog
+      type: object
+      properties:
+        aPositionIds:
+          type: array
+          items:
+            type: number
