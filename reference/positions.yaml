@@ -1048,7 +1048,7 @@ paths:
           application/json:
             schema:
               $ref: ../models/Vacancy-adding.yaml
-  /api/positions/short-position:
+  /api/positions/load-short-list:
     post:
       summary: Получение коротких позиций по списку id
       tags: []
@@ -1058,7 +1058,14 @@ paths:
           content:
             application/json:
               schema:
-                $ref: ../models/Position-short.yaml
+                type: object
+                properties:
+                  aPositions:
+                    type: array
+                    items:
+                      $ref: ../models/Position-short.yaml
+                required:
+                  - aPositions
       operationId: get-api-positions-short-position
       requestBody:
         content:
@@ -1066,7 +1073,7 @@ paths:
             schema:
               $ref: '#/components/schemas/PositionIds'
     parameters: []
-  /api/positions/salary-view-position:
+  /api/positions/load-salary-view-list:
     post:
       summary: Получение позиций salary view по списку id
       tags: []
@@ -1076,7 +1083,14 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SalaryViewPosition'
+                type: object
+                properties:
+                  aPositions:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/SalaryViewPosition'
+                required:
+                  - aPositions
       operationId: get-api-positions-salary-view-position
       requestBody:
         content:
