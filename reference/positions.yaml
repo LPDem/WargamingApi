@@ -1279,7 +1279,7 @@ components:
             type: number
         sWorkplacePattern:
           $ref: '#/components/schemas/WorkplacePattern'
-        aSalaryVsMarket:
+        aPositionInTheRange:
           type: array
           items:
             $ref: '#/components/schemas/PositionInTheRange'
@@ -1314,6 +1314,14 @@ components:
           type: array
           items:
             type: string
+        sLastSalaryChangeDate:
+          $ref: '#/components/schemas/LastSalaryChangeDateFilter'
+        sLastSalaryChangeDateFrom:
+          type: string
+        sLastSalaryChangeDateTo:
+          type: string
+        aTenure:
+          $ref: '#/components/schemas/TenureFilter'
     PositionListInternalData:
       title: PositionListInternalData
       type: object
@@ -1704,3 +1712,25 @@ components:
           type: array
           items:
             type: number
+    LastSalaryChangeDateFilter:
+      type: string
+      title: LastSalaryChangeDateFilter
+      x-stoplight:
+        id: y8kooxa35k4o6
+      enum:
+        - NoChanges
+        - Past6Month
+        - Past1Year
+        - PastMore1Year
+        - Custom
+    TenureFilter:
+      type: string
+      title: TenureFilter
+      x-stoplight:
+        id: dt35n17t98jwn
+      enum:
+        - Less1Year
+        - From1To3Years
+        - From3To5Years
+        - From5To10Years
+        - From10Years
