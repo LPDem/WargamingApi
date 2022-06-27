@@ -1098,6 +1098,35 @@ paths:
             schema:
               $ref: '#/components/schemas/PositionIds'
     parameters: []
+  /api/positions/get-relocation-bonuses:
+    post:
+      summary: Получение списка бонусов для указанной позиции и офиса
+      operationId: post-api-positions-get-relocation-bonuses
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  aBonuses:
+                    type: array
+                    items:
+                      $ref: './summary.yaml#/components/schemas/IdStringList'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                iPositionId:
+                  type: number
+                iOfficeId:
+                  type: number
+              required:
+                - iPositionId
+                - iOfficeId
 components:
   schemas:
     PositionListFieldSorting:
@@ -1667,6 +1696,12 @@ components:
           type: string
         iOfficeId:
           type: number
+        sRelocationBonus:
+          $ref: '#/components/schemas/RelocationBonus'
+        iRelocationBonusPerCareerLevel:
+          type: number
+        fRelocationBonusCustomValue:
+          type: number
       required:
         - sTypeOfChange
     AddReorganization:
@@ -1685,6 +1720,17 @@ components:
           $ref: '#/components/schemas/SeverancePackage'
         iOfficeId:
           type: number
+        sRelocationBonus:
+          $ref: '#/components/schemas/RelocationBonus'
+        iRelocationBonusPerCareerLevel:
+          type: number
+        oRelocationBonusCustom:
+          type: object
+          properties:
+            iValue:
+              type: number
+            iCurrencyId:
+              type: number
       required:
         - aPositionIds
         - sTypeOfChange
@@ -1734,3 +1780,12 @@ components:
         - From3To5Years
         - From5To10Years
         - From10Years
+    RelocationBonus:
+      type: string
+      title: RelocationBonus
+      x-stoplight:
+        id: jbr28ptjvuz6y
+      enum:
+        - NoBonus
+        - PerCareerLevel
+        - CustomBonus
