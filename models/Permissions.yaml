@@ -37,12 +37,16 @@ properties:
     description: Approve плана
   bExportManageParticipants:
     type: boolean
+    description: Выгрузка Manage Participants в xls
   bEditSalary:
     type: boolean
     description: Можно видеть и редактировать salary
   bNoRole:
     type: boolean
     description: У пользователя нет роли
+  bCompensationInformationBonus:
+    type: boolean
+    description: Доступ к разделу мастер-данных Compensation information_Bonus
 required:
   - bFullDataAccess
   - bAdministration
@@ -58,3 +62,4 @@ required:
   - bExportManageParticipants
   - bEditSalary
   - bNoRole
+  - bCompensationInformationBonus

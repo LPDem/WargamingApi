@@ -6,318 +6,77 @@ info:
 servers:
   - url: 'http://localhost:3000'
 paths:
-  /api/positions:
-    get:
+  /api/positions/list:
+    parameters: []
+    post:
       summary: Получение списка позиций
-      tags: []
-      operationId: get-positions
-      description: Возвращает список должностей по переданным параметрам
-      parameters:
-        - schema:
-            type: number
-          in: query
-          name: iReportingFunctionId
-          description: ''
-        - schema:
-            type: array
-          in: query
-          name: aOfficeIds
-        - schema:
-            type: array
-          in: query
-          name: aDepartmentIds
-        - schema:
-            type: array
-          in: query
-          name: aManagerIds
-        - schema:
-            type: string
-            enum:
-              - Active Employee
-              - Vacancy
-          in: query
-          name: sCurrentStatus
-          description: Статус должности
-        - schema:
-            type: string
-          in: query
-          name: sText
-          description: 'Поиск по полям sCode, sName, sAssignee'
-        - schema:
-            type: array
-          in: query
-          name: sSort
-          description: Поле для сортировки
-        - schema:
-            type: number
-          in: query
-          name: iDepartmentId
-        - schema:
-            type: boolean
-          in: query
-          name: bOnlyInactive
-        - schema:
-            type: boolean
-          in: query
-          name: bOnlySalaryUpdates
-        - schema:
-            type: boolean
-          in: query
-          name: bFutureReplacements
-        - schema:
-            type: string
-            enum:
-              - WithChanges
-              - WithoutChanges
-          in: query
-          name: sChanges
-        - schema:
-            type: array
-          in: query
-          name: aCostCenters
-        - schema:
-            type: array
-          in: query
-          name: aSubmissionStatuses
-        - schema:
-            type: string
-          in: query
-          name: sJobFamilyGroupId
-        - schema:
-            type: string
-          in: query
-          name: sJobFamilyId
-        - schema:
-            type: string
-          in: query
-          name: sJobSubFamilyId
-        - schema:
-            type: array
-          in: query
-          name: aExcludeIds
-        - schema:
-            type: number
-          in: query
-          name: iFilterId
-        - schema:
-            type: string
-            enum:
-              - withoutUpdates
-              - withUpdates
-              - periods
-          in: query
-          name: sSalaryUpdatesMode
-        - schema:
-            type: array
-          in: query
-          name: aSalaryUpdates
-        - schema:
-            type: array
-          in: query
-          name: aVacanciesUpdates
-        - schema:
-            type: boolean
-          in: query
-          name: bOfferAccepted
-        - schema:
-            type: string
-            enum:
-              - Uploaded
-              - New
-          in: query
-          name: sUpdateType
-        - schema:
-            type: string
-            enum:
-              - Planned
-              - Unplanned
-          in: query
-          name: sPlanningStatus
-        - schema:
-            type: array
-            enum:
-              - NoStatus
-              - Pending
-              - Approved
-              - Declined
-          in: query
-          name: aConfirmationStatuses
-        - schema:
-            type: number
-          in: query
-          name: aRelocationByOffice
-        - schema:
-            type: string
-          in: query
-          name: aRelocationByDate
-        - schema:
-            type: string
-            enum:
-              - Visible
-              - Hidden
-          in: query
-          name: sVisibility
-        - schema:
-            type: array
-          in: query
-          name: aProducts
-        - schema:
-            type: string
-            enum:
-              - Workplace
-              - Remote
-              - Hybrid
-          in: query
-          name: sWorkplacePattern
-        - schema:
-            type: boolean
-          in: query
-          name: bVacanciesWithMultipleOffices
-        - schema:
-            type: string
-            enum:
-              - new
-              - old
-          in: query
-          name: sVacancyByCreation
+      operationId: get-position-list
       responses:
         '200':
           description: OK
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  aPositions:
-                    type: array
-                    items:
-                      $ref: ../models/Position-short.yaml
-                  aManagers:
-                    type: array
-                    items:
-                      $ref: ../models/Manager.yaml
-                  aOffices:
-                    type: array
-                    items:
-                      $ref: ../models/Office.yaml
-                  aDepartments:
-                    type: array
-                    items:
-                      $ref: ../models/Department-node.yaml
-                  aParticipants:
-                    type: array
-                    items:
-                      $ref: ../models/Participant-short.yaml
-                  aCostCenters:
-                    type: array
-                    items:
-                      $ref: ../models/Office.yaml
-                  iAllPositionsCount:
-                    type: number
-                  iEmployeesCount:
-                    type: number
-                  iVacanciesCount:
-                    type: number
-                  iLongLeaveCount:
-                    type: number
-                  aJobFamilyGroups:
-                    type: array
-                    items:
-                      $ref: ../models/Participant-short.yaml
-                  aJobFamilies:
-                    type: array
-                    items:
-                      $ref: ../models/Participant-short.yaml
-                  aJobSubFamilies:
-                    type: array
-                    items:
-                      $ref: ../models/Participant-short.yaml
-                  aExcludeList:
-                    type: array
-                    items:
-                      $ref: ../models/Participant-short.yaml
-                  oSalaryConfig:
-                    $ref: ../models/Salary-config.yaml
-                  aSalaryUpdatesPeriods:
-                    $ref: ./summary.yaml#/components/schemas/IdStringList
-                  aVacanciesPeriods:
-                    $ref: ./summary.yaml#/components/schemas/IdStringList
-                  bShowUpdateTypeFilter:
-                    type: boolean
-                  oSorting:
+                allOf:
+                  - $ref: '#/components/schemas/PositionListInternalData'
+                  - properties:
+                      aPositions:
+                        type: array
+                        items:
+                          $ref: ../models/Position-short.yaml
                     type: object
                     required:
-                      - aPosition
-                      - aCurrentStatus
-                      - aOrgInfo
-                      - aEmployee
-                      - aSalary
-                    properties:
-                      aPosition:
-                        type: array
-                        items:
-                          $ref: '#/components/schemas/PositionListFieldSorting'
-                      aCurrentStatus:
-                        type: array
-                        items:
-                          $ref: '#/components/schemas/PositionListFieldSorting'
-                      aOrgInfo:
-                        type: array
-                        items:
-                          $ref: '#/components/schemas/PositionListFieldSorting'
-                      aEmployee:
-                        type: array
-                        items:
-                          $ref: '#/components/schemas/PositionListFieldSorting'
-                      aSalary:
-                        type: array
-                        items:
-                          $ref: '#/components/schemas/PositionListFieldSorting'
-                  aRelocationByOffice:
-                    type: array
-                    items:
-                      $ref: ./summary.yaml#/components/schemas/IdNumberList
-                  aRelocationByDate:
-                    type: array
-                    items:
-                      $ref: ./summary.yaml#/components/schemas/IdStringList
-                  bShowVisibilityFilter:
-                    type: boolean
-                  aProducts:
-                    type: array
-                    items:
-                      $ref: ./summary.yaml#/components/schemas/IdNumberList
-                  sWorkplacePattern:
-                    type: string
-                    enum:
-                      - Workplace
-                      - Remote
-                      - Hybrid
-                required:
-                  - aPositions
-                  - aManagers
-                  - aOffices
-                  - aDepartments
-                  - aParticipants
-                  - aCostCenters
-                  - iAllPositionsCount
-                  - iEmployeesCount
-                  - iVacanciesCount
-                  - iLongLeaveCount
-                  - aJobFamilyGroups
-                  - aJobFamilies
-                  - aJobSubFamilies
-                  - aExcludeList
-                  - aSalaryUpdatesPeriods
-                  - aVacanciesPeriods
-                  - bShowUpdateTypeFilter
-                  - oSorting
-                  - aRelocationByOffice
-                  - aRelocationByDate
-                  - bShowVisibilityFilter
-                  - aProducts
-                  - sWorkplacePattern
+                      - aPositions
+              examples: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PositionsFilter'
+        description: ''
+  /api/positions/salary-view:
     parameters: []
+    post:
+      summary: Получение списка Salary View
+      operationId: get-salary-view-list
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/PositionListInternalData'
+                  - type: object
+                    properties:
+                      aPositions:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/SalaryViewPosition'
+                      sTotalIncomePeriod:
+                        type: string
+                    required:
+                      - aPositions
+                      - sTotalIncomePeriod
+              examples: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                oPositionsFilter:
+                  $ref: '#/components/schemas/PositionsFilter'
+                iCurrencyId:
+                  type: number
+                iPaymentFrequencyId:
+                  type: number
+              required:
+                - oPositionsFilter
+                - iCurrencyId
+                - iPaymentFrequencyId
+        description: ''
+      description: ''
   '/api/positions/{iId}':
     parameters:
       - schema:
@@ -338,7 +97,7 @@ paths:
       operationId: get-positions-id
       description: Получение одной позиции
     put:
-      summary: ''
+      summary: Обновление позиции
       operationId: put-api-positions-iId
       responses:
         '200':
@@ -346,8 +105,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: ../models/Position.yaml
-      description: Изменение должности
+                type: number
+      description: ''
       requestBody:
         content:
           application/json:
@@ -1218,6 +977,127 @@ paths:
           in: query
           name: positionId
           description: 'Id позиции, если справочники для редактирования единственной позиции'
+  /api/positions/reorganization:
+    get:
+      summary: Получение справочников реорганизации
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  aOffices:
+                    type: array
+                    items:
+                      $ref: ../models/Office.yaml
+      operationId: get-api-positions-reorganization
+      parameters:
+        - schema:
+            type: number
+          in: query
+          name: positionId
+          description: 'Id позиции, если справочники для редактирования единственной позиции'
+    post:
+      summary: Добавление или изменение реорганизации
+      operationId: post-api-positions-reorganization
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddReorganization'
+  /api/positions/talent-pool-lesta-review:
+    post:
+      summary: Talent pool Lesta Review
+      operationId: post-api-positions-talent-pool-lesta-review
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  aPositionIds:
+                    type: array
+                    items:
+                      type: number
+                  sStatus:
+                    $ref: '#/components/schemas/TalentPoolLestaReviewStatus'
+                required:
+                  - aPositionIds
+                  - sStatus
+  /api/positions:
+    post:
+      summary: Добавление позиции
+      operationId: post-api-positions
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: number
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../models/Vacancy-adding.yaml
+  /api/positions/load-short-list:
+    post:
+      summary: Получение коротких позиций по списку id
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  aPositions:
+                    type: array
+                    items:
+                      $ref: ../models/Position-short.yaml
+                required:
+                  - aPositions
+      operationId: get-api-positions-short-position
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PositionIds'
+    parameters: []
+  /api/positions/load-salary-view-list:
+    post:
+      summary: Получение позиций salary view по списку id
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  aPositions:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/SalaryViewPosition'
+                required:
+                  - aPositions
+      operationId: get-api-positions-salary-view-position
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PositionIds'
+    parameters: []
 components:
   schemas:
     PositionListFieldSorting:
@@ -1272,14 +1152,309 @@ components:
           items:
             type: number
         sWorkplacePattern:
-          type: string
-          enum:
-            - Workplace
-            - Remote
-            - Hybrid
+          $ref: '#/components/schemas/WorkplacePattern'
       required:
         - aPositionIds
         - sWorkplacePattern
+    WorkplacePattern:
+      type: string
+      title: WorkplacePattern
+      enum:
+        - Workplace
+        - Remote
+        - Hybrid
+      description: ''
+    PositionsFilter:
+      title: PositionsFilter
+      type: object
+      description: Фильтры по позициям
+      properties:
+        iReportingFunctionId:
+          type: number
+        aOfficeIds:
+          type: array
+          items:
+            type: number
+        aDepartmentIds:
+          type: array
+          items:
+            type: number
+        aManagerIds:
+          type: array
+          items:
+            type: string
+        sCurrentStatus:
+          type: string
+          enum:
+            - Active Employee
+            - Vacancy
+            - Long Leave
+        iDepartmentId:
+          type: number
+        aSubmissionStatuses:
+          type: array
+          items:
+            type: string
+        aCostCenters:
+          type: array
+          items:
+            type: string
+        sJobFamilyGroupId:
+          type: string
+        sJobSubFamilyId:
+          type: string
+        aExcludeIds:
+          type: array
+          items:
+            type: string
+        aDepartmentIds2:
+          type: array
+          items:
+            type: number
+        sText:
+          type: string
+        bOnlyInactive:
+          type: boolean
+        bOnlySalaryUpdates:
+          type: boolean
+        bFutureReplacements:
+          type: boolean
+        sChanges:
+          type: string
+          enum:
+            - All
+            - WithChanges
+            - WithoutChanges
+        sJobFamilyId:
+          type: string
+        iFilterId:
+          type: number
+        sSalaryUpdatesMode:
+          type: string
+          enum:
+            - withoutUpdates
+            - withUpdates
+            - periods
+        aSalaryUpdates:
+          type: array
+          items:
+            type: string
+        aVacanciesUpdates:
+          type: array
+          items:
+            type: string
+        bOfferAccepted:
+          type: boolean
+        sUpdateType:
+          type: string
+          enum:
+            - All
+            - Uploaded
+            - New
+        aConfirmationStatuses:
+          type: array
+          items:
+            type: string
+            enum:
+              - NoStatus
+              - Approved
+              - Declined
+              - Pending
+        aRelocationByOffice:
+          type: array
+          items:
+            type: number
+        aRelocationByDate:
+          type: array
+          items:
+            type: string
+        sVisibility:
+          type: string
+          enum:
+            - Visible
+            - Hidden
+        aProducts:
+          type: array
+          items:
+            type: number
+        sWorkplacePattern:
+          $ref: '#/components/schemas/WorkplacePattern'
+        aPositionInTheRange:
+          type: array
+          items:
+            $ref: '#/components/schemas/PositionInTheRange'
+        bVacanciesWithMultipleOffices:
+          type: boolean
+        sVacancyByCreation:
+          type: string
+          enum:
+            - new
+            - old
+        aReorganizationTypeOfChange:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReorganizationTypeOfChange'
+        aSeverancePackage:
+          type: array
+          items:
+            $ref: '#/components/schemas/SeverancePackage'
+        aTerminationDate:
+          type: array
+          items:
+            type: string
+        aRelocationOffice:
+          type: array
+          items:
+            type: number
+        aRelocationDate:
+          type: array
+          items:
+            type: string
+        aTalentPoolLestaReviewStatus:
+          type: array
+          items:
+            type: string
+        sLastSalaryChangeDate:
+          $ref: '#/components/schemas/LastSalaryChangeDateFilter'
+        sLastSalaryChangeDateFrom:
+          type: string
+        sLastSalaryChangeDateTo:
+          type: string
+        aTenure:
+          $ref: '#/components/schemas/TenureFilter'
+    PositionListInternalData:
+      title: PositionListInternalData
+      type: object
+      properties:
+        aManagers:
+          type: array
+          items:
+            $ref: ../models/Manager.yaml
+        aOffices:
+          type: array
+          items:
+            $ref: ../models/Office.yaml
+        aDepartments:
+          type: array
+          items:
+            $ref: ../models/Department-node.yaml
+        aParticipants:
+          type: array
+          items:
+            $ref: ../models/Participant-short.yaml
+        aCostCenters:
+          type: array
+          items:
+            $ref: ../models/Office.yaml
+        iAllPositionsCount:
+          type: number
+        iEmployeesCount:
+          type: number
+        iVacanciesCount:
+          type: number
+        iLongLeaveCount:
+          type: number
+        aJobFamilyGroups:
+          type: array
+          items:
+            $ref: ../models/Participant-short.yaml
+        aJobFamilies:
+          type: array
+          items:
+            $ref: ../models/Participant-short.yaml
+        aJobSubFamilies:
+          type: array
+          items:
+            $ref: ../models/Participant-short.yaml
+        aExcludeList:
+          type: array
+          items:
+            $ref: ../models/Participant-short.yaml
+        oSalaryConfig:
+          $ref: ../models/Salary-config.yaml
+        aSalaryUpdatesPeriods:
+          $ref: ./summary.yaml#/components/schemas/IdStringList
+        aVacanciesPeriods:
+          $ref: ./summary.yaml#/components/schemas/IdStringList
+        bShowUpdateTypeFilter:
+          type: boolean
+        oSorting:
+          type: object
+          required:
+            - aPosition
+            - aCurrentStatus
+            - aOrgInfo
+            - aEmployee
+            - aSalary
+          properties:
+            aPosition:
+              type: array
+              items:
+                $ref: '#/components/schemas/PositionListFieldSorting'
+            aCurrentStatus:
+              type: array
+              items:
+                $ref: '#/components/schemas/PositionListFieldSorting'
+            aOrgInfo:
+              type: array
+              items:
+                $ref: '#/components/schemas/PositionListFieldSorting'
+            aEmployee:
+              type: array
+              items:
+                $ref: '#/components/schemas/PositionListFieldSorting'
+            aSalary:
+              type: array
+              items:
+                $ref: '#/components/schemas/PositionListFieldSorting'
+        aRelocationByOffice:
+          type: array
+          items:
+            $ref: ./summary.yaml#/components/schemas/IdNumberList
+        aRelocationByDate:
+          type: array
+          items:
+            $ref: ./summary.yaml#/components/schemas/IdStringList
+        bShowVisibilityFilter:
+          type: boolean
+        aProducts:
+          type: array
+          items:
+            $ref: ./summary.yaml#/components/schemas/IdNumberList
+        aRelocationOffices:
+          type: array
+          items:
+            $ref: ../models/Office.yaml
+        aRelocationDates:
+          type: array
+          items:
+            $ref: ./summary.yaml#/components/schemas/IdStringList
+        aTerminationDates:
+          type: array
+          items:
+            $ref: ./summary.yaml#/components/schemas/IdStringList
+      required:
+        - aManagers
+        - aOffices
+        - aDepartments
+        - aParticipants
+        - aCostCenters
+        - iAllPositionsCount
+        - iEmployeesCount
+        - iVacanciesCount
+        - iLongLeaveCount
+        - aJobFamilyGroups
+        - aJobFamilies
+        - aJobSubFamilies
+        - aExcludeList
+        - aSalaryUpdatesPeriods
+        - aVacanciesPeriods
+        - bShowUpdateTypeFilter
+        - oSorting
+        - aRelocationByOffice
+        - aRelocationByDate
+        - bShowVisibilityFilter
+        - aProducts
     UpdateJobMappingCatalogs:
       title: UpdateJobMappingCatalogs
       type: object
@@ -1341,3 +1516,221 @@ components:
           type: boolean
       required:
         - aPositionIds
+    SalaryViewPosition:
+      title: SalaryViewPosition
+      type: object
+      properties:
+        iId:
+          type: number
+        sAssignee:
+          type: string
+        sEmployeeId:
+          type: string
+        sEmployeeClass:
+          type: string
+        sName:
+          type: string
+        bIsManager:
+          type: boolean
+        sCode:
+          type: string
+        sCareerLevel:
+          type: string
+        sCurrentStatus:
+          type: string
+        oOrgStructure:
+          $ref: ../models/Org-structure-short.yaml
+        fSalaryBudgeted:
+          type: number
+        aSalaryChanges:
+          type: array
+          items:
+            $ref: ../models/Salary-change-short.yaml
+        oPayRangeExternal:
+          $ref: '#/components/schemas/SalaryViewPayRange'
+        sLastSalaryChangeDate:
+          type: string
+        sLastSalaryChangeReason:
+          type: string
+        iPreviousSalaryAmount:
+          type: number
+        sCurrentPerformanceRating:
+          type: string
+        sCurrentPerformanceDate:
+          type: string
+        iLastPerformanceBonusAmount:
+          type: number
+        sLastPerformanceDate:
+          type: string
+        iTotalIncome:
+          type: number
+        sTenure:
+          type: string
+        sPlanningStatus:
+          type: string
+        bCanAddSalaryChange:
+          type: boolean
+        sVacancyType:
+          type: string
+      required:
+        - iId
+        - sEmployeeClass
+        - sName
+        - bIsManager
+        - sCode
+        - sCareerLevel
+        - sCurrentStatus
+        - oOrgStructure
+        - fSalaryBudgeted
+        - sLastSalaryChangeDate
+        - sLastSalaryChangeReason
+        - iPreviousSalaryAmount
+        - sCurrentPerformanceDate
+        - sLastPerformanceDate
+        - sTenure
+        - sPlanningStatus
+        - bCanAddSalaryChange
+    PositionInTheRange:
+      type: string
+      title: PositionInTheRange
+      enum:
+        - BelowTheRange
+        - InTheRange
+        - AboveTheRange
+    SalaryViewPayRange:
+      title: SalaryViewPayRange
+      type: object
+      properties:
+        iMin:
+          type: number
+        iMid:
+          type: number
+        iMax:
+          type: number
+        iCompaRatio:
+          type: number
+        aCompaRatioChanges:
+          type: array
+          items:
+            type: number
+        sPositionInTheRange:
+          $ref: '#/components/schemas/PositionInTheRange'
+        aPositionInTheRangeChanges:
+          type: array
+          items:
+            $ref: '#/components/schemas/PositionInTheRange'
+      required:
+        - iMin
+        - iMid
+        - iMax
+        - iCompaRatio
+        - aDepartments
+        - aParticipants
+        - aCostCenters
+        - iAllPositionsCount
+        - iEmployeesCount
+        - iVacanciesCount
+        - iLongLeaveCount
+        - aJobFamilyGroups
+        - aJobFamilies
+        - aJobSubFamilies
+        - aExcludeList
+        - aSalaryUpdatesPeriods
+        - aVacanciesPeriods
+        - bShowUpdateTypeFilter
+        - oSorting
+        - aRelocationByOffice
+        - aRelocationByDate
+        - bShowVisibilityFilter
+        - aProducts
+    ReorganizationTypeOfChange:
+      type: string
+      title: ReorganizationTypeOfChange
+      enum:
+        - Termination
+        - Relocation
+        - Talent pool WG
+        - Talent pool Lesta
+        - No Changes
+        - Transfer to Playsense
+    Reorganization:
+      title: Reorganization
+      type: object
+      properties:
+        sTypeOfChange:
+          $ref: '#/components/schemas/ReorganizationTypeOfChange'
+        sEffectiveDate:
+          type: string
+        sSeverancePackage:
+          $ref: '#/components/schemas/SeverancePackage'
+        sOffice:
+          type: string
+        iOfficeId:
+          type: number
+      required:
+        - sTypeOfChange
+    AddReorganization:
+      title: AddReorganization
+      type: object
+      properties:
+        aPositionIds:
+          type: array
+          items:
+            type: number
+        sTypeOfChange:
+          $ref: '#/components/schemas/ReorganizationTypeOfChange'
+        sEffectiveDate:
+          type: string
+        sSeverancePackage:
+          $ref: '#/components/schemas/SeverancePackage'
+        iOfficeId:
+          type: number
+      required:
+        - aPositionIds
+        - sTypeOfChange
+    SeverancePackage:
+      type: string
+      title: SeverancePackage
+      enum:
+        - 3 salaries
+        - 5 salaries
+    TalentPoolLestaReviewStatus:
+      type: string
+      title: TalentPoolLestaReviewStatus
+      enum:
+        - No changes
+        - On hold
+        - Approved
+        - Rejected
+    PositionIds:
+      title: PositionIds
+      x-stoplight:
+        id: b09fihofy3uog
+      type: object
+      properties:
+        aPositionIds:
+          type: array
+          items:
+            type: number
+    LastSalaryChangeDateFilter:
+      type: string
+      title: LastSalaryChangeDateFilter
+      x-stoplight:
+        id: y8kooxa35k4o6
+      enum:
+        - NoChanges
+        - Past6Month
+        - Past1Year
+        - PastMore1Year
+        - Custom
+    TenureFilter:
+      type: string
+      title: TenureFilter
+      x-stoplight:
+        id: dt35n17t98jwn
+      enum:
+        - Less1Year
+        - From1To3Years
+        - From3To5Years
+        - From5To10Years
+        - From10Years

@@ -549,7 +549,7 @@ components:
         sPeriod:
           type: string
         oPositionsFilter:
-          $ref: '#/components/schemas/SummaryPositionsFilter'
+          $ref: ./positions.yaml#/components/schemas/PositionsFilter
       required:
         - oPositionsFilter
     short-statistic-filter:
@@ -557,7 +557,7 @@ components:
       type: object
       properties:
         oPositionsFilter:
-          $ref: '#/components/schemas/SummaryPositionsFilter'
+          $ref: ./positions.yaml#/components/schemas/PositionsFilter
         iCurrencyId:
           type: number
       required:
@@ -662,7 +662,7 @@ components:
       type: object
       properties:
         oPositionsFilter:
-          $ref: '#/components/schemas/SummaryPositionsFilter'
+          $ref: ./positions.yaml#/components/schemas/PositionsFilter
         iCurrencyId:
           type: number
         sPeriod:
@@ -1051,118 +1051,6 @@ components:
       required:
         - sName
         - aValues
-    SummaryPositionsFilter:
-      title: SummaryPositionsFilter
-      type: object
-      properties:
-        iReportingFunctionId:
-          type: number
-        aOfficeIds:
-          type: array
-          items:
-            type: number
-        aDepartmentIds:
-          type: array
-          items:
-            type: number
-        aManagerIds:
-          type: array
-          items:
-            type: string
-        sCurrentStatus:
-          type: string
-          enum:
-            - Active Employee
-            - Vacancy
-            - Long Leave
-        iDepartmentId:
-          type: number
-        aSubmissionStatuses:
-          type: array
-          items:
-            type: string
-        aCostCenters:
-          type: array
-          items:
-            type: string
-        sJobFamilyGroupId:
-          type: string
-        sJobSubFamilyId:
-          type: string
-        aExcludeIds:
-          type: array
-          items:
-            type: string
-        aDepartmentIds2:
-          type: array
-          items:
-            type: number
-        sText:
-          type: string
-        bOnlyInactive:
-          type: boolean
-        bOnlySalaryUpdates:
-          type: boolean
-        bFutureReplacements:
-          type: boolean
-        sChanges:
-          type: string
-          enum:
-            - All
-            - WithChanges
-            - WithoutChanges
-        sJobFamilyId:
-          type: string
-        iFilterId:
-          type: number
-        sSalaryUpdatesMode:
-          type: string
-          enum:
-            - withoutUpdates
-            - withUpdates
-            - periods
-        aSalaryUpdates:
-          type: array
-          items:
-            type: string
-        aVacanciesUpdates:
-          type: array
-          items:
-            type: string
-        bOfferAccepted:
-          type: boolean
-        sUpdateType:
-          type: string
-          enum:
-            - All
-            - Uploaded
-            - New
-        aConfirmationStatuses:
-          type: array
-          items:
-            type: string
-            enum:
-              - NoStatus
-              - Approved
-              - Declined
-              - Pending
-        aRelocationByOffice:
-          type: array
-          items:
-            type: number
-        aRelocationByDate:
-          type: array
-          items:
-            type: string
-        sVisibility:
-          type: string
-          enum:
-            - Visible
-            - Hidden
-        aProducts:
-          type: array
-          items:
-            type: number
         sWorkplacePattern:
           $ref: ./positions.yaml#/components/schemas/UpdateWorkplacePattern
         bVacanciesWithMultipleOffices:

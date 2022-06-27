@@ -128,6 +128,10 @@ properties:
     type: boolean
   sActualLocationForRemoteEmployee:
     type: string
+  oReorganization:
+    $ref: ../reference/positions.yaml#/components/schemas/Reorganization
+  sTalentPoolLestaReviewStatus:
+    $ref: ../reference/positions.yaml#/components/schemas/TalentPoolLestaReviewStatus
 required:
   - iId
   - iReportingFunctionId

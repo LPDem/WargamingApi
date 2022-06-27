@@ -116,6 +116,10 @@ properties:
         type: string
     required:
       - sOffice
+  sReorganizationTypeOfChange:
+    $ref: ../reference/positions.yaml#/components/schemas/ReorganizationTypeOfChange
+  sTalentPoolLestaReviewStatus:
+    $ref: ../reference/positions.yaml#/components/schemas/TalentPoolLestaReviewStatus
 required:
   - iId
   - iReportingFunctionId
