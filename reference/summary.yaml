@@ -1051,10 +1051,7 @@ components:
       required:
         - sName
         - aValues
-        sWorkplacePattern:
-          $ref: ./positions.yaml#/components/schemas/UpdateWorkplacePattern
-        bVacanciesWithMultipleOffices:
-          type: boolean
+
     ChangesSalaryIncreasesDescription:
       title: ChangesSalaryIncreasesDescription
       type: object
