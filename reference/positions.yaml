@@ -1113,7 +1113,7 @@ paths:
                   aBonuses:
                     type: array
                     items:
-                      $ref: './summary.yaml#/components/schemas/IdStringList'
+                      $ref: ./summary.yaml#/components/schemas/IdStringList
       requestBody:
         content:
           application/json:
@@ -1702,6 +1702,9 @@ components:
           type: number
         fRelocationBonusCustomValue:
           type: number
+        iSalaryChangeId:
+          type: number
+          description: 'Id salary change, с которым была ранее связана эта запись о реорганизации'
       required:
         - sTypeOfChange
     AddReorganization:
@@ -1731,6 +1734,11 @@ components:
               type: number
             iCurrencyId:
               type: number
+        oSalary:
+          $ref: ../models/Salary-adding.yaml
+        iSalaryChangeId:
+          type: number
+          description: 'Id salary change, в который нужно внести данные из oSalary. Если null, то нужно добавить новый salary change.'
       required:
         - aPositionIds
         - sTypeOfChange
