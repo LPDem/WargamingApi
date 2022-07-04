@@ -1149,28 +1149,45 @@ components:
       properties:
         iPositionId:
           type: number
+        sPositionCode:
+          type: string
         sRequestType:
+          type: string
+        sRequestText:
           type: string
         sEmployee:
           type: string
-        sCreator:
+        sSubmittedBy:
           type: string
-        sApproval:
+        sApprovedBy:
+          type: string
+        sDeclinedBy:
+          type: string
+        sConfirmedBy:
+          type: string
+        sPendingConfirmationBy:
+          type: string
+        sUpdatedInHrmsBy:
           type: string
         sStatus:
           type: string
           enum:
-            - Approve
-            - Decline
             - PendingApproval
+            - Approved
+            - Declined
+            - UpdatedInHRMS
+        bAutoApproved:
+          type: boolean
         bShowStatusButton:
           type: boolean
       required:
         - iPositionId
+        - sPositionCode
         - sRequestType
-        - sCreator
-        - sApproval
+        - sRequestText
+        - sSubmittedBy
         - sStatus
+        - bAutoApproved
         - bShowStatusButton
     UpdateWorkplacePattern:
       title: UpdateWorkplacePattern
