@@ -1113,7 +1113,7 @@ paths:
                   aBonuses:
                     type: array
                     items:
-                      $ref: ./summary.yaml#/components/schemas/IdStringList
+                      $ref: ./summary.yaml#/components/schemas/IdNumberList
       requestBody:
         content:
           application/json:
