@@ -92,13 +92,7 @@ properties:
       - planned
       - unplanned
   sApproveNewStatus:
-    type: string
-    enum:
-      - Pending
-      - Approved
-      - Declined
-      - UpdatedInHRMS
-    description: Статус согласования новой вакансии
+    $ref: ../reference/positions.yaml#/components/schemas/PositionApproveStatus
   sGreenhouseStatus:
     type: string
     enum:

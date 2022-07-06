@@ -909,6 +909,28 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Approval'
+  '/api/positions/confirm-approval/{positionId}':
+    post:
+      summary: ''
+      operationId: post-api-positions-confirm-approval
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Approval'
+        '':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Approval'
+    parameters:
+      - schema:
+          type: number
+        name: positionId
+        in: path
+        required: true
   /api/positions/add-inactive:
     post:
       summary: ''
@@ -1180,6 +1202,12 @@ components:
           type: boolean
         bShowStatusButton:
           type: boolean
+        sMainAction:
+          $ref: '#/components/schemas/ApprovalAction'
+        aExtActions:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApprovalAction'
       required:
         - iPositionId
         - sPositionCode
@@ -1298,14 +1326,7 @@ components:
             - Uploaded
             - New
         aConfirmationStatuses:
-          type: array
-          items:
-            type: string
-            enum:
-              - NoStatus
-              - Approved
-              - Declined
-              - Pending
+          $ref: '#/components/schemas/PositionApproveStatus'
         aRelocationByOffice:
           type: array
           items:
@@ -1814,3 +1835,23 @@ components:
         - NoBonus
         - PerCareerLevel
         - CustomBonus
+    PositionApproveStatus:
+      type: string
+      title: PositionApproveStatus
+      x-stoplight:
+        id: hwfpd8xjk6ypg
+      enum:
+        - PendingApproval
+        - Approved
+        - Declined
+        - UpdatedInHRMS
+        - Confirmed
+    ApprovalAction:
+      type: string
+      title: ApprovalAction
+      x-stoplight:
+        id: obmb2pubiq5ft
+      enum:
+        - Approve
+        - Decline
+        - Confirm
