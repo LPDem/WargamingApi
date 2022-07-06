@@ -1192,12 +1192,7 @@ components:
         sUpdatedInHrmsBy:
           type: string
         sStatus:
-          type: string
-          enum:
-            - PendingApproval
-            - Approved
-            - Declined
-            - UpdatedInHRMS
+          $ref: '#/components/schemas/PositionApproveStatus'
         bAutoApproved:
           type: boolean
         bShowStatusButton:
