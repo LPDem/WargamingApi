@@ -1175,7 +1175,7 @@ components:
           type: string
         sRequestType:
           type: string
-        sRequestText:
+        sPositionTitle:
           type: string
         sEmployee:
           type: string
@@ -1207,7 +1207,7 @@ components:
         - iPositionId
         - sPositionCode
         - sRequestType
-        - sRequestText
+        - sPositionTitle
         - sSubmittedBy
         - sStatus
         - bAutoApproved
@@ -1850,3 +1850,4 @@ components:
         - Approve
         - Decline
         - Confirm
+        - Reject
