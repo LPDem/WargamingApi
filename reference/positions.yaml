@@ -1738,8 +1738,8 @@ components:
         iSalaryChangeId:
           type: number
           description: 'Id salary change, с которым была ранее связана эта запись о реорганизации'
-        oBelgradRelocation:
-          $ref: '#/components/schemas/BelgradRelocation'
+        oRelocationBonus:
+          $ref: '#/components/schemas/ReorganizationRelocationBonus'
       required:
         - sTypeOfChange
     AddReorganization:
@@ -1855,17 +1855,17 @@ components:
         - Decline
         - Confirm
         - Reject
-    BelgradRelocationTravelBy:
+    ReorganizationRelocationBonusTravelBy:
       type: string
-      title: BelgradRelocationTravelBy
+      title: ReorganizationRelocationBonusTravelBy
       x-stoplight:
         id: j1dys5jc9e0qt
       enum:
         - ByCar
         - ByPlane
-    BelgradRelocationConfirmed:
+    ReorganizationRelocationBonusConfirmed:
       type: string
-      title: BelgradRelocationConfirmed
+      title: ReorganizationRelocationBonusConfirmed
       x-stoplight:
         id: 4qz3hld6y2r8j
       enum:
@@ -1873,8 +1873,8 @@ components:
         - 'No'
         - OnHold
       description: ''
-    BelgradRelocation:
-      title: BelgradRelocation
+    ReorganizationRelocationBonus:
+      title: ReorganizationRelocationBonus
       x-stoplight:
         id: f3ifmgrg7f3cz
       type: object
@@ -1882,11 +1882,11 @@ components:
         iFamilyMembers:
           type: number
         sTravelBy:
-          $ref: '#/components/schemas/BelgradRelocationTravelBy'
+          $ref: '#/components/schemas/ReorganizationRelocationBonusTravelBy'
         sPreliminaryRelocationDate:
           type: string
         sConfirmed:
-          $ref: '#/components/schemas/BelgradRelocationConfirmed'
+          $ref: '#/components/schemas/ReorganizationRelocationBonusConfirmed'
       required:
         - iFamilyMembers
         - sTravelBy
