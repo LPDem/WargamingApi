@@ -931,6 +931,28 @@ paths:
         name: positionId
         in: path
         required: true
+  '/api/positions/reject-approval/{positionId}':
+    post:
+      summary: ''
+      operationId: post-api-positions-reject-approval
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Approval'
+        '':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Approval'
+    parameters:
+      - schema:
+          type: number
+        name: positionId
+        in: path
+        required: true
   /api/positions/add-inactive:
     post:
       summary: ''
